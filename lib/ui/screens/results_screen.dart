@@ -15,27 +15,27 @@ class ResultsScreen extends StatelessWidget {
           ResultsTile(
             title: 'Miami',
             imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/nacional'),
+            onTap: () => context.go('/results/1'),
           ),
           ResultsTile(
             title: 'Venezuela',
             imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/real'),
+            onTap: () => context.go('/results/2'),
           ),
           ResultsTile(
             title: 'Florida',
             imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/leidsa'),
+            onTap: () => context.go('/results/3'),
           ),
           ResultsTile(
             title: 'Haití',
             imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/loteka'),
+            onTap: () => context.go('/results/4'),
           ),
           ResultsTile(
             title: 'Haití',
             imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/loteka'),
+            onTap: () => context.go('/results/5'),
           ),
         ],
       ),
@@ -45,9 +45,7 @@ class ResultsScreen extends StatelessWidget {
 
 class ResultsTile extends StatelessWidget {
   final String title;
-
   final String imageSrc;
-
   final void Function()? onTap;
 
   const ResultsTile({

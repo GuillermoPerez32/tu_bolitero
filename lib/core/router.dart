@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/ui/screens/result_detail_screen.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
@@ -15,6 +16,16 @@ final GoRouter router = GoRouter(
             builder: (BuildContext context, GoRouterState state) {
               return const ResultsScreen();
             },
+            routes: [
+              GoRoute(
+                path: ':id',
+                builder: (BuildContext context, GoRouterState state) {
+                  return ResultDetailScreen(
+                    id: state.pathParameters['id'],
+                  );
+                },
+              )
+            ],
           ),
           GoRoute(
             path: 'atrasados',
