@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Tu Bolitero',
       routerConfig: router,
-      theme: defaultTheme,
+      theme: ThemeFactory.getTheme(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
