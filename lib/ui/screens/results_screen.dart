@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/core/constants.dart';
-import 'package:tu_bolitero/data/datasources/lottery_datasource.dart';
+import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key});
@@ -10,41 +11,36 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resultados de loterias'),
-      ),
-      body: FutureBuilder(
-        future: lotteryDatasource.getLotteries(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('Error'),
-            );
-          }
-
-          final lotteries = snapshot.data!;
-
-          return ListView.separated(
-            itemCount: lotteries.length,
-            itemBuilder: (context, index) {
-              final lottery = lotteries[index];
-              return ResultsTile(
-                title: lottery.nombre,
-                imageSrc: lottery.logo,
-                onTap: () => context.go('/results/${lottery.id}'),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) => Divider(),
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Resultados de loterias'),
+        ),
+        body: BlocBuilder<LotteryCubit, LotteryState>(
+          builder: (context, state) {
+            return state.when(
+                initial: () => const Center(
+                      child: Text('Esperando loterias'),
+                    ),
+                loading: () => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                loaded: (lotteries) => ListView.separated(
+                      itemCount: lotteries.length,
+                      itemBuilder: (context, index) {
+                        final lottery = lotteries[index];
+                        return ResultsTile(
+                          title: lottery.nombre,
+                          imageSrc: lottery.logo,
+                          onTap: () => context.go('/results/${lottery.id}'),
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(),
+                    ),
+                error: () => const Center(
+                      child: Text('Error'),
+                    ));
+          },
+        ));
   }
 }
 
