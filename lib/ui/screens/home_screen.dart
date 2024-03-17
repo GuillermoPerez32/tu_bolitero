@@ -56,7 +56,7 @@ class HomeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tileHeight = 150.0;
-    return Container(
+    return SizedBox(
       height: tileHeight,
       child: Center(
         child: ListTile(

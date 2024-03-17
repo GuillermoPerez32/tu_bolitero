@@ -9,10 +9,10 @@ class ResultDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Resultados de loterias'),
+        title: const Text('Resultados de loterias'),
       ),
       body: Center(
-        child: Text('Result Detail Screen for lottery ${id}'),
+        child: Text('Result Detail Screen for lottery $id'),
       ),
     );
   }

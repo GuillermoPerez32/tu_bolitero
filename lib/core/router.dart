@@ -30,19 +30,19 @@ final GoRouter router = GoRouter(
           GoRoute(
             path: 'atrasados',
             builder: (BuildContext context, GoRouterState state) {
-              return AtrasadosScreen();
+              return const AtrasadosScreen();
             },
           ),
           GoRoute(
             path: 'algoritmos',
             builder: (BuildContext context, GoRouterState state) {
-              return AlgoritmosScreen();
+              return const AlgoritmosScreen();
             },
           ),
           GoRoute(
             path: 'charada',
             builder: (BuildContext context, GoRouterState state) {
-              return CharadaScreen();
+              return const CharadaScreen();
             },
           ),
         ]),

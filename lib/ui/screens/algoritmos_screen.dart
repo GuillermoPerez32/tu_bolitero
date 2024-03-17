@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AlgoritmosScreen extends StatelessWidget {
+  const AlgoritmosScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Algoritmos'),
+        title: const Text('Algoritmos'),
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'Algoritmos Screen',
           style: TextStyle(fontSize: 24),

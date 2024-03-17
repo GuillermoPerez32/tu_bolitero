@@ -6,7 +6,7 @@ class LotteryDatasource {
   final _client = Dio();
 
   Future<List<Lottery>> getLotteries() async {
-    final response = await _client.get(host + '/api/loterias');
+    final response = await _client.get('$host/api/loterias');
     final data = response.data as List;
     final lotteries = data.map((lottery) => Lottery.fromJson(lottery)).toList();
     return lotteries;
