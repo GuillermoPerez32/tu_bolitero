@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tu_bolitero/domain/models/lottery_result.dart';
@@ -139,27 +137,76 @@ class ResultCard extends StatelessWidget {
           const VerticalDivider(),
           Expanded(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    const Text('Pick'),
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Text('3'),
-                    ),
-                  ],
+                PickSection(
+                  pickNumber: '3',
+                  pickResult: result.pick3,
+                  color: const Color.fromARGB(220, 255, 214, 0),
                 ),
-                Text(result.pick3),
-                const Text('Pick 4'),
-                Text(result.pick4),
+                const SizedBox(height: 20),
+                PickSection(
+                  pickNumber: '4',
+                  pickResult: result.pick4,
+                  color: const Color.fromARGB(240, 164, 239, 128),
+                ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class PickSection extends StatelessWidget {
+  const PickSection({
+    super.key,
+    required this.pickNumber,
+    required this.pickResult,
+    required this.color,
+  });
+
+  final String pickNumber;
+  final String pickResult;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Pick',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Container(
+              margin: const EdgeInsets.only(left: 10),
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                  child: Text(
+                pickNumber,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )),
+            ),
+          ],
+        ),
+        Text(
+          pickResult,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ],
     );
   }
 }

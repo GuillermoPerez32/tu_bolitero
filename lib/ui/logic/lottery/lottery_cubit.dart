@@ -7,7 +7,7 @@ part 'lottery_state.dart';
 part 'lottery_cubit.freezed.dart';
 
 class LotteryCubit extends Cubit<LotteryState> {
-  LotteryCubit() : super(LotteryState.initial());
+  LotteryCubit() : super(const LotteryState.initial());
 
   void loadLotteries() async {
     emit(const LotteryState.loading());
