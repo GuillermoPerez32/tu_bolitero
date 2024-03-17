@@ -30,14 +30,17 @@ class ResultsScreen extends StatelessWidget {
 
           final lotteries = snapshot.data!;
 
-          return ListView(
-            children: lotteries
-                .map((lottery) => ResultsTile(
-                      title: lottery.nombre,
-                      imageSrc: lottery.logo,
-                      onTap: () => context.go('/results/${lottery.id}'),
-                    ))
-                .toList(),
+          return ListView.separated(
+            itemCount: lotteries.length,
+            itemBuilder: (context, index) {
+              final lottery = lotteries[index];
+              return ResultsTile(
+                title: lottery.nombre,
+                imageSrc: lottery.logo,
+                onTap: () => context.go('/results/${lottery.id}'),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) => Divider(),
           );
         },
       ),
@@ -59,10 +62,9 @@ class ResultsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tileHeight = 150.0;
+    const tileHeight = 100.0;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      height: tileHeight,
       child: Center(
         child: ListTile(
           visualDensity: VisualDensity.compact,

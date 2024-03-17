@@ -11,23 +11,26 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Tu Bolitero'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           HomeTile(
             title: 'Resultados de loterias',
             imageSrc: 'assets/Ellipse 1.png',
             onTap: () => context.go('/results'),
           ),
+          const Divider(),
           HomeTile(
             title: 'Atrasados',
             imageSrc: 'assets/atrasados.png',
             onTap: () => context.go('/atrasados'),
           ),
+          const Divider(),
           HomeTile(
             title: 'Algoritmos',
             imageSrc: 'assets/algoritmos.png',
             onTap: () => context.go('/algoritmos'),
           ),
+          const Divider(),
           HomeTile(
             title: 'Charada',
             imageSrc: 'assets/charada.png',
@@ -55,41 +58,33 @@ class HomeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tileHeight = 150.0;
-    return SizedBox(
-      height: tileHeight,
-      child: Center(
-        child: ListTile(
-          visualDensity: VisualDensity.compact,
-          onTap: onTap,
-          tileColor: Colors.white,
-          leading: Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(imageSrc),
+    return Expanded(
+      child: ListTile(
+        visualDensity: VisualDensity.compact,
+        onTap: onTap,
+        leading: Container(
+          width: 70,
+          height: 70,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: AssetImage(imageSrc),
+            ),
+          ),
+        ),
+        trailing: const Icon(Icons.arrow_forward_outlined),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
               ),
             ),
-          ),
-          trailing: const Icon(Icons.arrow_forward_outlined),
-          title: SizedBox(
-            height: tileHeight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
