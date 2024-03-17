@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:tu_bolitero/domain/models/result.dart';
+import 'package:tu_bolitero/domain/models/lottery_result.dart';
 
 List<Lottery> lotteryFromJson(String str) =>
     List<Lottery>.from(json.decode(str).map((x) => Lottery.fromJson(x)));
@@ -14,8 +14,8 @@ class Lottery {
   final String logo;
   final String? pick3Logo;
   final String? pick4Logo;
-  final Result ultima;
-  final List<Result> ultimoDia;
+  final LotteryResult ultima;
+  final List<LotteryResult> ultimoDia;
 
   Lottery({
     required this.id,
@@ -33,9 +33,9 @@ class Lottery {
         logo: json["logo"],
         pick3Logo: json["pick3_logo"],
         pick4Logo: json["pick4_logo"],
-        ultima: Result.fromJson(json["ultima"]),
-        ultimoDia: List<Result>.from(
-            json["ultimo_dia"].map((x) => Result.fromJson(x))),
+        ultima: LotteryResult.fromJson(json["ultima"]),
+        ultimoDia: List<LotteryResult>.from(
+            json["ultimo_dia"].map((x) => LotteryResult.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

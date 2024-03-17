@@ -21,7 +21,7 @@ final GoRouter router = GoRouter(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) {
                   return ResultDetailScreen(
-                    id: state.pathParameters['id'],
+                    lotteryId: state.pathParameters['id'],
                   );
                 },
               )
