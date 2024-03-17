@@ -9,8 +9,11 @@ part 'results_cubit.freezed.dart';
 class ResultsCubit extends Cubit<ResultsState> {
   ResultsCubit() : super(const ResultsState.initial(results: {}));
 
-  void loadLotteryResults(int lotteryId) async {
+  void setLoading() {
     emit(ResultsState.loading(results: state.results));
+  }
+
+  void loadLotteryResults(int lotteryId) async {
     try {
       final results =
           await lotteryResultsDatasource.getLotteryResult(lotteryId);
