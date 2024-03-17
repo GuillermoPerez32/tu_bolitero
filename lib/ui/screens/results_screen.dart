@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/core/constants.dart';
+import 'package:tu_bolitero/data/datasources/lottery_datasource.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key});
@@ -10,34 +13,33 @@ class ResultsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Resultados de loterias'),
       ),
-      body: ListView(
-        children: [
-          ResultsTile(
-            title: 'Miami',
-            imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/1'),
-          ),
-          ResultsTile(
-            title: 'Venezuela',
-            imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/2'),
-          ),
-          ResultsTile(
-            title: 'Florida',
-            imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/3'),
-          ),
-          ResultsTile(
-            title: 'Haití',
-            imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/4'),
-          ),
-          ResultsTile(
-            title: 'Haití',
-            imageSrc: 'assets/sun.png',
-            onTap: () => context.go('/results/5'),
-          ),
-        ],
+      body: FutureBuilder(
+        future: lotteryDatasource.getLotteries(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text('Error'),
+            );
+          }
+
+          final lotteries = snapshot.data!;
+
+          return ListView(
+            children: lotteries
+                .map((lottery) => ResultsTile(
+                      title: lottery.nombre,
+                      imageSrc: lottery.logo,
+                      onTap: () => context.go('/results/${lottery.id}'),
+                    ))
+                .toList(),
+          );
+        },
       ),
     );
   }
@@ -72,7 +74,11 @@ class ResultsTile extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(imageSrc),
+                image: CachedNetworkImageProvider(
+                  host + imageSrc,
+                  maxWidth: 70,
+                  maxHeight: 70,
+                ),
               ),
             ),
           ),
