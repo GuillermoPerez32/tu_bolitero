@@ -31,6 +31,16 @@ final GoRouter router = GoRouter(
             builder: (BuildContext context, GoRouterState state) {
               return const AtrasadosScreen();
             },
+            routes: [
+              GoRoute(
+                path: ':id',
+                builder: (BuildContext context, GoRouterState state) {
+                  return AtrasoDetailScreen(
+                    lotteryId: state.pathParameters['id'],
+                  );
+                },
+              )
+            ],
           ),
           GoRoute(
               path: 'algoritmos',

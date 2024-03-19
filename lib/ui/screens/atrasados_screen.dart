@@ -34,7 +34,7 @@ class AtrasadosScreen extends StatelessWidget {
                     BlocProvider.of<ResultsCubit>(context)
                         .loadLotteryResults(lottery.id);
                     //TODO: Fix
-                    context.go('/results/${lottery.id}');
+                    context.go('/atrasados/${lottery.id}');
                   },
                 );
               },
