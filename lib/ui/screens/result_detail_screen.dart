@@ -13,6 +13,15 @@ class ResultDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resultsBloc = BlocProvider.of<ResultsCubit>(context);
+    final firstColor = [
+      Color.fromARGB(255, 84, 181, 222),
+      Colors.white,
+    ];
+
+    final secondColor = [
+      Color.fromARGB(255, 228, 184, 255),
+      Colors.white,
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -62,7 +71,11 @@ class ResultDetailScreen extends StatelessWidget {
                           itemCount: state.results[lotteryId]!.length,
                           itemBuilder: (context, index) {
                             final result = state.results[lotteryId]![index];
-                            return ResultCard(result: result);
+                            return ResultCard(
+                              result: result,
+                              gradientColors:
+                                  index % 2 == 0 ? firstColor : secondColor,
+                            );
                           },
                         ),
                       ),
@@ -73,14 +86,15 @@ class ResultDetailScreen extends StatelessWidget {
   }
 }
 
-//TODO: #1 Finish to style card
 class ResultCard extends StatelessWidget {
   const ResultCard({
     super.key,
     required this.result,
+    required this.gradientColors,
   });
 
   final LotteryResult result;
+  final List<Color> gradientColors;
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +103,9 @@ class ResultCard extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20, bottom: 40, left: 20, right: 20),
       padding: const EdgeInsets.all(20),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        boxShadow: const [
           BoxShadow(
             color: Colors.black,
             spreadRadius: 0,
@@ -102,11 +116,8 @@ class ResultCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          stops: [.2, .6],
-          colors: [
-            Color.fromARGB(255, 84, 181, 222),
-            Colors.white,
-          ],
+          stops: const [.2, .6],
+          colors: gradientColors,
         ),
       ),
       child: Row(
@@ -123,7 +134,9 @@ class ResultCard extends StatelessWidget {
                     fontSize: 19,
                   ),
                 ),
-                Image.asset('assets/sun.png'),
+                Image.asset(result.fecha.hour > 6 && result.fecha.hour < 14
+                    ? 'assets/sun.png'
+                    : 'assets/moon.png'),
                 Text(
                   DateFormat('dd-MM-yyyy').format(result.fecha),
                   style: const TextStyle(
