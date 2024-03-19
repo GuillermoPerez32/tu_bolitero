@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tu_bolitero/ui/screens/result_detail_screen.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
@@ -34,11 +33,36 @@ final GoRouter router = GoRouter(
             },
           ),
           GoRoute(
-            path: 'algoritmos',
-            builder: (BuildContext context, GoRouterState state) {
-              return const AlgoritmosScreen();
-            },
-          ),
+              path: 'algoritmos',
+              builder: (BuildContext context, GoRouterState state) {
+                return const AlgoritmosScreen();
+              },
+              routes: [
+                GoRoute(
+                  path: 'piramide',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const PiramideScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'cruz_suerte',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const CruzSuerteScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'numero_suerte',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const NumeroSuerteScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'table',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const TablaDiosesScreen();
+                  },
+                ),
+              ]),
           GoRoute(
             path: 'charada',
             builder: (BuildContext context, GoRouterState state) {
