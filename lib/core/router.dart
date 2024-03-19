@@ -64,11 +64,24 @@ final GoRouter router = GoRouter(
                 ),
               ]),
           GoRoute(
-            path: 'charada',
-            builder: (BuildContext context, GoRouterState state) {
-              return const CharadaScreen();
-            },
-          ),
+              path: 'charada',
+              builder: (BuildContext context, GoRouterState state) {
+                return const CharadaScreen();
+              },
+              routes: [
+                GoRoute(
+                  path: 'clasica',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const CharadaClasicaScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'mixta',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const CharadaMixtaScreen();
+                  },
+                ),
+              ]),
         ]),
   ],
 );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NumeroSuerteScreen extends StatelessWidget {
-  const NumeroSuerteScreen({super.key});
+class CharadaMixtaScreen extends StatelessWidget {
+  const CharadaMixtaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Número de suerte'),
+        title: Text('Charada Mixta'),
       ),
     );
   }
