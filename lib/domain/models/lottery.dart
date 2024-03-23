@@ -118,31 +118,34 @@ class LotteryResult {
 }
 
 class Atrasados {
-  final Map<String, int>? decenas;
-  final Map<String, int>? centenas;
-  final Map<String, int>? unidades;
+  final Map<String, int> decenas;
+  final Map<String, int> centenas;
+  final Map<String, int> unidades;
 
   Atrasados({
-    this.decenas,
-    this.centenas,
-    this.unidades,
+    required this.decenas,
+    required this.centenas,
+    required this.unidades,
   });
 
   factory Atrasados.fromJson(Map<String, dynamic> json) => Atrasados(
-        decenas: Map.from(json["decenas"]!)
-            .map((k, v) => MapEntry<String, int>(k, v)),
-        centenas: Map.from(json["centenas"]!)
-            .map((k, v) => MapEntry<String, int>(k, v)),
-        unidades: Map.from(json["unidades"]!)
-            .map((k, v) => MapEntry<String, int>(k, v)),
+        decenas: json["decenas"] != null
+            ? Map.from(json["decenas"])
+            : {}.map((k, v) => MapEntry<String, int>(k, v)),
+        centenas: json["centenas"] != null
+            ? Map.from(json["centenas"])
+            : {}.map((k, v) => MapEntry<String, int>(k, v)),
+        unidades: json["unidades"] != null
+            ? Map.from(json["unidades"])
+            : {}.map((k, v) => MapEntry<String, int>(k, v)),
       );
 
   Map<String, dynamic> toJson() => {
         "decenas":
-            Map.from(decenas!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+            Map.from(decenas).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "centenas":
-            Map.from(centenas!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+            Map.from(centenas).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "unidades":
-            Map.from(unidades!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+            Map.from(unidades).map((k, v) => MapEntry<String, dynamic>(k, v)),
       };
 }

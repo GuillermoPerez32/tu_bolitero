@@ -31,7 +31,7 @@ class AtrasadosScreen extends StatelessWidget {
                   imageSrc: lottery.logo,
                   onTap: () {
                     BlocProvider.of<LotteryCubit>(context)
-                        .loadLotteryResults(lottery.id);
+                        .loadLotteryAtrasados(lottery.id);
                     //TODO: Fix
                     context.go('/atrasados/${lottery.id}');
                   },
