@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
-import 'package:tu_bolitero/ui/logic/results/results_cubit.dart';
 import 'package:tu_bolitero/ui/widgets/lottery_tile.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -17,10 +16,10 @@ class ResultsScreen extends StatelessWidget {
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
           return state.when(
-            initial: () => const Center(
+            initial: (_) => const Center(
               child: Text('Esperando loterias'),
             ),
-            loading: () => const Center(
+            loading: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
             loaded: (lotteries) => ListView.separated(
@@ -31,7 +30,7 @@ class ResultsScreen extends StatelessWidget {
                   title: lottery.nombre,
                   imageSrc: lottery.logo,
                   onTap: () {
-                    BlocProvider.of<ResultsCubit>(context)
+                    BlocProvider.of<LotteryCubit>(context)
                         .loadLotteryResults(lottery.id);
                     context.go('/results/${lottery.id}');
                   },
@@ -40,8 +39,8 @@ class ResultsScreen extends StatelessWidget {
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
             ),
-            error: () => const Center(
-              child: Text('Error'),
+            error: (_, reason) => Center(
+              child: Text('Error: $reason'),
             ),
           );
         },

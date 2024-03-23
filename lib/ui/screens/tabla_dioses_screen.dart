@@ -7,7 +7,7 @@ class TablaDiosesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tabla de los Dioses'),
+        title: const Text('Tabla de los Dioses'),
       ),
     );
   }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:tu_bolitero/domain/models/lottery_result.dart';
+import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
-import 'package:tu_bolitero/ui/logic/results/results_cubit.dart';
 
 class ResultDetailScreen extends StatelessWidget {
   const ResultDetailScreen({super.key, required this.lotteryId});
@@ -12,14 +11,14 @@ class ResultDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resultsBloc = BlocProvider.of<ResultsCubit>(context);
+    final lotteryBloc = BlocProvider.of<LotteryCubit>(context);
     final firstColor = [
-      Color.fromARGB(255, 84, 181, 222),
+      const Color.fromARGB(255, 84, 181, 222),
       Colors.white,
     ];
 
     final secondColor = [
-      Color.fromARGB(255, 228, 184, 255),
+      const Color.fromARGB(255, 228, 184, 255),
       Colors.white,
     ];
 
@@ -29,8 +28,8 @@ class ResultDetailScreen extends StatelessWidget {
           IconButton(
               onPressed: () {
                 if (lotteryId != null) {
-                  resultsBloc.setLoading();
-                  resultsBloc.loadLotteryResults(int.parse(lotteryId!));
+                  lotteryBloc.setLoading();
+                  lotteryBloc.loadLotteryResults(int.parse(lotteryId!));
                 }
               },
               icon: const Icon(Icons.refresh))
@@ -49,7 +48,7 @@ class ResultDetailScreen extends StatelessWidget {
           },
         ),
       ),
-      body: BlocBuilder<ResultsCubit, ResultsState>(
+      body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
           return state.maybeWhen(
             error: (_, reason) => Center(
@@ -58,27 +57,34 @@ class ResultDetailScreen extends StatelessWidget {
             loading: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
-            orElse: () => state.results[lotteryId] == null
-                ? const Center(
-                    child: CircularProgressIndicator(),
+            orElse: () {
+              final lotteries = state.lotteries
+                  .where(
+                    (element) => '${element.id}' == lotteryId,
                   )
-                : state.results[lotteryId]!.isEmpty
-                    ? const Center(
-                        child: Text('No hay resultados'),
-                      )
-                    : Center(
-                        child: ListView.builder(
-                          itemCount: state.results[lotteryId]!.length,
-                          itemBuilder: (context, index) {
-                            final result = state.results[lotteryId]![index];
-                            return ResultCard(
-                              result: result,
-                              gradientColors:
-                                  index % 2 == 0 ? firstColor : secondColor,
-                            );
-                          },
-                        ),
-                      ),
+                  .toList();
+
+              if (lotteries.isEmpty) {
+                return const Center(
+                  child: Text('No hay resultados'),
+                );
+              }
+
+              final lottery = lotteries[0];
+
+              return Center(
+                child: ListView.builder(
+                  itemCount: lottery.anteriores.length,
+                  itemBuilder: (context, index) {
+                    final result = lottery.anteriores[index];
+                    return ResultCard(
+                      result: result,
+                      gradientColors: index % 2 == 0 ? firstColor : secondColor,
+                    );
+                  },
+                ),
+              );
+            },
           );
         },
       ),

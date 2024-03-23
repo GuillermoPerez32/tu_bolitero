@@ -7,7 +7,7 @@ class PiramideScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pronóstico Piramidal'),
+        title: const Text('Pronóstico Piramidal'),
       ),
     );
   }

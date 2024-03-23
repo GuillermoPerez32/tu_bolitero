@@ -7,7 +7,7 @@ class NumeroSuerteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Número de suerte'),
+        title: const Text('Número de suerte'),
       ),
     );
   }

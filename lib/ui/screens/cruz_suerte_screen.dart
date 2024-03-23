@@ -7,7 +7,7 @@ class CruzSuerteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cruz de la suerte'),
+        title: const Text('Cruz de la suerte'),
       ),
     );
   }

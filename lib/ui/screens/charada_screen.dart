@@ -48,7 +48,7 @@ class CharadaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 40),
+      contentPadding: const EdgeInsets.symmetric(vertical: 40),
       visualDensity: VisualDensity.compact,
       onTap: onTap,
       leading: Container(

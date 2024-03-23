@@ -7,7 +7,7 @@ class CharadaMixtaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Charada Mixta'),
+        title: const Text('Charada Mixta'),
       ),
     );
   }

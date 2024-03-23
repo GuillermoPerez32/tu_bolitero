@@ -7,15 +7,33 @@ part 'lottery_state.dart';
 part 'lottery_cubit.freezed.dart';
 
 class LotteryCubit extends Cubit<LotteryState> {
-  LotteryCubit() : super(const LotteryState.initial());
+  LotteryCubit() : super(const LotteryState.initial([]));
+
+  void setLoading() {
+    emit(LotteryState.loading(state.lotteries));
+  }
 
   void loadLotteries() async {
-    emit(const LotteryState.loading());
+    emit(LotteryState.loading(state.lotteries));
+    final lotteries = await lotteryDatasource.getLotteries();
+    emit(LotteryState.loaded(lotteries));
+  }
+
+  void loadLotteryResults(int lotteryId) async {
     try {
-      final lotteries = await lotteryDatasource.getLotteries();
-      emit(LotteryState.loaded(lotteries));
+      final results = await lotteryDatasource.getLotteryResult(lotteryId);
+      final newLottery = state.lotteries
+          .firstWhere((element) => element.id == lotteryId)
+          .copyWith(anteriores: results);
+      final editableLotteries = List<Lottery>.from(state.lotteries);
+      final oldLotteryId =
+          editableLotteries.indexWhere((element) => element.id == lotteryId);
+      editableLotteries[oldLotteryId] = newLottery;
+      emit(
+        LotteryState.loaded(editableLotteries),
+      );
     } catch (e) {
-      emit(const LotteryState.error());
+      emit(LotteryState.error(state.lotteries, e.toString()));
     }
   }
 }
