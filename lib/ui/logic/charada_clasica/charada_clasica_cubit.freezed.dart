@@ -16,25 +16,45 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CharadaClasicaState {
+  List<CharadaNumber> get numbers => throw _privateConstructorUsedError;
+  List<CharadaNumber> get filteredNumbers => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<CharadaNumber> numbers) loaded,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        initial,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loading,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<CharadaNumber> numbers)? loaded,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<CharadaNumber> numbers)? loaded,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +80,10 @@ mixin _$CharadaClasicaState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CharadaClasicaStateCopyWith<CharadaClasicaState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -67,6 +91,8 @@ abstract class $CharadaClasicaStateCopyWith<$Res> {
   factory $CharadaClasicaStateCopyWith(
           CharadaClasicaState value, $Res Function(CharadaClasicaState) then) =
       _$CharadaClasicaStateCopyWithImpl<$Res, CharadaClasicaState>;
+  @useResult
+  $Res call({List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers});
 }
 
 /// @nodoc
@@ -78,13 +104,35 @@ class _$CharadaClasicaStateCopyWithImpl<$Res, $Val extends CharadaClasicaState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? numbers = null,
+    Object? filteredNumbers = null,
+  }) {
+    return _then(_value.copyWith(
+      numbers: null == numbers
+          ? _value.numbers
+          : numbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+      filteredNumbers: null == filteredNumbers
+          ? _value.filteredNumbers
+          : filteredNumbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $CharadaClasicaStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers});
 }
 
 /// @nodoc
@@ -94,57 +142,125 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? numbers = null,
+    Object? filteredNumbers = null,
+  }) {
+    return _then(_$InitialImpl(
+      null == numbers
+          ? _value._numbers
+          : numbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+      null == filteredNumbers
+          ? _value._filteredNumbers
+          : filteredNumbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers)
+      : _numbers = numbers,
+        _filteredNumbers = filteredNumbers;
+
+  final List<CharadaNumber> _numbers;
+  @override
+  List<CharadaNumber> get numbers {
+    if (_numbers is EqualUnmodifiableListView) return _numbers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_numbers);
+  }
+
+  final List<CharadaNumber> _filteredNumbers;
+  @override
+  List<CharadaNumber> get filteredNumbers {
+    if (_filteredNumbers is EqualUnmodifiableListView) return _filteredNumbers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredNumbers);
+  }
 
   @override
   String toString() {
-    return 'CharadaClasicaState.initial()';
+    return 'CharadaClasicaState.initial(numbers: $numbers, filteredNumbers: $filteredNumbers)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            const DeepCollectionEquality().equals(other._numbers, _numbers) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredNumbers, _filteredNumbers));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_numbers),
+      const DeepCollectionEquality().hash(_filteredNumbers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<CharadaNumber> numbers) loaded,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        initial,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loading,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loaded,
   }) {
-    return initial();
+    return initial(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<CharadaNumber> numbers)? loaded,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
   }) {
-    return initial?.call();
+    return initial?.call(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<CharadaNumber> numbers)? loaded,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(numbers, filteredNumbers);
     }
     return orElse();
   }
@@ -185,14 +301,28 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements CharadaClasicaState {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers) = _$InitialImpl;
+
+  @override
+  List<CharadaNumber> get numbers;
+  @override
+  List<CharadaNumber> get filteredNumbers;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
+abstract class _$$LoadingImplCopyWith<$Res>
+    implements $CharadaClasicaStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers});
 }
 
 /// @nodoc
@@ -202,57 +332,125 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? numbers = null,
+    Object? filteredNumbers = null,
+  }) {
+    return _then(_$LoadingImpl(
+      null == numbers
+          ? _value._numbers
+          : numbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+      null == filteredNumbers
+          ? _value._filteredNumbers
+          : filteredNumbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  const _$LoadingImpl(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers)
+      : _numbers = numbers,
+        _filteredNumbers = filteredNumbers;
+
+  final List<CharadaNumber> _numbers;
+  @override
+  List<CharadaNumber> get numbers {
+    if (_numbers is EqualUnmodifiableListView) return _numbers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_numbers);
+  }
+
+  final List<CharadaNumber> _filteredNumbers;
+  @override
+  List<CharadaNumber> get filteredNumbers {
+    if (_filteredNumbers is EqualUnmodifiableListView) return _filteredNumbers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredNumbers);
+  }
 
   @override
   String toString() {
-    return 'CharadaClasicaState.loading()';
+    return 'CharadaClasicaState.loading(numbers: $numbers, filteredNumbers: $filteredNumbers)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            const DeepCollectionEquality().equals(other._numbers, _numbers) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredNumbers, _filteredNumbers));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_numbers),
+      const DeepCollectionEquality().hash(_filteredNumbers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<CharadaNumber> numbers) loaded,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        initial,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loading,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loaded,
   }) {
-    return loading();
+    return loading(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<CharadaNumber> numbers)? loaded,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
   }) {
-    return loading?.call();
+    return loading?.call(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<CharadaNumber> numbers)? loaded,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(numbers, filteredNumbers);
     }
     return orElse();
   }
@@ -293,16 +491,28 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements CharadaClasicaState {
-  const factory _Loading() = _$LoadingImpl;
+  const factory _Loading(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers) = _$LoadingImpl;
+
+  @override
+  List<CharadaNumber> get numbers;
+  @override
+  List<CharadaNumber> get filteredNumbers;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
+abstract class _$$LoadedImplCopyWith<$Res>
+    implements $CharadaClasicaStateCopyWith<$Res> {
   factory _$$LoadedImplCopyWith(
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({List<CharadaNumber> numbers});
+  $Res call({List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers});
 }
 
 /// @nodoc
@@ -317,11 +527,16 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? numbers = null,
+    Object? filteredNumbers = null,
   }) {
     return _then(_$LoadedImpl(
       null == numbers
           ? _value._numbers
           : numbers // ignore: cast_nullable_to_non_nullable
+              as List<CharadaNumber>,
+      null == filteredNumbers
+          ? _value._filteredNumbers
+          : filteredNumbers // ignore: cast_nullable_to_non_nullable
               as List<CharadaNumber>,
     ));
   }
@@ -330,7 +545,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<CharadaNumber> numbers) : _numbers = numbers;
+  const _$LoadedImpl(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers)
+      : _numbers = numbers,
+        _filteredNumbers = filteredNumbers;
 
   final List<CharadaNumber> _numbers;
   @override
@@ -340,9 +558,17 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_numbers);
   }
 
+  final List<CharadaNumber> _filteredNumbers;
+  @override
+  List<CharadaNumber> get filteredNumbers {
+    if (_filteredNumbers is EqualUnmodifiableListView) return _filteredNumbers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredNumbers);
+  }
+
   @override
   String toString() {
-    return 'CharadaClasicaState.loaded(numbers: $numbers)';
+    return 'CharadaClasicaState.loaded(numbers: $numbers, filteredNumbers: $filteredNumbers)';
   }
 
   @override
@@ -350,12 +576,16 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._numbers, _numbers));
+            const DeepCollectionEquality().equals(other._numbers, _numbers) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredNumbers, _filteredNumbers));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_numbers));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_numbers),
+      const DeepCollectionEquality().hash(_filteredNumbers));
 
   @JsonKey(ignore: true)
   @override
@@ -366,33 +596,51 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<CharadaNumber> numbers) loaded,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        initial,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loading,
+    required TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)
+        loaded,
   }) {
-    return loaded(numbers);
+    return loaded(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<CharadaNumber> numbers)? loaded,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult? Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
   }) {
-    return loaded?.call(numbers);
+    return loaded?.call(numbers, filteredNumbers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<CharadaNumber> numbers)? loaded,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        initial,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loading,
+    TResult Function(
+            List<CharadaNumber> numbers, List<CharadaNumber> filteredNumbers)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(numbers);
+      return loaded(numbers, filteredNumbers);
     }
     return orElse();
   }
@@ -433,9 +681,14 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements CharadaClasicaState {
-  const factory _Loaded(final List<CharadaNumber> numbers) = _$LoadedImpl;
+  const factory _Loaded(final List<CharadaNumber> numbers,
+      final List<CharadaNumber> filteredNumbers) = _$LoadedImpl;
 
+  @override
   List<CharadaNumber> get numbers;
+  @override
+  List<CharadaNumber> get filteredNumbers;
+  @override
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;

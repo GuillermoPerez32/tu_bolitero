@@ -3,7 +3,7 @@
         "number": "0",
         "principal": "Dios",
         "meanings": [
-            " Inodoro",
+            " inodoro",
             "Escoba",
             "Automóvil"
         ]
@@ -29,8 +29,9 @@
     },
     {
         "number": "3",
-        "principal": "Niño Chiquito",
+        "principal": "Niño chiquito",
         "meanings": [
+            " *niño chiquito*",
             "Marinero",
             "Luna",
             "Taza",
@@ -46,7 +47,7 @@
             "Llave",
             "Vela",
             "Militar",
-            "Pavo Real"
+            "Pavo real"
         ]
     },
     {
@@ -76,7 +77,7 @@
         "meanings": [
             "Caracol",
             "Sueño",
-            "Heces Fecales",
+            "Heces fecales",
             "Medias",
             "Caballero",
             "Cochino"
@@ -105,8 +106,9 @@
     },
     {
         "number": "10",
-        "principal": "Pescado Grande",
+        "principal": "Pescado grande",
         "meanings": [
+            " *pescado grande*",
             "Paseo",
             "Malla",
             "Cazuela",
@@ -116,8 +118,9 @@
     },
     {
         "number": "11",
-        "principal": "Gallo Fino",
+        "principal": "Gallo fino",
         "meanings": [
+            " *gallo fino*",
             "Lluvia",
             "Fósforo",
             "Taller",
@@ -127,20 +130,21 @@
     },
     {
         "number": "12",
-        "principal": "Mujer Santa",
+        "principal": "Mujer santa",
         "meanings": [
+            " *mujer santa*",
             "Viaje",
             "Toallas",
             "Cometa",
             "Dama",
-            "Perro Grande"
+            "Perro grande"
         ]
     },
     {
         "number": "13",
         "principal": "Niño",
         "meanings": [
-            "Pavo Real",
+            "Pavo real",
             "Anafe",
             "Elefante"
         ]
@@ -178,9 +182,9 @@
     },
     {
         "number": "17",
-        "principal": "Cumpleaños de San Lazaro",
+        "principal": "Cumpleaños de san lazaro",
         "meanings": [
-            "  Luna",
+            " *cumpleaños de san lazaro* luna",
             "Mujer buena",
             "Hule",
             "Camisón",
@@ -190,8 +194,9 @@
     },
     {
         "number": "18",
-        "principal": "Pescado Chiquito",
+        "principal": "Pescado chiquito",
         "meanings": [
+            " *pescado chiquito*",
             "Iglesia",
             "Sirena",
             "Palma",
@@ -205,15 +210,16 @@
         "meanings": [
             "Campesino",
             "Tropa",
-            "Mesa Grande",
+            "Mesa grande",
             "Armadura",
             "Jutía"
         ]
     },
     {
         "number": "20",
-        "principal": "Gato Fino",
+        "principal": "Gato fino",
         "meanings": [
+            " *gato fino*",
             "Cañón",
             "Camiseta",
             "Orinal",
@@ -261,13 +267,14 @@
             "Música",
             "Carpintero",
             "Cocina",
-            "Pescado Grande"
+            "Pescado grande"
         ]
     },
     {
         "number": "25",
-        "principal": "Piedra Fina",
+        "principal": "Piedra fina",
         "meanings": [
+            " *piedra fina*",
             "Casa",
             "Sol",
             "Monja",
@@ -276,12 +283,13 @@
     },
     {
         "number": "26",
-        "principal": "Nube de Oro",
+        "principal": "Nube de oro",
         "meanings": [
             "Anguila",
             "Calle",
             "Medico",
-            "Brillante"
+            "Brillante",
+            "*nube de oro*"
         ]
     },
     {
@@ -289,7 +297,7 @@
         "principal": "Avispa",
         "meanings": [
             "Campana",
-            "Cuchara Grande",
+            "Cuchara grande",
             "Canario",
             "Baúl",
             "Mono"
@@ -302,7 +310,7 @@
             "Bandera",
             "Político",
             "Uvas",
-            "Perro Chico"
+            "Perro chico"
         ]
     },
     {
@@ -318,8 +326,8 @@
         "number": "30",
         "principal": "Pene",
         "meanings": [
-            "  Camarón",
-            "Arco Iris",
+            "  camarón",
+            "Arco iris",
             "Almanaque",
             "Buey",
             "Cangrejo",
@@ -389,12 +397,13 @@
     },
     {
         "number": "37",
-        "principal": "Gallina Prieta",
+        "principal": "Gallina prieta",
         "meanings": [
+            " *gallina prieta*",
             "Gitana",
             "Hormiga",
             "Carretera",
-            "Piedra Fina"
+            "Piedra fina"
         ]
     },
     {
@@ -424,7 +433,7 @@
         "meanings": [
             "Sangre",
             "Bombero",
-            "Muchacho Maldita",
+            "Muchacho maldita",
             "Cantina",
             "Estatua"
         ]
@@ -434,7 +443,7 @@
         "principal": "Lagartija",
         "meanings": [
             "Prisión",
-            "Pato Chico",
+            "Pato chico",
             "Jubo",
             "Capuchino",
             "Clarín"
@@ -444,7 +453,7 @@
         "number": "42",
         "principal": "Pato",
         "meanings": [
-            "País Lejano",
+            "País lejano",
             "Carnero",
             "España",
             "Abismo",
@@ -466,8 +475,8 @@
         "number": "44",
         "principal": "Infierno",
         "meanings": [
-            "Año del Cuero",
-            "Año Malo",
+            "Año del cuero",
+            "Año malo",
             "Temporal",
             "Tormenta",
             "Plancha"
@@ -499,8 +508,8 @@
         "number": "47",
         "principal": "Pájaro",
         "meanings": [
-            "Mala Noticia",
-            "Mucha Sangre",
+            "Mala noticia",
+            "Mucha sangre",
             "Escolta",
             "Gallo",
             "Rosa"
@@ -563,7 +572,7 @@
         "number": "53",
         "principal": "Beso",
         "meanings": [
-            "Luz Eléctrica",
+            "Luz eléctrica",
             "Prenda",
             "Tragedia",
             "Diamante",
@@ -587,8 +596,8 @@
         "principal": "Cangrejo",
         "meanings": [
             "Baile",
-            "Iglesia Grande",
-            "Los Isleños",
+            "Iglesia grande",
+            "Los isleños",
             "Caerse",
             "Sellos"
         ]
@@ -599,7 +608,7 @@
         "meanings": [
             "Reina",
             "Escorpión",
-            "Pato Grande",
+            "Pato grande",
             "Piedra",
             "Cara"
         ]
@@ -608,7 +617,7 @@
         "number": "57",
         "principal": "Cama,",
         "meanings": [
-            "  Ángeles",
+            "  ángeles",
             "Telegrama",
             "Puerta"
         ]
@@ -617,7 +626,7 @@
         "number": "58",
         "principal": "Ladrón",
         "meanings": [
-            "  Adulterio",
+            "  adulterio",
             "Retrato",
             "Cuchillo",
             "Cangrejo",
@@ -632,14 +641,14 @@
             "Fonógrafo",
             "Langosta",
             "Anillo",
-            "Araña Grande"
+            "Araña grande"
         ]
     },
     {
         "number": "60",
         "principal": "Huevo",
         "meanings": [
-            "  Sol Oscuro",
+            "  sol oscuro",
             "Payaso",
             "Cómico",
             "Tempestad",
@@ -650,7 +659,7 @@
         "number": "61",
         "principal": "Cañonazo",
         "meanings": [
-            "Piedra Grande",
+            "Piedra grande",
             "Revolver",
             "Boticario",
             "Pintor",
@@ -683,7 +692,7 @@
         "number": "64",
         "principal": "Muerto grande",
         "meanings": [
-            "Tiro de Rifle",
+            "Tiro de rifle",
             "Maromero",
             "Relajo",
             "Fiera"
@@ -694,7 +703,7 @@
         "principal": "Comida,",
         "meanings": [
             "Cárcel",
-            " Bruja",
+            " bruja",
             "Ventana",
             "Trueno"
         ]
@@ -703,7 +712,7 @@
         "number": "66",
         "principal": "Pareja de yegua",
         "meanings": [
-            "  Divorcio",
+            "  divorcio",
             "Tarros",
             "Mascara",
             "Estrella",
@@ -718,16 +727,17 @@
             "Reloj",
             "Autoridad",
             "Fonda",
-            "aborto",
+            "Aborto",
             "Zapato"
         ]
     },
     {
         "number": "68",
-        "principal": "Cementerio Grande,",
+        "principal": "Cementerio grande,",
         "meanings": [
-            "  Globo",
-            "Cuchillo Grande",
+            " *cementerio grande",
+            "* globo",
+            "Cuchillo grande",
             "Templo",
             "Bolos",
             "Dinero"
@@ -750,7 +760,7 @@
             "Teléfono",
             "Tiro",
             "Barril",
-            "Arco Iris",
+            "Arco iris",
             "Bala"
         ]
     },
@@ -759,16 +769,17 @@
         "principal": "Rio",
         "meanings": [
             "Sombrero",
-            "Perro Mediano",
+            "Perro mediano",
             "Pantera",
             "Fusil"
         ]
     },
     {
         "number": "72",
-        "principal": "Buey Viejo",
+        "principal": "Buey viejo",
         "meanings": [
             "Ferrocarril",
+            "*buey viejo*",
             "Serrucho",
             "Collar",
             "Cetro",
@@ -800,7 +811,7 @@
         "number": "75",
         "principal": "Perro mediano",
         "meanings": [
-            "  Cine",
+            "  cine",
             "Corbata",
             "Viento",
             "Guitarra",
@@ -812,19 +823,19 @@
         "number": "76",
         "principal": "Bailarina",
         "meanings": [
-            "Humo en Cantidad",
-            "Caja de Hierro",
+            "Humo en cantidad",
+            "Caja de hierro",
             "Violín"
         ]
     },
     {
         "number": "77",
-        "principal": "Muletas de San Lázaro",
+        "principal": "Muletas de san lázaro",
         "meanings": [
-            "  Banderas",
+            " *muletas de san lázaro* banderas",
             "Guerra",
             "Colegio",
-            "Billetes de Banco",
+            "Billetes de banco",
             "Ánfora"
         ]
     },
@@ -845,7 +856,7 @@
         "meanings": [
             "Coche",
             "Abogado",
-            "Tren de Carga o de Viajeros",
+            "Tren de carga o de viajeros",
             "Dulces"
         ]
     },
@@ -853,8 +864,8 @@
         "number": "80",
         "principal": "Médico",
         "meanings": [
-            "Buena Noticia",
-            "Luna Llena",
+            "Buena noticia",
+            "Luna llena",
             "Paraguas",
             "Barba",
             "Trompo"
@@ -862,10 +873,11 @@
     },
     {
         "number": "81",
-        "principal": "Navaja Grande",
+        "principal": "Navaja grande",
         "meanings": [
             "Teatro",
             "Barco",
+            "*navaja grande*",
             "Ingeniero",
             "Cuerda",
             "Actriz"
@@ -900,7 +912,7 @@
             "Sastre",
             "Bohío",
             "Banquero",
-            "Marcha Atrás"
+            "Marcha atrás"
         ]
     },
     {
@@ -928,7 +940,7 @@
         "number": "87",
         "principal": "Baúl",
         "meanings": [
-            "Nueva York",
+            "Nueva york",
             "Paloma",
             "Fuego",
             "Plátanos"
@@ -938,7 +950,7 @@
         "number": "88",
         "principal": "Muerto vivo",
         "meanings": [
-            "  Espejuelos",
+            "  espejuelos",
             "Gusano",
             "Vaso",
             "Hojas",
@@ -947,11 +959,12 @@
     },
     {
         "number": "89",
-        "principal": "Mona Vieja",
+        "principal": "Mona vieja",
         "meanings": [
             "Lotería",
-            "Mucha Agua",
-            "Casa Vieja",
+            "Mucha agua",
+            "*mona vieja*",
+            "Casa vieja",
             "Cometa",
             "Melón",
             "Tesorero"
@@ -959,9 +972,10 @@
     },
     {
         "number": "90",
-        "principal": "Espejo Grande",
+        "principal": "Espejo grande",
         "meanings": [
             "Viejo",
+            "*espejo grande*",
             "Caramelo",
             "Temporal",
             "Asesino"
@@ -971,7 +985,7 @@
         "number": "91",
         "principal": "Tranvía",
         "meanings": [
-            "Pájaro Negro",
+            "Pájaro negro",
             "Limosnero",
             "Alpargatas",
             "Bolsas",
@@ -980,20 +994,21 @@
     },
     {
         "number": "92",
-        "principal": "puerco gordo",
+        "principal": "Puerco gordo",
         "meanings": [
-            "Globo muy Alto",
+            "Globo muy alto",
             "Suicido",
             "Cuba",
             "Anarquista",
-            "Gato"
+            "Gato",
+            "*puerco gordo*"
         ]
     },
     {
         "number": "93",
         "principal": "Revolución",
         "meanings": [
-            "Sortija de Valor",
+            "Sortija de valor",
             "General",
             "Andarín",
             "Joyas",
@@ -1004,18 +1019,18 @@
         "number": "94",
         "principal": "Machete",
         "meanings": [
-            "Mariposa Grande",
-            "Leontina Perfume",
+            "Mariposa grande",
+            "Leontina perfume",
             "Habana",
             "Flores"
         ]
     },
     {
         "number": "95",
-        "principal": "Perro Grande",
+        "principal": "Perro grande",
         "meanings": [
             "Guerra",
-            " Alacrán Grande",
+            "*perro grande* alacrán grande",
             "Espada",
             "Matanzas",
             "Revolución"
@@ -1023,32 +1038,33 @@
     },
     {
         "number": "96",
-        "principal": "Mujer Santa",
+        "principal": "Mujer santa",
         "meanings": [
             "Desafío",
             "Periódico",
             "Pícaro",
-            "Zapatos Nuevos",
-            "Roca"
+            "Zapatos nuevos",
+            "Roca",
+            "*mujer santa*"
         ]
     },
     {
         "number": "97",
         "principal": "Limosnero",
         "meanings": [
-            "Mosquito Grande",
-            "Mono Grande",
+            "Mosquito grande",
+            "Mono grande",
             "Sinsonte",
-            "Grillo Grande"
+            "Grillo grande"
         ]
     },
     {
         "number": "98",
         "principal": "Piano",
         "meanings": [
-            "Entierro Grande",
+            "Entierro grande",
             "Traición",
-            "Visita Regia",
+            "Visita regia",
             "Fonógrafo"
         ]
     },
@@ -1056,10 +1072,10 @@
         "number": "99 ",
         "principal": "Serrucho",
         "meanings": [
-            "Gallo Grande",
-            "Temporal muy Grande",
+            "Gallo grande",
+            "Temporal muy grande",
             "Carbonero",
-            "Lluvia\n"
+            "Lluvia"
         ]
     }
 ]
