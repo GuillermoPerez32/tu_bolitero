@@ -20,11 +20,11 @@ class CharadaScreen extends StatelessWidget {
             onTap: () => context.go('/charada/clasica'),
           ),
           const Divider(),
-          CharadaTile(
-            title: 'Charada Mixta',
-            imageSrc: 'assets/charada_mixta.png',
-            onTap: () => context.go('/charada/mixta'),
-          ),
+          // CharadaTile(
+          //   title: 'Charada Mixta',
+          //   imageSrc: 'assets/charada_mixta.png',
+          //   onTap: () => context.go('/charada/mixta'),
+          // ),
         ],
       ),
     );

@@ -45,7 +45,7 @@ class AtrasoDetailScreen extends StatelessWidget {
                   centenas!.isEmpty ||
                   decenas!.isEmpty ||
                   unidades!.isEmpty) {
-                return Center(
+                return const Center(
                   child: Text('No hay datos de atrasados'),
                 );
               }
@@ -64,21 +64,21 @@ class AtrasoDetailScreen extends StatelessWidget {
                             centena: centenas['$index'] != null
                                 ? '${centenas['$index']} días'
                                 : 'No hay',
-                            color: Color.fromARGB(220, 255, 198, 198),
+                            color: const Color.fromARGB(220, 255, 198, 198),
                           ),
                           NumberBall(
                             value: index,
                             decena: decenas['$index'] != null
                                 ? '${decenas['$index']} días'
                                 : 'No hay',
-                            color: Color.fromARGB(220, 255, 235, 132),
+                            color: const Color.fromARGB(220, 255, 235, 132),
                           ),
                           NumberBall(
                             value: index,
                             unidad: unidades['$index'] != null
                                 ? '${unidades['$index']} días'
                                 : 'No hay',
-                            color: Color.fromARGB(220, 156, 190, 255),
+                            color: const Color.fromARGB(220, 156, 190, 255),
                           ),
                         ],
                       ),
@@ -120,11 +120,7 @@ class NumberBall extends StatelessWidget {
             : "Terminal";
     final ballText =
         '${centena != null ? value : 'x'}${decena != null ? value : 'x'}${unidad != null ? value : 'x'}';
-    final atraso = (centena != null
-        ? centena
-        : decena != null
-            ? decena
-            : unidad)!;
+    final atraso = (centena ?? (decena ?? unidad))!;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(

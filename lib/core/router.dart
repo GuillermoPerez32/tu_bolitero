@@ -85,12 +85,12 @@ final GoRouter router = GoRouter(
                     return const CharadaClasicaScreen();
                   },
                 ),
-                GoRoute(
-                  path: 'mixta',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const CharadaMixtaScreen();
-                  },
-                ),
+                // GoRoute(
+                //   path: 'mixta',
+                //   builder: (BuildContext context, GoRouterState state) {
+                //     return const CharadaMixtaScreen();
+                //   },
+                // ),
               ]),
         ]),
   ],
