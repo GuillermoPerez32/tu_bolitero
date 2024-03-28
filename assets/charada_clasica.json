@@ -31,7 +31,6 @@
         "number": "3",
         "principal": "Niño chiquito",
         "meanings": [
-            " *niño chiquito*",
             "Marinero",
             "Luna",
             "Taza",
@@ -108,7 +107,6 @@
         "number": "10",
         "principal": "Pescado grande",
         "meanings": [
-            " *pescado grande*",
             "Paseo",
             "Malla",
             "Cazuela",
@@ -120,7 +118,6 @@
         "number": "11",
         "principal": "Gallo fino",
         "meanings": [
-            " *gallo fino*",
             "Lluvia",
             "Fósforo",
             "Taller",
@@ -132,7 +129,6 @@
         "number": "12",
         "principal": "Mujer santa",
         "meanings": [
-            " *mujer santa*",
             "Viaje",
             "Toallas",
             "Cometa",
@@ -184,7 +180,7 @@
         "number": "17",
         "principal": "Cumpleaños de san lazaro",
         "meanings": [
-            " *cumpleaños de san lazaro* luna",
+            "  luna",
             "Mujer buena",
             "Hule",
             "Camisón",
@@ -196,7 +192,6 @@
         "number": "18",
         "principal": "Pescado chiquito",
         "meanings": [
-            " *pescado chiquito*",
             "Iglesia",
             "Sirena",
             "Palma",
@@ -219,7 +214,6 @@
         "number": "20",
         "principal": "Gato fino",
         "meanings": [
-            " *gato fino*",
             "Cañón",
             "Camiseta",
             "Orinal",
@@ -274,7 +268,6 @@
         "number": "25",
         "principal": "Piedra fina",
         "meanings": [
-            " *piedra fina*",
             "Casa",
             "Sol",
             "Monja",
@@ -288,8 +281,7 @@
             "Anguila",
             "Calle",
             "Medico",
-            "Brillante",
-            "*nube de oro*"
+            "Brillante"
         ]
     },
     {
@@ -399,7 +391,6 @@
         "number": "37",
         "principal": "Gallina prieta",
         "meanings": [
-            " *gallina prieta*",
             "Gitana",
             "Hormiga",
             "Carretera",
@@ -735,8 +726,7 @@
         "number": "68",
         "principal": "Cementerio grande,",
         "meanings": [
-            " *cementerio grande",
-            "* globo",
+            "  globo",
             "Cuchillo grande",
             "Templo",
             "Bolos",
@@ -779,7 +769,6 @@
         "principal": "Buey viejo",
         "meanings": [
             "Ferrocarril",
-            "*buey viejo*",
             "Serrucho",
             "Collar",
             "Cetro",
@@ -832,7 +821,7 @@
         "number": "77",
         "principal": "Muletas de san lázaro",
         "meanings": [
-            " *muletas de san lázaro* banderas",
+            "  banderas",
             "Guerra",
             "Colegio",
             "Billetes de banco",
@@ -877,7 +866,6 @@
         "meanings": [
             "Teatro",
             "Barco",
-            "*navaja grande*",
             "Ingeniero",
             "Cuerda",
             "Actriz"
@@ -963,7 +951,6 @@
         "meanings": [
             "Lotería",
             "Mucha agua",
-            "*mona vieja*",
             "Casa vieja",
             "Cometa",
             "Melón",
@@ -975,7 +962,6 @@
         "principal": "Espejo grande",
         "meanings": [
             "Viejo",
-            "*espejo grande*",
             "Caramelo",
             "Temporal",
             "Asesino"
@@ -1000,8 +986,7 @@
             "Suicido",
             "Cuba",
             "Anarquista",
-            "Gato",
-            "*puerco gordo*"
+            "Gato"
         ]
     },
     {
@@ -1030,7 +1015,7 @@
         "principal": "Perro grande",
         "meanings": [
             "Guerra",
-            "*perro grande* alacrán grande",
+            " alacrán grande",
             "Espada",
             "Matanzas",
             "Revolución"
@@ -1044,8 +1029,7 @@
             "Periódico",
             "Pícaro",
             "Zapatos nuevos",
-            "Roca",
-            "*mujer santa*"
+            "Roca"
         ]
     },
     {
