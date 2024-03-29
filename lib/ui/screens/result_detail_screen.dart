@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
@@ -22,21 +24,28 @@ class ResultDetailScreen extends StatelessWidget {
       Colors.white,
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                if (lotteryId != null) {
-                  lotteryBloc.setLoading();
-                  lotteryBloc.loadLotteryResults(int.parse(lotteryId!));
-                }
+    return BlocBuilder<LotteryCubit, LotteryState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: state.maybeWhen(
+              orElse: () => [],
+              loaded: (lotteries) {
+                final lottery = lotteries
+                    .where((element) => '${element.id}' == lotteryId)
+                    .toList()[0];
+                return [
+                  Hero(
+                    tag: lottery.logo,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          CachedNetworkImageProvider(host + lottery.logo),
+                    ),
+                  ),
+                ];
               },
-              icon: const Icon(Icons.refresh))
-        ],
-        title: BlocBuilder<LotteryCubit, LotteryState>(
-          builder: (context, state) {
-            return state.maybeWhen(
+            ),
+            title: state.maybeWhen(
               orElse: () => Container(),
               loaded: (lotteries) {
                 final lotteryName = lotteries
@@ -44,13 +53,9 @@ class ResultDetailScreen extends StatelessWidget {
                     .nombre;
                 return Text('$lotteryName Pick');
               },
-            );
-          },
-        ),
-      ),
-      body: BlocBuilder<LotteryCubit, LotteryState>(
-        builder: (context, state) {
-          return state.maybeWhen(
+            ),
+          ),
+          body: state.maybeWhen(
             error: (_, reason) => Center(
               child: Text('Error: $reason'),
             ),
@@ -85,9 +90,18 @@ class ResultDetailScreen extends StatelessWidget {
                 ),
               );
             },
-          );
-        },
-      ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              if (lotteryId != null) {
+                lotteryBloc.setLoading();
+                lotteryBloc.loadLotteryResults(int.parse(lotteryId!));
+              }
+            },
+            child: const Icon(Icons.refresh),
+          ),
+        );
+      },
     );
   }
 }

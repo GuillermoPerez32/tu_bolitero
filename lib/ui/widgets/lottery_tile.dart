@@ -24,16 +24,19 @@ class LotteryTile extends StatelessWidget {
           visualDensity: VisualDensity.compact,
           onTap: onTap,
           tileColor: Colors.white,
-          leading: Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                  host + imageSrc,
-                  maxWidth: 70,
-                  maxHeight: 70,
+          leading: Hero(
+            tag: imageSrc,
+            child: Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    host + imageSrc,
+                    maxWidth: 70,
+                    maxHeight: 70,
+                  ),
                 ),
               ),
             ),

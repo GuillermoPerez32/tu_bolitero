@@ -38,16 +38,20 @@ class LotteryCubit extends Cubit<LotteryState> {
   }
 
   void loadLotteryAtrasados(int lotteryId) async {
-    final results = await lotteryDatasource.getAtrasados(lotteryId);
-    final newLottery = state.lotteries
-        .firstWhere((element) => element.id == lotteryId)
-        .copyWith(atrasados: results);
-    final editableLotteries = List<Lottery>.from(state.lotteries);
-    final oldLotteryId =
-        editableLotteries.indexWhere((element) => element.id == lotteryId);
-    editableLotteries[oldLotteryId] = newLottery;
-    emit(
-      LotteryState.loaded(editableLotteries),
-    );
+    try {
+      final results = await lotteryDatasource.getAtrasados(lotteryId);
+      final newLottery = state.lotteries
+          .firstWhere((element) => element.id == lotteryId)
+          .copyWith(atrasados: results);
+      final editableLotteries = List<Lottery>.from(state.lotteries);
+      final oldLotteryId =
+          editableLotteries.indexWhere((element) => element.id == lotteryId);
+      editableLotteries[oldLotteryId] = newLottery;
+      emit(
+        LotteryState.loaded(editableLotteries),
+      );
+    } catch (e) {
+      emit(LotteryState.error(state.lotteries, e.toString()));
+    }
   }
 }

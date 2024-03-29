@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class AtrasoDetailScreen extends StatelessWidget {
@@ -9,11 +12,11 @@ class AtrasoDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: BlocBuilder<LotteryCubit, LotteryState>(
-          builder: (context, state) {
-            return state.maybeWhen(
+    return BlocBuilder<LotteryCubit, LotteryState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: state.maybeWhen(
               orElse: () => Container(),
               loaded: (lotteries) {
                 final lotteryName = lotteries
@@ -21,13 +24,26 @@ class AtrasoDetailScreen extends StatelessWidget {
                     .nombre;
                 return Text('Atrasados $lotteryName');
               },
-            );
-          },
-        ),
-      ),
-      body: BlocBuilder<LotteryCubit, LotteryState>(
-        builder: (context, state) {
-          return state.maybeWhen(
+            ),
+            actions: state.maybeWhen(
+              orElse: () => [],
+              loaded: (lotteries) {
+                final lottery = lotteries
+                    .where((element) => '${element.id}' == lotteryId)
+                    .toList()[0];
+                return [
+                  Hero(
+                    tag: lottery.logo,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          CachedNetworkImageProvider(host + lottery.logo),
+                    ),
+                  ),
+                ];
+              },
+            ),
+          ),
+          body: state.maybeWhen(
             error: (_, reason) => Center(
               child: Text('Error: $reason'),
             ),
@@ -88,9 +104,9 @@ class AtrasoDetailScreen extends StatelessWidget {
               );
             },
             orElse: () => Container(),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
