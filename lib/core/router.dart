@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
@@ -17,13 +18,38 @@ final GoRouter router = GoRouter(
             },
             routes: [
               GoRoute(
-                path: ':id',
-                builder: (BuildContext context, GoRouterState state) {
-                  return ResultDetailScreen(
-                    lotteryId: state.pathParameters['id'],
-                  );
-                },
-              )
+                  path: ':id',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return ResultDetailScreen(
+                      lotteryId: state.pathParameters['id'],
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'piramide',
+                      builder: (BuildContext context, GoRouterState state) {
+                        return PiramideScreen(
+                          result: state.extra as LotteryResult,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'cruz_suerte',
+                      builder: (BuildContext context, GoRouterState state) {
+                        return CruzSuerteScreen(
+                          result: state.extra as LotteryResult,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'table',
+                      builder: (BuildContext context, GoRouterState state) {
+                        return TablaDiosesScreen(
+                          result: state.extra as LotteryResult,
+                        );
+                      },
+                    ),
+                  ])
             ],
           ),
           GoRoute(
@@ -49,27 +75,9 @@ final GoRouter router = GoRouter(
               },
               routes: [
                 GoRoute(
-                  path: 'piramide',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const PiramideScreen();
-                  },
-                ),
-                GoRoute(
-                  path: 'cruz_suerte',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const CruzSuerteScreen();
-                  },
-                ),
-                GoRoute(
                   path: 'numero_suerte',
                   builder: (BuildContext context, GoRouterState state) {
                     return const NumeroSuerteScreen();
-                  },
-                ),
-                GoRoute(
-                  path: 'table',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const TablaDiosesScreen();
                   },
                 ),
               ]),

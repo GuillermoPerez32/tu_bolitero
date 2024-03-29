@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
@@ -85,6 +87,7 @@ class ResultDetailScreen extends StatelessWidget {
                     return ResultCard(
                       result: result,
                       gradientColors: index % 2 == 0 ? firstColor : secondColor,
+                      lotteryId: lotteryId!,
                     );
                   },
                 ),
@@ -107,10 +110,13 @@ class ResultDetailScreen extends StatelessWidget {
 }
 
 class ResultCard extends StatelessWidget {
+  final String lotteryId;
+
   const ResultCard({
     super.key,
     required this.result,
     required this.gradientColors,
+    required this.lotteryId,
   });
 
   final LotteryResult result;
@@ -119,7 +125,6 @@ class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
       margin: const EdgeInsets.only(top: 20, bottom: 40, left: 20, right: 20),
       padding: const EdgeInsets.all(20),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -140,53 +145,110 @@ class ResultCard extends StatelessWidget {
           colors: gradientColors,
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  DateFormat.EEEE().format(result.fecha),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19,
-                  ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      DateFormat.EEEE().format(result.fecha),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                      ),
+                    ),
+                    Image.asset(result.fecha.hour > 6 && result.fecha.hour < 14
+                        ? 'assets/sun.png'
+                        : 'assets/moon.png'),
+                    Text(
+                      DateFormat('dd-MM-yyyy').format(result.fecha),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                      ),
+                    ),
+                  ],
                 ),
-                Image.asset(result.fecha.hour > 6 && result.fecha.hour < 14
-                    ? 'assets/sun.png'
-                    : 'assets/moon.png'),
-                Text(
-                  DateFormat('dd-MM-yyyy').format(result.fecha),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 19,
-                  ),
+              ),
+              Container(
+                width: 1,
+                height: 110,
+                color: Colors.black,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    PickSection(
+                      pickNumber: '3',
+                      pickResult: result.pick3,
+                      color: const Color.fromARGB(220, 255, 214, 0),
+                    ),
+                    const SizedBox(height: 20),
+                    PickSection(
+                      pickNumber: '4',
+                      pickResult: result.pick4,
+                      color: const Color.fromARGB(240, 164, 239, 128),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          const VerticalDivider(),
-          Expanded(
-            child: Column(
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PickSection(
-                  pickNumber: '3',
-                  pickResult: result.pick3,
-                  color: const Color.fromARGB(220, 255, 214, 0),
+                AlgorithmButton(
+                  imageSrc: 'assets/piramide.png',
+                  goTo: '/results/${lotteryId}/piramide',
+                  result: result,
                 ),
-                const SizedBox(height: 20),
-                PickSection(
-                  pickNumber: '4',
-                  pickResult: result.pick4,
-                  color: const Color.fromARGB(240, 164, 239, 128),
+                const SizedBox(width: 10),
+                AlgorithmButton(
+                  imageSrc: 'assets/cruz.png',
+                  goTo: '/results/${lotteryId}/cruz_suerte',
+                  result: result,
+                ),
+                const SizedBox(width: 10),
+                AlgorithmButton(
+                  imageSrc: 'assets/table.png',
+                  goTo: '/results/${lotteryId}/table',
+                  result: result,
                 ),
               ],
             ),
-          ),
+          )
         ],
+      ),
+    );
+  }
+}
+
+class AlgorithmButton extends StatelessWidget {
+  final String goTo;
+  final String imageSrc;
+
+  final LotteryResult result;
+
+  const AlgorithmButton({
+    super.key,
+    required this.goTo,
+    required this.imageSrc,
+    required this.result,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.go(goTo, extra: result),
+      child: CircleAvatar(
+        backgroundImage: AssetImage(imageSrc),
       ),
     );
   }

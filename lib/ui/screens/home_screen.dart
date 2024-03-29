@@ -26,9 +26,9 @@ class HomeScreen extends StatelessWidget {
           ),
           const Divider(),
           HomeTile(
-            title: 'Algoritmos',
-            imageSrc: 'assets/algoritmos.png',
-            onTap: () => context.go('/algoritmos'),
+            title: 'Número de la suerte',
+            imageSrc: 'assets/suerte.png',
+            onTap: () => context.go('/algoritmos/numero_suerte'),
           ),
           const Divider(),
           HomeTile(

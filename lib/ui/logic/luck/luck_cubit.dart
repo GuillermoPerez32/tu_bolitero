@@ -12,6 +12,7 @@ class LuckCubit extends Cubit<LuckState> {
 
   void buildLuck() async {
     _prefs ??= await SharedPreferences.getInstance();
+    await _prefs!.clear();
     // buscar luck y date en shared preferences
     final luck = _prefs!.getString('luck');
     final date = _prefs!.getString('date');
@@ -35,7 +36,7 @@ class LuckCubit extends Cubit<LuckState> {
 
   void generateLuck() {
     final random = Random();
-    final newLuck = random.nextInt(1000);
+    final newLuck = random.nextInt(1000).toString().padLeft(3, '0');
     final newDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
     _prefs!.setString('luck', newLuck.toString());
     _prefs!.setString('date', newDate);
