@@ -69,18 +69,11 @@ final GoRouter router = GoRouter(
             ],
           ),
           GoRoute(
-              path: 'algoritmos',
-              builder: (BuildContext context, GoRouterState state) {
-                return const AlgoritmosScreen();
-              },
-              routes: [
-                GoRoute(
-                  path: 'numero_suerte',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const NumeroSuerteScreen();
-                  },
-                ),
-              ]),
+            path: 'numero_suerte',
+            builder: (BuildContext context, GoRouterState state) {
+              return const NumeroSuerteScreen();
+            },
+          ),
           GoRoute(
               path: 'charada',
               builder: (BuildContext context, GoRouterState state) {
