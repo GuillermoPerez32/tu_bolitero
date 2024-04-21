@@ -12,7 +12,6 @@ class LuckCubit extends Cubit<LuckState> {
 
   void buildLuck() async {
     _prefs ??= await SharedPreferences.getInstance();
-    await _prefs!.clear();
     // buscar luck y date en shared preferences
     final luck = _prefs!.getString('luck');
     final date = _prefs!.getString('date');
