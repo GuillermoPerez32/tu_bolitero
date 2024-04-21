@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,6 +10,49 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tu Bolitero'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/bolitero2.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(),
+            ),
+            ListTile(
+              leading: SizedBox(
+                width: 30,
+                height: 30,
+                child: Image.asset('assets/whatsapp.png'),
+              ),
+              title: Text('Canal de Whatsapp'),
+              onTap: () => launchUrl(Uri.parse(
+                  'https://whatsapp.com/channel/0029VaCVnwn9mrGZA0iKjd0t')),
+            ),
+            ListTile(
+              leading: SizedBox(
+                width: 30,
+                height: 30,
+                child: Image.asset('assets/telegram.png'),
+              ),
+              title: Text('Canal de Telegram'),
+              onTap: () => launchUrl(Uri.parse('https://t.me/Tu_boliteros')),
+            ),
+            ListTile(
+              leading: SizedBox(
+                width: 30,
+                height: 30,
+                child: Image.asset('assets/contact.png'),
+              ),
+              title: Text('Contacto'),
+              onTap: () => launchUrl(Uri.parse('https://t.me/Fenix_real1')),
+            ),
+          ],
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
