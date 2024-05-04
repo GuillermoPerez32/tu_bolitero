@@ -105,7 +105,9 @@ class LotteryResult {
         pick3: json["pick3"],
         pick4: json["pick4"],
         tirada: json["tirada"],
-        fechaSiguiente: json["fecha_siguiente"],
+        fechaSiguiente: json["fecha_siguiente"] != null
+            ? DateTime.parse(json["fecha_siguiente"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {

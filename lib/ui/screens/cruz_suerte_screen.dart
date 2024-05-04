@@ -1,46 +1,64 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
+import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class CruzSuerteScreen extends StatelessWidget {
   const CruzSuerteScreen({
     super.key,
     required this.result,
-    required this.atrasados,
+    required this.lotteryId,
   });
 
   final LotteryResult result;
-  final Atrasados atrasados;
+  final String lotteryId;
 
   @override
   Widget build(BuildContext context) {
     // order decenas by value in descending order
-    final decenasMapList = atrasados.decenas.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
-    final decenas =
-        decenasMapList.map((e) => '${e.key}').toList().sublist(0, 8);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cruz de la Suerte'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: [
-              Text(
-                result.fecha.toString().split(' ')[0],
-                style: const TextStyle(fontSize: 24),
+      body: BlocBuilder<LotteryCubit, LotteryState>(
+        builder: (context, state) {
+          final lottery = state.lotteries
+              .where((element) => '${element.id}' == lotteryId)
+              .toList()[0];
+          final atrasados = lottery.atrasados;
+
+          if (atrasados == null) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          final decenasMapList = atrasados.decenas.entries.toList()
+            ..sort((a, b) => b.value.compareTo(a.value));
+          final decenas =
+              decenasMapList.map((e) => '${e.key}').toList().sublist(0, 8);
+
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
+                  Text(
+                    result.fecha.toString().split(' ')[0],
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 50),
+                  CustomPaint(
+                    size: const Size(400, 400),
+                    painter: CircleWithDiagonalsPainter(numbers: decenas),
+                  ),
+                ],
               ),
-              const SizedBox(height: 50),
-              CustomPaint(
-                size: const Size(400, 400),
-                painter: CircleWithDiagonalsPainter(numbers: decenas),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

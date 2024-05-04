@@ -39,8 +39,8 @@ final GoRouter router = GoRouter(
                         return CruzSuerteScreen(
                           result:
                               ((state.extra as Map)['result']) as LotteryResult,
-                          atrasados:
-                              ((state.extra as Map)['atrasados']) as Atrasados,
+                          lotteryId:
+                              ((state.extra as Map)['lotteryId']) as String,
                         );
                       },
                     ),

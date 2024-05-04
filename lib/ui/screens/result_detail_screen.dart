@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -211,24 +209,17 @@ class ResultCard extends StatelessWidget {
               children: [
                 AlgorithmButton(
                   imageSrc: 'assets/piramide.png',
-                  onTap: () => context.go('/results/$lotteryId/piramide',
-                      extra: result),
+                  onTap: () =>
+                      context.go('/results/$lotteryId/piramide', extra: result),
                 ),
                 const SizedBox(width: 10),
                 AlgorithmButton(
                   imageSrc: 'assets/cruz.png',
-                  onTap: () async {
+                  onTap: () {
                     lotteryBloc.loadLotteryAtrasados(int.parse(lotteryId));
-
-                    // Wait for the atrasados to be loaded
-                    Timer.periodic(const Duration(milliseconds: 10), (timer) {
-                      if (atrasados != null) {
-                        timer.cancel();
-                        context.go('/results/$lotteryId/cruz_suerte', extra: {
-                          'result': result,
-                          'atrasados': atrasados,
-                        });
-                      }
+                    context.go('/results/$lotteryId/cruz_suerte', extra: {
+                      'result': result,
+                      'lotteryId': lotteryId,
                     });
                   },
                 ),
