@@ -53,52 +53,64 @@ class AtrasoDetailScreen extends StatelessWidget {
               final lottery = lotteries
                   .firstWhere((element) => '${element.id}' == lotteryId);
               final atrasados = lottery.atrasados;
-              final centenas = atrasados?.centenas;
-              final decenas = atrasados?.decenas;
-              final unidades = atrasados?.unidades;
-              if (atrasados == null ||
-                  centenas!.isEmpty ||
-                  decenas!.isEmpty ||
-                  unidades!.isEmpty) {
+              if (atrasados == null) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              final centenas = atrasados.centenas.entries.toList()
+                ..sort((a, b) => b.value.compareTo(a.value));
+              final decenas = atrasados.decenas.entries.toList()
+                ..sort((a, b) => b.value.compareTo(a.value));
+              final unidades = atrasados.unidades.entries.toList()
+                ..sort((a, b) => b.value.compareTo(a.value));
+              if (centenas.isEmpty && decenas.isEmpty && unidades.isEmpty) {
                 return const Center(
                   child: Text('No hay datos de atrasados'),
                 );
               }
+
               return Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 24.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          NumberBall(
-                            value: index,
-                            centena: centenas['$index'] != null
-                                ? '${centenas['$index']} días'
-                                : 'No hay',
-                            color: const Color.fromARGB(220, 255, 198, 198),
-                          ),
-                          NumberBall(
-                            value: index,
-                            decena: decenas['$index'] != null
-                                ? '${decenas['$index']} días'
-                                : 'No hay',
-                            color: const Color.fromARGB(220, 255, 235, 132),
-                          ),
-                          NumberBall(
-                            value: index,
-                            unidad: unidades['$index'] != null
-                                ? '${unidades['$index']} días'
-                                : 'No hay',
-                            color: const Color.fromARGB(220, 156, 190, 255),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                child: ListView(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            TitleText(title: "Centena"),
+                          ]..addAll(centenas.map(
+                              (e) => NumberBall(
+                                value: int.parse(e.key),
+                                centena: '${e.value} días',
+                                color: const Color.fromARGB(220, 255, 198, 198),
+                              ),
+                            )),
+                        ),
+                        Column(
+                          children: [TitleText(title: "Decena")]
+                            ..addAll(centenas.map(
+                              (e) => NumberBall(
+                                value: int.parse(e.key),
+                                centena: '${e.value} días',
+                                color: const Color.fromARGB(220, 255, 235, 132),
+                              ),
+                            )),
+                        ),
+                        Column(
+                          children: [TitleText(title: "Terminal")]
+                            ..addAll(centenas.map(
+                              (e) => NumberBall(
+                                value: int.parse(e.key),
+                                centena: '${e.value} días',
+                                color: const Color.fromARGB(220, 156, 190, 255),
+                              ),
+                            )),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               );
             },
@@ -106,6 +118,26 @@ class AtrasoDetailScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class TitleText extends StatelessWidget {
+  final String title;
+
+  const TitleText({
+    super.key,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 }
@@ -128,24 +160,14 @@ class NumberBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleText = centena != null
-        ? 'Centena'
-        : decena != null
-            ? "Decena"
-            : "Terminal";
     final ballText =
         '${centena != null ? value : 'x'}${decena != null ? value : 'x'}${unidad != null ? value : 'x'}';
     final atraso = (centena ?? (decena ?? unidad))!;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(titleText,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              )),
           CircleAvatar(
             radius: 30,
             backgroundColor: color,
