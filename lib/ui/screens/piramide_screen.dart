@@ -145,14 +145,13 @@ class _Piramide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         for (var i = 0; i < piramide.length; i++)
           Text(
             piramide[i],
             style: const TextStyle(
-                fontSize: 32, letterSpacing: 10, fontWeight: FontWeight.bold),
+                fontSize: 32, letterSpacing: 24, fontWeight: FontWeight.bold),
           ),
       ],
     );
