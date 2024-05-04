@@ -47,9 +47,7 @@ final GoRouter router = GoRouter(
                     GoRoute(
                       path: 'table',
                       builder: (BuildContext context, GoRouterState state) {
-                        return TablaDiosesScreen(
-                          result: state.extra as LotteryResult,
-                        );
+                        return TablaDiosesScreen();
                       },
                     ),
                   ])

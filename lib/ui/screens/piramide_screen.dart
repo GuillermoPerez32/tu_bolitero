@@ -24,41 +24,53 @@ class PiramideScreen extends StatelessWidget {
         title: const Text('Pronóstico Piramidal'),
       ),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _Piramide(piramide: piramide),
-            const SizedBox(width: 20),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CombinationBall(
-                  number: result1,
-                  borderColor: const Color.fromARGB(255, 103, 80, 164),
-                ),
-                CombinationBall(
-                  number: result2,
-                  borderColor: const Color.fromARGB(230, 255, 198, 198),
-                ),
-                CombinationBall(
-                  number: result3,
-                  borderColor: const Color.fromARGB(220, 255, 214, 0),
-                ),
-                CombinationBall(
-                  number: result4,
-                  borderColor: const Color.fromARGB(255, 164, 239, 128),
-                ),
-                CombinationBall(
-                  number: result5,
-                  borderColor: const Color.fromARGB(255, 84, 181, 222),
-                ),
-                CombinationBall(
-                  number: result6,
-                  borderColor: const Color.fromARGB(255, 255, 0, 0),
-                ),
-              ],
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50),
+          child: Column(
+            children: [
+              Text(
+                result.fecha.toString().split(' ')[0],
+                style: const TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 80),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _Piramide(piramide: piramide),
+                  const SizedBox(width: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CombinationBall(
+                        number: result1,
+                        borderColor: const Color.fromARGB(255, 103, 80, 164),
+                      ),
+                      CombinationBall(
+                        number: result2,
+                        borderColor: const Color.fromARGB(230, 255, 198, 198),
+                      ),
+                      CombinationBall(
+                        number: result3,
+                        borderColor: const Color.fromARGB(220, 255, 214, 0),
+                      ),
+                      CombinationBall(
+                        number: result4,
+                        borderColor: const Color.fromARGB(255, 164, 239, 128),
+                      ),
+                      CombinationBall(
+                        number: result5,
+                        borderColor: const Color.fromARGB(255, 84, 181, 222),
+                      ),
+                      CombinationBall(
+                        number: result6,
+                        borderColor: const Color.fromARGB(255, 255, 0, 0),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
