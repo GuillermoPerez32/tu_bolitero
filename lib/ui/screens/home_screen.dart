@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/whatsapp.png'),
               ),
-              title: Text('Canal de Whatsapp'),
+              title: const Text('Canal de Whatsapp'),
               onTap: () => launchUrl(Uri.parse(
                   'https://whatsapp.com/channel/0029VaCVnwn9mrGZA0iKjd0t')),
             ),
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/telegram.png'),
               ),
-              title: Text('Canal de Telegram'),
+              title: const Text('Canal de Telegram'),
               onTap: () => launchUrl(Uri.parse('https://t.me/Tu_boliteros')),
             ),
             ListTile(
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/contact.png'),
               ),
-              title: Text('Contacto'),
+              title: const Text('Contacto'),
               onTap: () => launchUrl(Uri.parse('https://t.me/Fenix_real1')),
             ),
           ],

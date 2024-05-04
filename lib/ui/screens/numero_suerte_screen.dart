@@ -82,7 +82,6 @@ class _LuckNumber extends StatelessWidget {
   final String number;
 
   const _LuckNumber({
-    super.key,
     required this.number,
   });
 

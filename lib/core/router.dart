@@ -37,7 +37,10 @@ final GoRouter router = GoRouter(
                       path: 'cruz_suerte',
                       builder: (BuildContext context, GoRouterState state) {
                         return CruzSuerteScreen(
-                          result: state.extra as LotteryResult,
+                          result:
+                              ((state.extra as Map)['result']) as LotteryResult,
+                          atrasados:
+                              ((state.extra as Map)['atrasados']) as Atrasados,
                         );
                       },
                     ),

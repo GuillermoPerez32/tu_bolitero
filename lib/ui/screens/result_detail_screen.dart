@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -85,6 +86,7 @@ class ResultDetailScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final result = lottery.anteriores[index];
                     return ResultCard(
+                      atrasados: lottery.atrasados,
                       result: result,
                       gradientColors: index % 2 == 0 ? firstColor : secondColor,
                       lotteryId: lotteryId!,
@@ -117,13 +119,16 @@ class ResultCard extends StatelessWidget {
     required this.result,
     required this.gradientColors,
     required this.lotteryId,
+    required this.atrasados,
   });
 
   final LotteryResult result;
   final List<Color> gradientColors;
+  final Atrasados? atrasados;
 
   @override
   Widget build(BuildContext context) {
+    final lotteryBloc = BlocProvider.of<LotteryCubit>(context);
     return Container(
       margin: const EdgeInsets.only(top: 20, bottom: 40, left: 20, right: 20),
       padding: const EdgeInsets.all(20),
@@ -206,20 +211,32 @@ class ResultCard extends StatelessWidget {
               children: [
                 AlgorithmButton(
                   imageSrc: 'assets/piramide.png',
-                  goTo: '/results/${lotteryId}/piramide',
-                  result: result,
+                  onTap: () => context.go('/results/$lotteryId/piramide',
+                      extra: result),
                 ),
                 const SizedBox(width: 10),
                 AlgorithmButton(
                   imageSrc: 'assets/cruz.png',
-                  goTo: '/results/${lotteryId}/cruz_suerte',
-                  result: result,
+                  onTap: () async {
+                    lotteryBloc.loadLotteryAtrasados(int.parse(lotteryId));
+
+                    // Wait for the atrasados to be loaded
+                    Timer.periodic(const Duration(milliseconds: 10), (timer) {
+                      if (atrasados != null) {
+                        timer.cancel();
+                        context.go('/results/$lotteryId/cruz_suerte', extra: {
+                          'result': result,
+                          'atrasados': atrasados,
+                        });
+                      }
+                    });
+                  },
                 ),
                 const SizedBox(width: 10),
                 AlgorithmButton(
                   imageSrc: 'assets/table.png',
-                  goTo: '/results/${lotteryId}/table',
-                  result: result,
+                  onTap: () =>
+                      context.go('/results/$lotteryId/table', extra: result),
                 ),
               ],
             ),
@@ -231,22 +248,19 @@ class ResultCard extends StatelessWidget {
 }
 
 class AlgorithmButton extends StatelessWidget {
-  final String goTo;
+  final void Function() onTap;
   final String imageSrc;
-
-  final LotteryResult result;
 
   const AlgorithmButton({
     super.key,
-    required this.goTo,
+    required this.onTap,
     required this.imageSrc,
-    required this.result,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go(goTo, extra: result),
+      onTap: onTap,
       child: CircleAvatar(
         backgroundImage: AssetImage(imageSrc),
       ),

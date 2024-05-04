@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/charada_number.dart';
 import 'package:tu_bolitero/ui/logic/charada_clasica/charada_clasica_cubit.dart';
@@ -61,7 +60,6 @@ class CharadaClasicaScreen extends StatelessWidget {
 
 class _CharadaTile extends StatelessWidget {
   const _CharadaTile({
-    super.key,
     required this.charadaNumber,
   });
 
@@ -87,7 +85,7 @@ class _CharadaTile extends StatelessWidget {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: Color.fromARGB(220, 156, 190, 255),
+                backgroundColor: const Color.fromARGB(220, 156, 190, 255),
                 child: Text(
                   charadaNumber.number,
                   style: const TextStyle(

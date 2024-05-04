@@ -6,12 +6,20 @@ class CruzSuerteScreen extends StatelessWidget {
   const CruzSuerteScreen({
     super.key,
     required this.result,
+    required this.atrasados,
   });
 
   final LotteryResult result;
+  final Atrasados atrasados;
 
   @override
   Widget build(BuildContext context) {
+    // order decenas by value in descending order
+    final decenasMapList = atrasados.decenas.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final decenas =
+        decenasMapList.map((e) => '${e.key}').toList().sublist(0, 8);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cruz de la Suerte'),
@@ -28,7 +36,7 @@ class CruzSuerteScreen extends StatelessWidget {
               const SizedBox(height: 50),
               CustomPaint(
                 size: const Size(400, 400),
-                painter: CircleWithDiagonalsPainter(),
+                painter: CircleWithDiagonalsPainter(numbers: decenas),
               ),
             ],
           ),
@@ -39,6 +47,10 @@ class CruzSuerteScreen extends StatelessWidget {
 }
 
 class CircleWithDiagonalsPainter extends CustomPainter {
+  CircleWithDiagonalsPainter({required this.numbers});
+
+  final List<String> numbers;
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint circlePaint = Paint()
@@ -50,10 +62,6 @@ class CircleWithDiagonalsPainter extends CustomPainter {
       ..color = Colors.red
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0;
-
-    Paint textPaint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill;
 
     double linePadding = 40;
 
@@ -74,9 +82,8 @@ class CircleWithDiagonalsPainter extends CustomPainter {
       linePaint,
     );
 
-    final numbers = ['1', '2', '3', '4', '5', '6', '7', '8'];
     final offsets = [
-      Offset(0, 0),
+      const Offset(0, 0),
       Offset(size.width - 30, 0),
       Offset(size.width - 30, size.height - 30),
       Offset(0, size.height - 30),
