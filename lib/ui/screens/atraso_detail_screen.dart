@@ -58,59 +58,91 @@ class AtrasoDetailScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               }
-              final centenas = atrasados.centenas.entries.toList()
-                ..sort((a, b) => b.value.compareTo(a.value));
-              final decenas = atrasados.decenas.entries.toList()
-                ..sort((a, b) => b.value.compareTo(a.value));
-              final unidades = atrasados.unidades.entries.toList()
-                ..sort((a, b) => b.value.compareTo(a.value));
-              if (centenas.isEmpty && decenas.isEmpty && unidades.isEmpty) {
-                return const Center(
-                  child: Text('No hay datos de atrasados'),
-                );
-              }
 
               return Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: ListView(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            TitleText(title: "Centena"),
-                          ]..addAll(centenas.map(
-                              (e) => NumberBall(
-                                value: int.parse(e.key),
-                                centena: '${e.value} días',
-                                color: const Color.fromARGB(220, 255, 198, 198),
+                  children: horarios.map(
+                    (horario) {
+                      if (atrasados[horario] == null) return Container();
+                      final centenas = atrasados[horario]!
+                          .centenas
+                          .entries
+                          .toList()
+                        ..sort((a, b) => b.value.compareTo(a.value));
+                      final decenas = atrasados[horario]!
+                          .decenas
+                          .entries
+                          .toList()
+                        ..sort((a, b) => b.value.compareTo(a.value));
+                      final unidades = atrasados[horario]!
+                          .unidades
+                          .entries
+                          .toList()
+                        ..sort((a, b) => b.value.compareTo(a.value));
+                      if (centenas.isEmpty &&
+                          decenas.isEmpty &&
+                          unidades.isEmpty) {
+                        return const Center(
+                          child: Text('No hay datos de atrasados'),
+                        );
+                      }
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 16.0),
+                            child: Text(
+                              horario.toUpperCase(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
                               ),
-                            )),
-                        ),
-                        Column(
-                          children: [TitleText(title: "Decena")]
-                            ..addAll(centenas.map(
-                              (e) => NumberBall(
-                                value: int.parse(e.key),
-                                centena: '${e.value} días',
-                                color: const Color.fromARGB(220, 255, 235, 132),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  const TitleText(title: "Centena"),
+                                ]..addAll(centenas.map(
+                                    (e) => NumberBall(
+                                      value: e.key,
+                                      centena: '${e.value} días',
+                                      color: const Color.fromARGB(
+                                          220, 255, 198, 198),
+                                    ),
+                                  )),
                               ),
-                            )),
-                        ),
-                        Column(
-                          children: [TitleText(title: "Terminal")]
-                            ..addAll(centenas.map(
-                              (e) => NumberBall(
-                                value: int.parse(e.key),
-                                centena: '${e.value} días',
-                                color: const Color.fromARGB(220, 156, 190, 255),
+                              Column(
+                                children: [const TitleText(title: "Decena")]
+                                  ..addAll(decenas.map(
+                                    (e) => NumberBall(
+                                      value: e.key,
+                                      decena: '${e.value} días',
+                                      color: const Color.fromARGB(
+                                          220, 255, 235, 132),
+                                    ),
+                                  )),
                               ),
-                            )),
-                        ),
-                      ],
-                    )
-                  ],
+                              Column(
+                                children: [const TitleText(title: "Terminal")]
+                                  ..addAll(unidades.map(
+                                    (e) => NumberBall(
+                                      value: e.key,
+                                      unidad: '${e.value} días',
+                                      color: const Color.fromARGB(
+                                          220, 156, 190, 255),
+                                    ),
+                                  )),
+                              ),
+                            ],
+                          )
+                        ],
+                      );
+                    },
+                  ).toList(),
                 ),
               );
             },
@@ -134,7 +166,7 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
@@ -155,7 +187,7 @@ class NumberBall extends StatelessWidget {
   final String? centena;
   final String? decena;
   final String? unidad;
-  final int value;
+  final String value;
   final Color color;
 
   @override
@@ -164,12 +196,12 @@ class NumberBall extends StatelessWidget {
         '${centena != null ? value : 'x'}${decena != null ? value : 'x'}${unidad != null ? value : 'x'}';
     final atraso = (centena ?? (decena ?? unidad))!;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 30,
+            radius: 24,
             backgroundColor: color,
             child: Text(
               ballText,

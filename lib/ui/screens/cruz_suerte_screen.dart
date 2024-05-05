@@ -35,14 +35,14 @@ class CruzSuerteScreen extends StatelessWidget {
             );
           }
 
-          final decenasMapList = atrasados.decenas.entries.toList()
+          final decenasMapList = atrasados['general']!.decenas.entries.toList()
             ..sort((a, b) => b.value.compareTo(a.value));
           final decenas =
               decenasMapList.map((e) => '${e.key}').toList().sublist(0, 8);
 
           return Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
               child: Column(
                 children: [
                   Text(

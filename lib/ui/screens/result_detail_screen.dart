@@ -84,7 +84,7 @@ class ResultDetailScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final result = lottery.anteriores[index];
                     return ResultCard(
-                      atrasados: lottery.atrasados,
+                      atrasados: lottery.atrasados?['general'],
                       result: result,
                       gradientColors: index % 2 == 0 ? firstColor : secondColor,
                       lotteryId: lotteryId!,

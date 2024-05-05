@@ -2,8 +2,6 @@ import 'dart:convert';
 
 Lottery lotteryFromJson(String str) => Lottery.fromJson(json.decode(str));
 
-String lotteryToJson(Lottery data) => json.encode(data.toJson());
-
 class Lottery {
   final int id;
   final String nombre;
@@ -13,7 +11,7 @@ class Lottery {
   final LotteryResult? ultima;
   final List<LotteryResult> anteriores;
   final List<LotteryResult> ultimoDia;
-  final Atrasados? atrasados;
+  final Map<String, Atrasados>? atrasados;
 
   Lottery({
     required this.id,
@@ -36,7 +34,7 @@ class Lottery {
     LotteryResult? ultima,
     List<LotteryResult>? anteriores,
     List<LotteryResult>? ultimoDia,
-    Atrasados? atrasados,
+    Map<String, Atrasados>? atrasados,
   }) =>
       Lottery(
         id: id ?? this.id,
@@ -69,20 +67,12 @@ class Lottery {
                 json["ultimo_dia"]!.map((x) => LotteryResult.fromJson(x))),
         atrasados: json["atrasados"] == null
             ? null
-            : Atrasados.fromJson(json["atrasados"]),
+            : Map.fromIterable(
+                (json["atrasados"] as Map).entries,
+                key: (horario) => horario.key,
+                value: (horario) => Atrasados.fromJson(horario.value),
+              ),
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nombre": nombre,
-        "logo": logo,
-        "pick3_logo": pick3Logo,
-        "pick4_logo": pick4Logo,
-        "ultima": ultima?.toJson(),
-        "anteriores": List<dynamic>.from(anteriores.map((x) => x.toJson())),
-        "ultimo_dia": List<dynamic>.from(ultimoDia.map((x) => x.toJson())),
-        "atrasados": atrasados?.toJson(),
-      };
 }
 
 class LotteryResult {
