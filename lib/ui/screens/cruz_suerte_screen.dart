@@ -85,7 +85,7 @@ class CircleWithDiagonalsPainter extends CustomPainter {
 
     double centerX = size.width / 2;
     double centerY = size.height / 2;
-    double radius = min(size.width / 2, size.height / 2) - 50;
+    double radius = min(size.width / 2, size.height / 2) - 10;
 
     canvas.drawCircle(Offset(centerX, centerY), radius, circlePaint);
 
