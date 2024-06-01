@@ -164,7 +164,7 @@ class ResultCard extends StatelessWidget {
                         fontSize: 19,
                       ),
                     ),
-                    Image.asset(result.fecha.hour > 6 && result.fecha.hour < 16
+                    Image.asset(result.fecha.hour > 6 && result.fecha.hour < 18
                         ? 'assets/sun.png'
                         : 'assets/moon.png'),
                     Text(
