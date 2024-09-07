@@ -38,7 +38,7 @@ class CruzSuerteScreen extends StatelessWidget {
           final decenasMapList = atrasados['general']!.decenas.entries.toList()
             ..sort((a, b) => b.value.compareTo(a.value));
           final decenas =
-              decenasMapList.map((e) => '${e.key}').toList().sublist(0, 8);
+              decenasMapList.map((e) => e.key).toList().sublist(0, 8);
 
           return Center(
             child: Padding(

@@ -23,11 +23,10 @@ class LotteryDatasource {
   Future<Map<String, Atrasados>> getAtrasados(int id) async {
     final response = await _client.get('$host/api/loterias/$id');
     final data = (response.data['atrasados'] as Map<String, dynamic>);
-    final Map<String, Atrasados> result = Map.fromIterable(
-      data.entries,
-      key: (horario) => horario.key,
-      value: (horario) => Atrasados.fromJson(horario.value),
-    );
+    final Map<String, Atrasados> result = {
+      for (var horario in data.entries)
+        horario.key: Atrasados.fromJson(horario.value)
+    };
     return result;
   }
 }

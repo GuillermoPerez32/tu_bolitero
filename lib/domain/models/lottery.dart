@@ -67,11 +67,10 @@ class Lottery {
                 json["ultimo_dia"]!.map((x) => LotteryResult.fromJson(x))),
         atrasados: json["atrasados"] == null
             ? null
-            : Map.fromIterable(
-                (json["atrasados"] as Map).entries,
-                key: (horario) => horario.key,
-                value: (horario) => Atrasados.fromJson(horario.value),
-              ),
+            : {
+                for (var horario in (json["atrasados"] as Map).entries)
+                  horario.key: Atrasados.fromJson(horario.value)
+              },
       );
 }
 

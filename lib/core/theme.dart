@@ -17,7 +17,7 @@ class ThemeFactory {
       fontFamily: 'Merienda',
       colorScheme: const ColorScheme.light(
         primary: Color.fromRGBO(46, 28, 255, 1),
-        background: Colors.white,
+        surface: Colors.white,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );

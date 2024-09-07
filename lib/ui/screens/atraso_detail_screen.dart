@@ -90,11 +90,11 @@ class AtrasoDetailScreen extends StatelessWidget {
                       return Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 16.0),
+                            padding: const EdgeInsets.only(top: 16.0),
                             child: Text(
                               horario.toUpperCase(),
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -106,36 +106,41 @@ class AtrasoDetailScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   const TitleText(title: "Centena"),
-                                ]..addAll(centenas.map(
+                                  ...centenas.map(
                                     (e) => NumberBall(
                                       value: e.key,
                                       centena: '${e.value} días',
                                       color: const Color.fromARGB(
                                           220, 255, 198, 198),
                                     ),
-                                  )),
+                                  ),
+                                ],
                               ),
                               Column(
-                                children: [const TitleText(title: "Decena")]
-                                  ..addAll(decenas.map(
+                                children: [
+                                  const TitleText(title: "Decena"),
+                                  ...decenas.map(
                                     (e) => NumberBall(
                                       value: e.key,
                                       decena: '${e.value} días',
                                       color: const Color.fromARGB(
                                           220, 255, 235, 132),
                                     ),
-                                  )),
+                                  )
+                                ],
                               ),
                               Column(
-                                children: [const TitleText(title: "Terminal")]
-                                  ..addAll(unidades.map(
+                                children: [
+                                  const TitleText(title: "Terminal"),
+                                  ...unidades.map(
                                     (e) => NumberBall(
                                       value: e.key,
                                       unidad: '${e.value} días',
                                       color: const Color.fromARGB(
                                           220, 156, 190, 255),
                                     ),
-                                  )),
+                                  )
+                                ],
                               ),
                             ],
                           )
