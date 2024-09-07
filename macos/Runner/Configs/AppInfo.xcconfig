@@ -8,7 +8,7 @@
 PRODUCT_NAME = tu_bolitero
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.novatech.tuBolitero
+PRODUCT_BUNDLE_IDENTIFIER = com.tuboliteros.tuBolitero
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.novatech. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 com.tuboliteros. All rights reserved.
