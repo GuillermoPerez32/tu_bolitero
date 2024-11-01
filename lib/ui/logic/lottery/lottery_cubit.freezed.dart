@@ -68,7 +68,9 @@ mixin _$LotteryState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LotteryStateCopyWith<LotteryState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -92,6 +94,8 @@ class _$LotteryStateCopyWithImpl<$Res, $Val extends LotteryState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,6 +129,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,7 +176,9 @@ class _$InitialImpl implements _Initial {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -256,8 +264,11 @@ abstract class _Initial implements LotteryState {
 
   @override
   List<Lottery> get lotteries;
+
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -281,6 +292,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -326,7 +339,9 @@ class _$LoadingImpl implements _Loading {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
@@ -412,8 +427,11 @@ abstract class _Loading implements LotteryState {
 
   @override
   List<Lottery> get lotteries;
+
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -437,6 +455,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -482,7 +502,9 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -568,8 +590,11 @@ abstract class _Loaded implements LotteryState {
 
   @override
   List<Lottery> get lotteries;
+
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -593,6 +618,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -648,7 +675,9 @@ class _$ErrorImpl implements _Error {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_lotteries), reason);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -736,8 +765,11 @@ abstract class _Error implements LotteryState {
   @override
   List<Lottery> get lotteries;
   String get reason;
+
+  /// Create a copy of LotteryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

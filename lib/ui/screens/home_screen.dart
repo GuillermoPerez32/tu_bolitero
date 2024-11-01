@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/ad_modal.dart';
+import 'package:tu_bolitero/ui/widgets/home_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,6 +11,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tu Bolitero'),
@@ -54,79 +60,43 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          HomeTile(
-            title: 'Resultados de loterias',
-            imageSrc: 'assets/Ellipse 1.png',
-            onTap: () => context.go('/results'),
-          ),
-          const Divider(),
-          HomeTile(
-            title: 'Atrasados',
-            imageSrc: 'assets/atrasados.png',
-            onTap: () => context.go('/atrasados'),
-          ),
-          const Divider(),
-          HomeTile(
-            title: 'Número de la suerte',
-            imageSrc: 'assets/suerte.png',
-            onTap: () => context.go('/numero_suerte'),
-          ),
-          const Divider(),
-          HomeTile(
-            title: 'Charada',
-            imageSrc: 'assets/charada.png',
-            onTap: () => context.go('/charada'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeTile extends StatelessWidget {
-  final String title;
-
-  final String imageSrc;
-
-  final void Function()? onTap;
-
-  const HomeTile({
-    super.key,
-    required this.title,
-    required this.imageSrc,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: ListTile(
-        visualDensity: VisualDensity.compact,
-        onTap: onTap,
-        leading: Container(
-          width: 70,
-          height: 70,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(imageSrc),
-            ),
-          ),
-        ),
-        trailing: const Icon(Icons.arrow_forward_outlined),
-        title: Column(
+      body: BlocListener<AdCubit, AdState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            loaded: (ad) {
+              showDialog(
+                context: context,
+                builder: (context) => AdModal(screenSize: screenSize, ad: ad),
+              );
+            },
+          );
+        },
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+            HomeTile(
+              title: 'Resultados de loterias',
+              imageSrc: 'assets/Ellipse 1.png',
+              onTap: () => context.go('/results'),
+            ),
+            const Divider(),
+            HomeTile(
+              title: 'Atrasados',
+              imageSrc: 'assets/atrasados.png',
+              onTap: () => context.go('/atrasados'),
+            ),
+            const Divider(),
+            HomeTile(
+              title: 'Número de la suerte',
+              imageSrc: 'assets/suerte.png',
+              onTap: () => context.go('/numero_suerte'),
+            ),
+            const Divider(),
+            HomeTile(
+              title: 'Charada',
+              imageSrc: 'assets/charada.png',
+              onTap: () => context.go('/charada'),
             ),
           ],
         ),
