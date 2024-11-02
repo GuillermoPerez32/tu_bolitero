@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
+import 'package:tu_bolitero/ui/logic/apk_info/apk_info_cubit.dart';
 import 'package:tu_bolitero/ui/widgets/ad_modal.dart';
+import 'package:tu_bolitero/ui/widgets/apk_info_modal.dart';
 import 'package:tu_bolitero/ui/widgets/home_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -60,18 +62,36 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: BlocListener<AdCubit, AdState>(
-        listener: (context, state) {
-          state.maybeWhen(
-            orElse: () {},
-            loaded: (ad) {
-              showDialog(
-                context: context,
-                builder: (context) => AdModal(screenSize: screenSize, ad: ad),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<AdCubit, AdState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () {},
+                loaded: (ad) {
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        AdModal(screenSize: screenSize, ad: ad),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+          BlocListener<ApkInfoCubit, ApkInfoState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                  orElse: () {},
+                  newVersion: (apkInfo) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => ApkInfoModal(
+                          screenSize: screenSize, apkInfo: apkInfo),
+                    );
+                  });
+            },
+          ),
+        ],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

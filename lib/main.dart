@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/app.dart';
 import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
+import 'package:tu_bolitero/ui/logic/apk_info/apk_info_cubit.dart';
 import 'package:tu_bolitero/ui/logic/charada_clasica/charada_clasica_cubit.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 import 'package:tu_bolitero/ui/logic/luck/luck_cubit.dart';
 
-void main() => runApp(MultiBlocProvider(
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+    MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => LotteryCubit()..loadLotteries(),
@@ -18,8 +23,13 @@ void main() => runApp(MultiBlocProvider(
           create: (context) => AdCubit()..loadAd(),
         ),
         BlocProvider(
+          create: (context) => ApkInfoCubit()..checkVersion(),
+        ),
+        BlocProvider(
           create: (context) => LuckCubit(),
         ),
       ],
       child: const MyApp(),
-    ));
+    ),
+  );
+}
