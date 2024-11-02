@@ -21,24 +21,27 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Tu Bolitero'),
       ),
       drawer: Drawer(
-        child: ListView(
+        child: Column(
           children: [
-            const SizedBox(
-              height: 40,
-            ),
             Container(
-              child: const Center(
-                child: Text(
-                  'Tu Bolitero v$currentApkVersion',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+              padding: const EdgeInsets.symmetric(vertical: 60),
+              color: Colors.blue[100],
+              child: const Column(
+                children: [
+                  Center(
+                    child: Text(
+                      'Tu Bolitero v$currentApkVersion',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: Colors.black87),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             ListTile(
               leading: SizedBox(
@@ -46,7 +49,10 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/whatsapp.png'),
               ),
-              title: const Text('Canal de Whatsapp'),
+              title: const Text(
+                'Canal de Whatsapp',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               subtitle: const Text('Unete para tener mas información'),
               onTap: () => launchUrl(Uri.parse(
                   'https://whatsapp.com/channel/0029VaCVnwn9mrGZA0iKjd0t')),
@@ -61,7 +67,10 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/telegram.png'),
               ),
-              title: const Text('Canal de Telegram'),
+              title: const Text(
+                'Canal de Telegram',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               subtitle: const Text('Unete para tener mas información'),
               onTap: () => launchUrl(Uri.parse('https://t.me/Tu_boliteros')),
               trailing: const Icon(Icons.link),
@@ -75,7 +84,10 @@ class HomeScreen extends StatelessWidget {
                 height: 30,
                 child: Image.asset('assets/contact.png'),
               ),
-              title: const Text('Contacto'),
+              title: const Text(
+                'Contacto',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               subtitle: const Text('Soporte de la aplicación'),
               onTap: () => launchUrl(Uri.parse('https://t.me/Fenix_real1')),
               trailing: const Icon(Icons.link),
