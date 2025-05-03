@@ -12,6 +12,6 @@ class AdCubit extends Cubit<AdState> {
   void loadAd() async {
     emit(const AdState.loading());
     final ad = await adDatasource.getAd();
-    emit(AdState.loaded(ad));
+    emit(ad == null ? const AdState.error() : AdState.loaded(ad));
   }
 }
