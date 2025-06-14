@@ -1,23 +1,18 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class CruzSuerteScreen extends StatelessWidget {
   const CruzSuerteScreen({
     super.key,
-    required this.result,
     required this.lotteryId,
   });
 
-  final LotteryResult result;
   final String lotteryId;
 
   @override
   Widget build(BuildContext context) {
-    // order decenas by value in descending order
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cruz de la Suerte'),
@@ -28,6 +23,7 @@ class CruzSuerteScreen extends StatelessWidget {
               .where((element) => '${element.id}' == lotteryId)
               .toList()[0];
           final atrasados = lottery.atrasados;
+          final result = lottery.anteriores.first;
 
           if (atrasados == null) {
             return const Center(

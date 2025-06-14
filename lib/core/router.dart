@@ -1,99 +1,126 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
+    // ─────────────────────── AUTH ───────────────────────
     GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
-        },
-        routes: [
-          GoRoute(
-            path: 'results',
-            builder: (BuildContext context, GoRouterState state) {
-              return const ResultsScreen();
-            },
-            routes: [
-              GoRoute(
-                  path: ':id',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return ResultDetailScreen(
-                      lotteryId: state.pathParameters['id'],
-                    );
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'piramide',
-                      builder: (BuildContext context, GoRouterState state) {
-                        return PiramideScreen(
-                          result: state.extra as LotteryResult,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'cruz_suerte',
-                      builder: (BuildContext context, GoRouterState state) {
-                        return CruzSuerteScreen(
-                          result:
-                              ((state.extra as Map)['result']) as LotteryResult,
-                          lotteryId:
-                              ((state.extra as Map)['lotteryId']) as String,
-                        );
-                      },
-                    ),
-                    GoRoute(
-                      path: 'table',
-                      builder: (BuildContext context, GoRouterState state) {
-                        return const TablaDiosesScreen();
-                      },
-                    ),
-                  ])
-            ],
+      path: '/login',
+      builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegisterScreen(),
+    ),
+    GoRoute(
+      path: '/forgot-password',
+      builder: (context, state) => const ForgotPasswordScreen(),
+    ),
+
+    // ─────────────────────── HOME ────── ─────────────────
+    GoRoute(
+      path: '/',
+      builder: (context, state) => HomeScreen(),
+      routes: [
+        GoRoute(
+          path: 'posts/:id/comments',
+          builder: (context, state) => CommentsScreen(
+            postId: state.pathParameters['id']!,
           ),
-          GoRoute(
-            path: 'atrasados',
-            builder: (BuildContext context, GoRouterState state) {
-              return const AtrasadosScreen();
-            },
-            routes: [
-              GoRoute(
-                path: ':id',
-                builder: (BuildContext context, GoRouterState state) {
-                  return AtrasoDetailScreen(
-                    lotteryId: state.pathParameters['id'],
-                  );
-                },
-              )
-            ],
-          ),
-          GoRoute(
-            path: 'numero_suerte',
-            builder: (BuildContext context, GoRouterState state) {
-              return const NumeroSuerteScreen();
+        ),
+        GoRoute(
+          path: 'piramide',
+          builder: (context, state) => LotteriesListScreen(
+            onLotterySelected: (lotteryId) {
+              context.go('piramide/$lotteryId');
             },
           ),
-          GoRoute(
-              path: 'charada',
-              builder: (BuildContext context, GoRouterState state) {
-                return const CharadaScreen();
-              },
-              routes: [
-                GoRoute(
-                  path: 'clasica',
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const CharadaClasicaScreen();
-                  },
-                ),
-                // GoRoute(
-                //   path: 'mixta',
-                //   builder: (BuildContext context, GoRouterState state) {
-                //     return const CharadaMixtaScreen();
-                //   },
-                // ),
-              ]),
-        ]),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => PiramideScreen(
+                lotteryId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'cruz_suerte',
+          builder: (context, state) => LotteriesListScreen(
+            onLotterySelected: (lotteryId) {
+              context.go('cruz_suerte/$lotteryId');
+            },
+          ),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => CruzSuerteScreen(
+                lotteryId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'table',
+          builder: (context, state) => LotteriesListScreen(
+            onLotterySelected: (lotteryId) {
+              context.go('table/$lotteryId');
+            },
+          ),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => TablaDiosesScreen(
+                lotteryId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'results',
+          builder: (context, state) => LotteriesListScreen(
+            onLotterySelected: (lotteryId) {
+              context.go('results/$lotteryId');
+            },
+          ),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => ResultsScreen(
+                lotteryId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'atrasados',
+          builder: (context, state) => LotteriesListScreen(
+            onLotterySelected: (lotteryId) {
+              context.go('atrasados/$lotteryId');
+            },
+          ),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) => AtrasadosScreen(
+                lotteryId: state.pathParameters['id']!,
+              ),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'algorithms',
+          builder: (context, state) => const AlgorithmsScreen(),
+        ),
+        GoRoute(
+          path: 'charada',
+          builder: (context, state) => const CharadaClasicaScreen(),
+        ),
+        GoRoute(
+          path: 'profile',
+          builder: (context, state) => const ProfileScreen(),
+        ),
+      ],
+    ),
   ],
 );

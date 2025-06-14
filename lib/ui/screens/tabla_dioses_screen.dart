@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class TablaDiosesScreen extends StatelessWidget {
   const TablaDiosesScreen({
     super.key,
+    required this.lotteryId,
   });
+
+  final String lotteryId;
 
   @override
   Widget build(BuildContext context) {

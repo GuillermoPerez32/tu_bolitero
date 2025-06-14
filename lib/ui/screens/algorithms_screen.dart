@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/core/constants.dart';
+import 'package:tu_bolitero/ui/widgets/algoritmo_tile.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
+
+class AlgorithmsScreen extends StatelessWidget {
+  const AlgorithmsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(appTitle),
+      ),
+      bottomNavigationBar: const BottomBar(index: 1),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AlgoritmoTile(
+            title: 'Pronóstico Piramidal',
+            imageSrc: 'assets/piramide.png',
+            onTap: () => context.go('/piramide'),
+          ),
+          AlgoritmoTile(
+            title: 'Cruz de la suerte',
+            imageSrc: 'assets/cruz.png',
+            onTap: () => context.go('/cruz_suerte'),
+          ),
+          AlgoritmoTile(
+            title: 'Tabla de los dioses',
+            imageSrc: 'assets/table.png',
+            onTap: () => context.go('/table'),
+          ),
+        ],
+      ),
+    );
+  }
+}

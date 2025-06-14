@@ -17,45 +17,45 @@ class AdModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(20),
         child: SizedBox(
           height: screenSize.height * .75,
           width: screenSize.width * .8,
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
                   color: Colors.white,
                   child: Column(
                     children: [
                       CachedNetworkImage(
-                        height: 200,
+                        height: screenSize.height * .2,
                         width: double.infinity,
                         fit: BoxFit.cover,
                         imageUrl: ad.imagen.replaceAll('http', 'https'),
                       ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                          child: Text(
-                            ad.mensaje,
-                            maxLines: null,
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: SingleChildScrollView(
+                            child: Text(
+                              ad.mensaje,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.1,
+                                  color: Colors.black),
                             ),
                           ),
                         ),
                       ),
-                      const Spacer(),
                       FilledButton(
                         onPressed: () => launchUrl(Uri.parse(ad.link)),
                         child: const Text('Ir al enlace'),
-                      )
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -64,14 +64,14 @@ class AdModal extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(20),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       color: Colors.white,
-                      child: const Icon(
+                      child: Icon(
                         Icons.notification_important_outlined,
                         size: 40,
-                        color: Colors.green,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),

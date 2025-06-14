@@ -1,82 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
+import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class PiramideScreen extends StatelessWidget {
   const PiramideScreen({
     super.key,
-    required this.result,
+    required this.lotteryId,
   });
 
-  final LotteryResult result;
+  final String lotteryId;
 
   @override
   Widget build(BuildContext context) {
-    final piramide = getPiramide();
-    final result1 = piramide[1][0] + piramide[2][0];
-    final result2 = piramide[1][0] + piramide[1][1];
-    final result3 = piramide[1][4] + piramide[1][5];
-    final result4 = piramide[5][0] + piramide[6][0];
-    final result5 = piramide[5][0] + piramide[5][1];
-    final result6 = piramide[6][0] + piramide[5][1];
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pronóstico Piramidal'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: [
-              Text(
-                result.fecha.toString().split(' ')[0],
-                style: const TextStyle(fontSize: 24),
-              ),
-              const SizedBox(height: 80),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: BlocBuilder<LotteryCubit, LotteryState>(
+        builder: (context, state) {
+          final lottery = state.lotteries
+              .where((element) => '${element.id}' == lotteryId)
+              .toList()[0];
+          final result = lottery.anteriores.first;
+
+          final piramide = getPiramide(result);
+          final result1 = piramide[1][0] + piramide[2][0];
+          final result2 = piramide[1][0] + piramide[1][1];
+          final result3 = piramide[1][4] + piramide[1][5];
+          final result4 = piramide[5][0] + piramide[6][0];
+          final result5 = piramide[5][0] + piramide[5][1];
+          final result6 = piramide[6][0] + piramide[5][1];
+
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
                 children: [
-                  _Piramide(piramide: piramide),
-                  const SizedBox(width: 20),
-                  Column(
+                  Text(
+                    result.fecha.toString().split(' ')[0],
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 80),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CombinationBall(
-                        number: result1,
-                        borderColor: const Color.fromARGB(255, 103, 80, 164),
-                      ),
-                      CombinationBall(
-                        number: result2,
-                        borderColor: const Color.fromARGB(230, 255, 198, 198),
-                      ),
-                      CombinationBall(
-                        number: result3,
-                        borderColor: const Color.fromARGB(220, 255, 214, 0),
-                      ),
-                      CombinationBall(
-                        number: result4,
-                        borderColor: const Color.fromARGB(255, 164, 239, 128),
-                      ),
-                      CombinationBall(
-                        number: result5,
-                        borderColor: const Color.fromARGB(255, 84, 181, 222),
-                      ),
-                      CombinationBall(
-                        number: result6,
-                        borderColor: const Color.fromARGB(255, 255, 0, 0),
-                      ),
+                      _Piramide(piramide: piramide),
+                      const SizedBox(width: 20),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CombinationBall(
+                            number: result1,
+                            borderColor:
+                                const Color.fromARGB(255, 103, 80, 164),
+                          ),
+                          CombinationBall(
+                            number: result2,
+                            borderColor:
+                                const Color.fromARGB(230, 255, 198, 198),
+                          ),
+                          CombinationBall(
+                            number: result3,
+                            borderColor: const Color.fromARGB(220, 255, 214, 0),
+                          ),
+                          CombinationBall(
+                            number: result4,
+                            borderColor:
+                                const Color.fromARGB(255, 164, 239, 128),
+                          ),
+                          CombinationBall(
+                            number: result5,
+                            borderColor:
+                                const Color.fromARGB(255, 84, 181, 222),
+                          ),
+                          CombinationBall(
+                            number: result6,
+                            borderColor: const Color.fromARGB(255, 255, 0, 0),
+                          ),
+                        ],
+                      )
                     ],
-                  )
+                  ),
                 ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
 
-  List<String> getPiramide() {
+  List<String> getPiramide(LotteryResult result) {
     final List<String> list = [];
     final initialNumber = result.pick3 + result.pick4;
 

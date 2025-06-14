@@ -34,7 +34,7 @@ class ApkInfoModal extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge
-                            ?.copyWith(color: Colors.green),
+                            ?.copyWith(color: Colors.primaries.first),
                       ),
                       const SizedBox(
                         height: 20,
@@ -63,10 +63,10 @@ class ApkInfoModal extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       color: Colors.white,
-                      child: const Icon(
+                      child: Icon(
                         Icons.notification_important_outlined,
                         size: 40,
-                        color: Colors.green,
+                        color: Colors.primaries.first,
                       ),
                     ),
                   ),
