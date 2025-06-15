@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class PiramideScreen extends StatelessWidget {
   const PiramideScreen({
@@ -15,8 +17,9 @@ class PiramideScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pronóstico Piramidal'),
+        title: const Text(appTitle),
       ),
+      bottomNavigationBar: const BottomBar(index: 1),
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
           final lottery = state.lotteries
@@ -33,57 +36,64 @@ class PiramideScreen extends StatelessWidget {
           final result6 = piramide[6][0] + piramide[5][1];
 
           return Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: Column(
-                children: [
-                  Text(
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
                     result.fecha.toString().split(' ')[0],
-                    style: const TextStyle(fontSize: 24),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _Piramide(piramide: piramide),
-                      const SizedBox(width: 20),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CombinationBall(
-                            number: result1,
-                            borderColor:
-                                const Color.fromARGB(255, 103, 80, 164),
-                          ),
-                          CombinationBall(
-                            number: result2,
-                            borderColor:
-                                const Color.fromARGB(230, 255, 198, 198),
-                          ),
-                          CombinationBall(
-                            number: result3,
-                            borderColor: const Color.fromARGB(220, 255, 214, 0),
-                          ),
-                          CombinationBall(
-                            number: result4,
-                            borderColor:
-                                const Color.fromARGB(255, 164, 239, 128),
-                          ),
-                          CombinationBall(
-                            number: result5,
-                            borderColor:
-                                const Color.fromARGB(255, 84, 181, 222),
-                          ),
-                          CombinationBall(
-                            number: result6,
-                            borderColor: const Color.fromARGB(255, 255, 0, 0),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 70),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _Piramide(piramide: piramide),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CombinationBall(
+                          number: result1,
+                          borderColor: const Color.fromARGB(255, 103, 80, 164),
+                        ),
+                        const SizedBox(width: 10),
+                        CombinationBall(
+                          number: result2,
+                          borderColor: const Color.fromARGB(230, 255, 198, 198),
+                        ),
+                        const SizedBox(width: 10),
+                        CombinationBall(
+                          number: result3,
+                          borderColor: const Color.fromARGB(220, 255, 214, 0),
+                        ),
+                        const SizedBox(width: 10),
+                        CombinationBall(
+                          number: result4,
+                          borderColor: const Color.fromARGB(255, 164, 239, 128),
+                        ),
+                        const SizedBox(width: 10),
+                        CombinationBall(
+                          number: result5,
+                          borderColor: const Color.fromARGB(255, 84, 181, 222),
+                        ),
+                        const SizedBox(width: 10),
+                        CombinationBall(
+                          number: result6,
+                          borderColor: const Color.fromARGB(255, 255, 0, 0),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
             ),
           );
         },
@@ -129,19 +139,20 @@ class CombinationBall extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(100),
-        border: Border.all(width: 4, color: borderColor),
       ),
-      height: 60,
-      width: 60,
+      height: 45,
+      width: 45,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Text(
             number,
             style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
@@ -159,16 +170,46 @@ class _Piramide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rowColors = [
+      const Color.fromARGB(255, 152, 111, 209),
+      const Color.fromARGB(255, 173, 212, 85),
+      const Color.fromARGB(255, 248, 139, 44),
+      const Color.fromARGB(255, 232, 168, 235),
+      const Color.fromARGB(255, 97, 139, 250),
+      const Color.fromARGB(255, 255, 98, 95),
+      const Color.fromARGB(255, 255, 215, 85),
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         for (var i = 0; i < piramide.length; i++)
-          Text(
-            piramide[i],
-            style: const TextStyle(
-                fontSize: 32, letterSpacing: 24, fontWeight: FontWeight.bold),
-          ),
+          PiramideText(text: piramide[i], color: rowColors[i]),
       ],
+    );
+  }
+}
+
+class PiramideText extends StatelessWidget {
+  const PiramideText({super.key, required this.text, required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5,
+      color: color,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 32,
+          letterSpacing: 24,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

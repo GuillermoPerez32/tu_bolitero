@@ -18,15 +18,22 @@ class LotteriesListScreen extends StatelessWidget {
       bottomNavigationBar: const BottomBar(index: 1),
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
-          return ListView.builder(
-            itemCount: state.lotteries.length,
-            itemBuilder: (context, index) {
-              return LotteryTile(
-                title: state.lotteries[index].nombre,
-                imageSrc: state.lotteries[index].logo,
-                onTap: () => onLotterySelected('${state.lotteries[index].id}'),
-              );
-            },
+          return Container(
+            margin: const EdgeInsets.only(top: 12),
+            child: ListView.separated(
+              itemCount: state.lotteries.length,
+              itemBuilder: (context, index) {
+                return LotteryTile(
+                  title: state.lotteries[index].nombre,
+                  imageSrc: state.lotteries[index].logo,
+                  onTap: () =>
+                      onLotterySelected('${state.lotteries[index].id}'),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 8);
+              },
+            ),
           );
         },
       ),
