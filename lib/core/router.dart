@@ -38,6 +38,7 @@ final GoRouter router = GoRouter(
                 onLotterySelected: (lotteryId) {
                   context.go('/info/results/$lotteryId');
                 },
+                selectedIndex: 2,
               ),
               routes: [
                 GoRoute(
@@ -50,7 +51,7 @@ final GoRouter router = GoRouter(
             ),
             GoRoute(
               path: 'charada',
-              builder: (context, state) => const CharadaClasicaScreen(),
+              builder: (context, state) => CharadaClasicaScreen(),
             ),
             GoRoute(
               path: 'atrasados',
@@ -58,11 +59,12 @@ final GoRouter router = GoRouter(
                 onLotterySelected: (lotteryId) {
                   context.go('/info/atrasados/$lotteryId');
                 },
+                selectedIndex: 2,
               ),
               routes: [
                 GoRoute(
                   path: ':id',
-                  builder: (context, state) => AtrasadosScreen(
+                  builder: (context, state) => AtrasoDetailScreen(
                     lotteryId: state.pathParameters['id']!,
                   ),
                 ),
@@ -80,6 +82,7 @@ final GoRouter router = GoRouter(
                 onLotterySelected: (lotteryId) {
                   context.go('/algorithms/piramide/$lotteryId');
                 },
+                selectedIndex: 1,
               ),
               routes: [
                 GoRoute(
@@ -96,6 +99,7 @@ final GoRouter router = GoRouter(
                 onLotterySelected: (lotteryId) {
                   context.go('/algorithms/cruz_suerte/$lotteryId');
                 },
+                selectedIndex: 1,
               ),
               routes: [
                 GoRoute(
@@ -112,6 +116,7 @@ final GoRouter router = GoRouter(
                 onLotterySelected: (lotteryId) {
                   context.go('/algorithms/table/$lotteryId');
                 },
+                selectedIndex: 1,
               ),
               routes: [
                 GoRoute(

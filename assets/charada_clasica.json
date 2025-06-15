@@ -1,1065 +1,562 @@
 [
-    {
-        "number": "0",
-        "principal": "Dios",
-        "meanings": [
-            " inodoro",
-            "Escoba",
-            "Automóvil"
-        ]
-    },
-    {
-        "number": "1",
-        "principal": "Caballo",
-        "meanings": [
-            "Sol",
-            "Tintero",
-            "Camello",
-            "Pescado chico"
-        ]
-    },
-    {
-        "number": "2 ",
-        "principal": "Mariposa",
-        "meanings": [
-            "Hombre",
-            "Cafetera",
-            "Caracol"
-        ]
-    },
-    {
-        "number": "3",
-        "principal": "Niño chiquito",
-        "meanings": [
-            "Marinero",
-            "Luna",
-            "Taza",
-            "Ciempiés",
-            "Muerto"
-        ]
-    },
-    {
-        "number": "4",
-        "principal": "Gato",
-        "meanings": [
-            "Soldado",
-            "Llave",
-            "Vela",
-            "Militar",
-            "Pavo real"
-        ]
-    },
-    {
-        "number": "5",
-        "principal": "Monja",
-        "meanings": [
-            "Mar",
-            "Candado",
-            "Periódico",
-            "Fruta",
-            "Lombriz"
-        ]
-    },
-    {
-        "number": "6",
-        "principal": "Jicotea",
-        "meanings": [
-            "Carta",
-            "Reverbero",
-            "Botella",
-            "Luna"
-        ]
-    },
-    {
-        "number": "7",
-        "principal": "Mierda",
-        "meanings": [
-            "Caracol",
-            "Sueño",
-            "Heces fecales",
-            "Medias",
-            "Caballero",
-            "Cochino"
-        ]
-    },
-    {
-        "number": "8",
-        "principal": "Muerto",
-        "meanings": [
-            "León",
-            "Calabaza",
-            "Mesa",
-            "Tigre"
-        ]
-    },
-    {
-        "number": "9",
-        "principal": "Entierro",
-        "meanings": [
-            "Elefante",
-            "Lira",
-            "Cubo",
-            "Esqueleto",
-            "Buey"
-        ]
-    },
-    {
-        "number": "10",
-        "principal": "Pescado grande",
-        "meanings": [
-            "Paseo",
-            "Malla",
-            "Cazuela",
-            "Dinero",
-            "Lancha"
-        ]
-    },
-    {
-        "number": "11",
-        "principal": "Gallo fino",
-        "meanings": [
-            "Lluvia",
-            "Fósforo",
-            "Taller",
-            "Fábrica",
-            "Caballo"
-        ]
-    },
-    {
-        "number": "12",
-        "principal": "Mujer santa",
-        "meanings": [
-            "Viaje",
-            "Toallas",
-            "Cometa",
-            "Dama",
-            "Perro grande"
-        ]
-    },
-    {
-        "number": "13",
-        "principal": "Niño",
-        "meanings": [
-            "Pavo real",
-            "Anafe",
-            "Elefante"
-        ]
-    },
-    {
-        "number": "14",
-        "principal": "Gato",
-        "meanings": [
-            "Cementerio",
-            "Matrimonio",
-            "Arreste",
-            "Sartén"
-        ]
-    },
-    {
-        "number": "15",
-        "principal": "Perro",
-        "meanings": [
-            "Visita",
-            "Cuchara",
-            "Gallo",
-            "Ratón"
-        ]
-    },
-    {
-        "number": "16",
-        "principal": "Funerales",
-        "meanings": [
-            "Toro",
-            "Plancha",
-            "Vestido",
-            "Incendio pequeño",
-            "Avispa"
-        ]
-    },
-    {
-        "number": "17",
-        "principal": "Cumpleaños de san lazaro",
-        "meanings": [
-            "  luna",
-            "Mujer buena",
-            "Hule",
-            "Camisón",
-            "Armas",
-            "Fumar opio"
-        ]
-    },
-    {
-        "number": "18",
-        "principal": "Pescado chiquito",
-        "meanings": [
-            "Iglesia",
-            "Sirena",
-            "Palma",
-            "Pescado",
-            "Gato amarillo"
-        ]
-    },
-    {
-        "number": "19",
-        "principal": "Lombriz",
-        "meanings": [
-            "Campesino",
-            "Tropa",
-            "Mesa grande",
-            "Armadura",
-            "Jutía"
-        ]
-    },
-    {
-        "number": "20",
-        "principal": "Gato fino",
-        "meanings": [
-            "Cañón",
-            "Camiseta",
-            "Orinal",
-            "Libro",
-            "Mujer"
-        ]
-    },
-    {
-        "number": "21",
-        "principal": "Majá",
-        "meanings": [
-            "Reloj de bolsillo",
-            "Chaleco",
-            "Cotorra",
-            "Cigarro",
-            "Gallo"
-        ]
-    },
-    {
-        "number": "22",
-        "principal": "Sapo",
-        "meanings": [
-            "Estrella",
-            "Lirio",
-            "Chimenea",
-            "Sol",
-            "Jicotea"
-        ]
-    },
-    {
-        "number": "23",
-        "principal": "Barco",
-        "meanings": [
-            "Vapor",
-            "Submarino",
-            "Monte",
-            "Escalera",
-            "Águila"
-        ]
-    },
-    {
-        "number": "24",
-        "principal": "Paloma",
-        "meanings": [
-            "Música",
-            "Carpintero",
-            "Cocina",
-            "Pescado grande"
-        ]
-    },
-    {
-        "number": "25",
-        "principal": "Piedra fina",
-        "meanings": [
-            "Casa",
-            "Sol",
-            "Monja",
-            "Rana"
-        ]
-    },
-    {
-        "number": "26",
-        "principal": "Nube de oro",
-        "meanings": [
-            "Anguila",
-            "Calle",
-            "Medico",
-            "Brillante"
-        ]
-    },
-    {
-        "number": "27",
-        "principal": "Avispa",
-        "meanings": [
-            "Campana",
-            "Cuchara grande",
-            "Canario",
-            "Baúl",
-            "Mono"
-        ]
-    },
-    {
-        "number": "28",
-        "principal": "Chivo",
-        "meanings": [
-            "Bandera",
-            "Político",
-            "Uvas",
-            "Perro chico"
-        ]
-    },
-    {
-        "number": "29",
-        "principal": "Ratón",
-        "meanings": [
-            "Nube",
-            "Venado",
-            "Águila"
-        ]
-    },
-    {
-        "number": "30",
-        "principal": "Pene",
-        "meanings": [
-            "  camarón",
-            "Arco iris",
-            "Almanaque",
-            "Buey",
-            "Cangrejo",
-            "Chivo"
-        ]
-    },
-    {
-        "number": "31",
-        "principal": "Venado",
-        "meanings": [
-            "Escuela",
-            "Zapatos",
-            "Pato"
-        ]
-    },
-    {
-        "number": "32",
-        "principal": "Puerco",
-        "meanings": [
-            "Enemigo",
-            "Mulo",
-            "Demonio",
-            "Maja"
-        ]
-    },
-    {
-        "number": "33",
-        "principal": "Tiñosa",
-        "meanings": [
-            "Baraja",
-            "Santa",
-            "Jesucristo",
-            "Bofetón",
-            "Camarón"
-        ]
-    },
-    {
-        "number": "34",
-        "principal": "Mono",
-        "meanings": [
-            "Familia",
-            "Negro",
-            "Capataz",
-            "Paloma"
-        ]
-    },
-    {
-        "number": "35",
-        "principal": "Araña",
-        "meanings": [
-            "Novia",
-            "Bombillos",
-            "Mosquito",
-            "Mariposa"
-        ]
-    },
-    {
-        "number": "36",
-        "principal": "Cachimba",
-        "meanings": [
-            "Teatro",
-            "Bodega",
-            "Opio",
-            "Coloso",
-            "Pajarito"
-        ]
-    },
-    {
-        "number": "37",
-        "principal": "Gallina prieta",
-        "meanings": [
-            "Gitana",
-            "Hormiga",
-            "Carretera",
-            "Piedra fina"
-        ]
-    },
-    {
-        "number": "38",
-        "principal": "Dinero",
-        "meanings": [
-            "Macao",
-            "Carro",
-            "Goleta",
-            "Guantes",
-            "Barril"
-        ]
-    },
-    {
-        "number": "39",
-        "principal": "Culebra",
-        "meanings": [
-            "Conejo",
-            "Rayo",
-            "Baile",
-            "Tintorero"
-        ]
-    },
-    {
-        "number": "40",
-        "principal": "Cura",
-        "meanings": [
-            "Sangre",
-            "Bombero",
-            "Muchacho maldita",
-            "Cantina",
-            "Estatua"
-        ]
-    },
-    {
-        "number": "41",
-        "principal": "Lagartija",
-        "meanings": [
-            "Prisión",
-            "Pato chico",
-            "Jubo",
-            "Capuchino",
-            "Clarín"
-        ]
-    },
-    {
-        "number": "42",
-        "principal": "Pato",
-        "meanings": [
-            "País lejano",
-            "Carnero",
-            "España",
-            "Abismo",
-            "Liga"
-        ]
-    },
-    {
-        "number": "43",
-        "principal": "Alacrán",
-        "meanings": [
-            "Amigo",
-            "Vaca",
-            "Puerta",
-            "Presidiario",
-            "Jorobado"
-        ]
-    },
-    {
-        "number": "44",
-        "principal": "Infierno",
-        "meanings": [
-            "Año del cuero",
-            "Año malo",
-            "Temporal",
-            "Tormenta",
-            "Plancha"
-        ]
-    },
-    {
-        "number": "45",
-        "principal": "Presidente",
-        "meanings": [
-            "Tiburón",
-            "Traje",
-            "Tranvía",
-            "Escuela",
-            "Estrella"
-        ]
-    },
-    {
-        "number": "46",
-        "principal": "Humo",
-        "meanings": [
-            "Guagua",
-            "Hambre",
-            "Hurón",
-            "Baile",
-            "Chino"
-        ]
-    },
-    {
-        "number": "47",
-        "principal": "Pájaro",
-        "meanings": [
-            "Mala noticia",
-            "Mucha sangre",
-            "Escolta",
-            "Gallo",
-            "Rosa"
-        ]
-    },
-    {
-        "number": "48",
-        "principal": "Cucaracha",
-        "meanings": [
-            "Abanico",
-            "Barbería",
-            "Cubo"
-        ]
-    },
-    {
-        "number": "49",
-        "principal": "Borracho",
-        "meanings": [
-            "Riqueza",
-            "Figurín",
-            "Percha",
-            "Tesoro",
-            "Fantasma"
-        ]
-    },
-    {
-        "number": "50",
-        "principal": "Policía",
-        "meanings": [
-            "Alegría",
-            "Florero",
-            "Alcalde",
-            "Pícaro",
-            "Árbol"
-        ]
-    },
-    {
-        "number": "51",
-        "principal": "Soldado",
-        "meanings": [
-            "Sed",
-            "Oro",
-            "Sereno",
-            "Anteojos",
-            "Presillas"
-        ]
-    },
-    {
-        "number": "52",
-        "principal": "Bicicleta",
-        "meanings": [
-            "Coche",
-            "Borracho",
-            "Abogado",
-            "Rina",
-            "Libreta"
-        ]
-    },
-    {
-        "number": "53",
-        "principal": "Beso",
-        "meanings": [
-            "Luz eléctrica",
-            "Prenda",
-            "Tragedia",
-            "Diamante",
-            "Alguacil"
-        ]
-    },
-    {
-        "number": "54",
-        "principal": "Flores",
-        "meanings": [
-            "Gallina",
-            "Blanca",
-            "Sueño",
-            "Timbre",
-            "Cañón",
-            "Rosas"
-        ]
-    },
-    {
-        "number": "55",
-        "principal": "Cangrejo",
-        "meanings": [
-            "Baile",
-            "Iglesia grande",
-            "Los isleños",
-            "Caerse",
-            "Sellos"
-        ]
-    },
-    {
-        "number": "56",
-        "principal": "Merengue",
-        "meanings": [
-            "Reina",
-            "Escorpión",
-            "Pato grande",
-            "Piedra",
-            "Cara"
-        ]
-    },
-    {
-        "number": "57",
-        "principal": "Cama,",
-        "meanings": [
-            "  ángeles",
-            "Telegrama",
-            "Puerta"
-        ]
-    },
-    {
-        "number": "58",
-        "principal": "Ladrón",
-        "meanings": [
-            "  adulterio",
-            "Retrato",
-            "Cuchillo",
-            "Cangrejo",
-            "Ferretero",
-            "Batea"
-        ]
-    },
-    {
-        "number": "59",
-        "principal": "Loco",
-        "meanings": [
-            "Fonógrafo",
-            "Langosta",
-            "Anillo",
-            "Araña grande"
-        ]
-    },
-    {
-        "number": "60",
-        "principal": "Huevo",
-        "meanings": [
-            "  sol oscuro",
-            "Payaso",
-            "Cómico",
-            "Tempestad",
-            "Avecillas"
-        ]
-    },
-    {
-        "number": "61",
-        "principal": "Cañonazo",
-        "meanings": [
-            "Piedra grande",
-            "Revolver",
-            "Boticario",
-            "Pintor",
-            "Saco"
-        ]
-    },
-    {
-        "number": "62",
-        "principal": "Matrimonio",
-        "meanings": [
-            "Nieve",
-            "Lámpara",
-            "Visión",
-            "Academia",
-            "Carretilla"
-        ]
-    },
-    {
-        "number": "63",
-        "principal": "Asesino",
-        "meanings": [
-            "Cuernos",
-            "Espada",
-            "Bandidos",
-            "Caracol",
-            "Escalera"
-        ]
-    },
-    {
-        "number": "64",
-        "principal": "Muerto grande",
-        "meanings": [
-            "Tiro de rifle",
-            "Maromero",
-            "Relajo",
-            "Fiera"
-        ]
-    },
-    {
-        "number": "65",
-        "principal": "Comida,",
-        "meanings": [
-            "Cárcel",
-            " bruja",
-            "Ventana",
-            "Trueno"
-        ]
-    },
-    {
-        "number": "66",
-        "principal": "Pareja de yegua",
-        "meanings": [
-            "  divorcio",
-            "Tarros",
-            "Mascara",
-            "Estrella",
-            "Mudada",
-            "Carnaval"
-        ]
-    },
-    {
-        "number": "67",
-        "principal": "Puñalada",
-        "meanings": [
-            "Reloj",
-            "Autoridad",
-            "Fonda",
-            "Aborto",
-            "Zapato"
-        ]
-    },
-    {
-        "number": "68",
-        "principal": "Cementerio grande,",
-        "meanings": [
-            "  globo",
-            "Cuchillo grande",
-            "Templo",
-            "Bolos",
-            "Dinero"
-        ]
-    },
-    {
-        "number": "69",
-        "principal": "Polvorín",
-        "meanings": [
-            "Pozo",
-            "Fiera",
-            "Loma",
-            "Vagos"
-        ]
-    },
-    {
-        "number": "70",
-        "principal": "Coco",
-        "meanings": [
-            "Teléfono",
-            "Tiro",
-            "Barril",
-            "Arco iris",
-            "Bala"
-        ]
-    },
-    {
-        "number": "71",
-        "principal": "Rio",
-        "meanings": [
-            "Sombrero",
-            "Perro mediano",
-            "Pantera",
-            "Fusil"
-        ]
-    },
-    {
-        "number": "72",
-        "principal": "Buey viejo",
-        "meanings": [
-            "Ferrocarril",
-            "Serrucho",
-            "Collar",
-            "Cetro",
-            "Relámpago"
-        ]
-    },
-    {
-        "number": "73",
-        "principal": "Maleta",
-        "meanings": [
-            "Parque",
-            "Navaja",
-            "Manzanas",
-            "Ajedrez",
-            "Cigarrillo"
-        ]
-    },
-    {
-        "number": "74",
-        "principal": "Papalote",
-        "meanings": [
-            "Coronel",
-            "Serpiente",
-            "Cólera",
-            "Tarima"
-        ]
-    },
-    {
-        "number": "75",
-        "principal": "Perro mediano",
-        "meanings": [
-            "  cine",
-            "Corbata",
-            "Viento",
-            "Guitarra",
-            "Flores",
-            "Quiosco"
-        ]
-    },
-    {
-        "number": "76",
-        "principal": "Bailarina",
-        "meanings": [
-            "Humo en cantidad",
-            "Caja de hierro",
-            "Violín"
-        ]
-    },
-    {
-        "number": "77",
-        "principal": "Muletas de san lázaro",
-        "meanings": [
-            "  banderas",
-            "Guerra",
-            "Colegio",
-            "Billetes de banco",
-            "Ánfora"
-        ]
-    },
-    {
-        "number": "78",
-        "principal": "Sarcófago",
-        "meanings": [
-            "Obispo",
-            "Tigre",
-            "Rey",
-            "Apetito",
-            "Lunares"
-        ]
-    },
-    {
-        "number": "79",
-        "principal": "Lagarto",
-        "meanings": [
-            "Coche",
-            "Abogado",
-            "Tren de carga o de viajeros",
-            "Dulces"
-        ]
-    },
-    {
-        "number": "80",
-        "principal": "Médico",
-        "meanings": [
-            "Buena noticia",
-            "Luna llena",
-            "Paraguas",
-            "Barba",
-            "Trompo"
-        ]
-    },
-    {
-        "number": "81",
-        "principal": "Navaja grande",
-        "meanings": [
-            "Teatro",
-            "Barco",
-            "Ingeniero",
-            "Cuerda",
-            "Actriz"
-        ]
-    },
-    {
-        "number": "82",
-        "principal": "Madre",
-        "meanings": [
-            "León",
-            "Batea",
-            "Pleito",
-            "Estrella",
-            "Muelle"
-        ]
-    },
-    {
-        "number": "83",
-        "principal": "Bastón",
-        "meanings": [
-            "Tragedia",
-            "Procesión",
-            "Limosnero",
-            "Madera"
-        ]
-    },
-    {
-        "number": "84",
-        "principal": "Cofre",
-        "meanings": [
-            "Ciego",
-            "Sastre",
-            "Bohío",
-            "Banquero",
-            "Marcha atrás"
-        ]
-    },
-    {
-        "number": "85",
-        "principal": "Reloj",
-        "meanings": [
-            "Madrid",
-            "Águila",
-            "Espejo",
-            "Guano"
-        ]
-    },
-    {
-        "number": "86",
-        "principal": "Convento",
-        "meanings": [
-            "Marino",
-            "Ardilla",
-            "Tijera",
-            "Desnudar",
-            "Palma"
-        ]
-    },
-    {
-        "number": "87",
-        "principal": "Baúl",
-        "meanings": [
-            "Nueva york",
-            "Paloma",
-            "Fuego",
-            "Plátanos"
-        ]
-    },
-    {
-        "number": "88",
-        "principal": "Muerto vivo",
-        "meanings": [
-            "  espejuelos",
-            "Gusano",
-            "Vaso",
-            "Hojas",
-            "Aduanero"
-        ]
-    },
-    {
-        "number": "89",
-        "principal": "Mona vieja",
-        "meanings": [
-            "Lotería",
-            "Mucha agua",
-            "Casa vieja",
-            "Cometa",
-            "Melón",
-            "Tesorero"
-        ]
-    },
-    {
-        "number": "90",
-        "principal": "Espejo grande",
-        "meanings": [
-            "Viejo",
-            "Caramelo",
-            "Temporal",
-            "Asesino"
-        ]
-    },
-    {
-        "number": "91",
-        "principal": "Tranvía",
-        "meanings": [
-            "Pájaro negro",
-            "Limosnero",
-            "Alpargatas",
-            "Bolsas",
-            "Bolchevique"
-        ]
-    },
-    {
-        "number": "92",
-        "principal": "Puerco gordo",
-        "meanings": [
-            "Globo muy alto",
-            "Suicido",
-            "Cuba",
-            "Anarquista",
-            "Gato"
-        ]
-    },
-    {
-        "number": "93",
-        "principal": "Revolución",
-        "meanings": [
-            "Sortija de valor",
-            "General",
-            "Andarín",
-            "Joyas",
-            "Libertad"
-        ]
-    },
-    {
-        "number": "94",
-        "principal": "Machete",
-        "meanings": [
-            "Mariposa grande",
-            "Leontina perfume",
-            "Habana",
-            "Flores"
-        ]
-    },
-    {
-        "number": "95",
-        "principal": "Perro grande",
-        "meanings": [
-            "Guerra",
-            " alacrán grande",
-            "Espada",
-            "Matanzas",
-            "Revolución"
-        ]
-    },
-    {
-        "number": "96",
-        "principal": "Mujer santa",
-        "meanings": [
-            "Desafío",
-            "Periódico",
-            "Pícaro",
-            "Zapatos nuevos",
-            "Roca"
-        ]
-    },
-    {
-        "number": "97",
-        "principal": "Limosnero",
-        "meanings": [
-            "Mosquito grande",
-            "Mono grande",
-            "Sinsonte",
-            "Grillo grande"
-        ]
-    },
-    {
-        "number": "98",
-        "principal": "Piano",
-        "meanings": [
-            "Entierro grande",
-            "Traición",
-            "Visita regia",
-            "Fonógrafo"
-        ]
-    },
-    {
-        "number": "99 ",
-        "principal": "Serrucho",
-        "meanings": [
-            "Gallo grande",
-            "Temporal muy grande",
-            "Carbonero",
-            "Lluvia"
-        ]
-    }
+  {
+    "number": "00",
+    "principal": "Dios",
+    "meanings": [" inodoro", "Escoba", "Automóvil"]
+  },
+  {
+    "number": "01",
+    "principal": "Caballo",
+    "meanings": ["Sol", "Tintero", "Camello", "Pescado chico"]
+  },
+  {
+    "number": "02",
+    "principal": "Mariposa",
+    "meanings": ["Hombre", "Cafetera", "Caracol"]
+  },
+  {
+    "number": "03",
+    "principal": "Niño chiquito",
+    "meanings": ["Marinero", "Luna", "Taza", "Ciempiés", "Muerto"]
+  },
+  {
+    "number": "04",
+    "principal": "Gato",
+    "meanings": ["Soldado", "Llave", "Vela", "Militar", "Pavo real"]
+  },
+  {
+    "number": "05",
+    "principal": "Monja",
+    "meanings": ["Mar", "Candado", "Periódico", "Fruta", "Lombriz"]
+  },
+  {
+    "number": "06",
+    "principal": "Jicotea",
+    "meanings": ["Carta", "Reverbero", "Botella", "Luna"]
+  },
+  {
+    "number": "07",
+    "principal": "Mierda",
+    "meanings": [
+      "Caracol",
+      "Sueño",
+      "Heces fecales",
+      "Medias",
+      "Caballero",
+      "Cochino"
+    ]
+  },
+  {
+    "number": "08",
+    "principal": "Muerto",
+    "meanings": ["León", "Calabaza", "Mesa", "Tigre"]
+  },
+  {
+    "number": "09",
+    "principal": "Entierro",
+    "meanings": ["Elefante", "Lira", "Cubo", "Esqueleto", "Buey"]
+  },
+  {
+    "number": "10",
+    "principal": "Pescado grande",
+    "meanings": ["Paseo", "Malla", "Cazuela", "Dinero", "Lancha"]
+  },
+  {
+    "number": "11",
+    "principal": "Gallo fino",
+    "meanings": ["Lluvia", "Fósforo", "Taller", "Fábrica", "Caballo"]
+  },
+  {
+    "number": "12",
+    "principal": "Mujer santa",
+    "meanings": ["Viaje", "Toallas", "Cometa", "Dama", "Perro grande"]
+  },
+  {
+    "number": "13",
+    "principal": "Niño",
+    "meanings": ["Pavo real", "Anafe", "Elefante"]
+  },
+  {
+    "number": "14",
+    "principal": "Gato",
+    "meanings": ["Cementerio", "Matrimonio", "Arreste", "Sartén"]
+  },
+  {
+    "number": "15",
+    "principal": "Perro",
+    "meanings": ["Visita", "Cuchara", "Gallo", "Ratón"]
+  },
+  {
+    "number": "16",
+    "principal": "Funerales",
+    "meanings": ["Toro", "Plancha", "Vestido", "Incendio pequeño", "Avispa"]
+  },
+  {
+    "number": "17",
+    "principal": "Cumpleaños de san lazaro",
+    "meanings": [
+      "  luna",
+      "Mujer buena",
+      "Hule",
+      "Camisón",
+      "Armas",
+      "Fumar opio"
+    ]
+  },
+  {
+    "number": "18",
+    "principal": "Pescado chiquito",
+    "meanings": ["Iglesia", "Sirena", "Palma", "Pescado", "Gato amarillo"]
+  },
+  {
+    "number": "19",
+    "principal": "Lombriz",
+    "meanings": ["Campesino", "Tropa", "Mesa grande", "Armadura", "Jutía"]
+  },
+  {
+    "number": "20",
+    "principal": "Gato fino",
+    "meanings": ["Cañón", "Camiseta", "Orinal", "Libro", "Mujer"]
+  },
+  {
+    "number": "21",
+    "principal": "Majá",
+    "meanings": ["Reloj de bolsillo", "Chaleco", "Cotorra", "Cigarro", "Gallo"]
+  },
+  {
+    "number": "22",
+    "principal": "Sapo",
+    "meanings": ["Estrella", "Lirio", "Chimenea", "Sol", "Jicotea"]
+  },
+  {
+    "number": "23",
+    "principal": "Barco",
+    "meanings": ["Vapor", "Submarino", "Monte", "Escalera", "Águila"]
+  },
+  {
+    "number": "24",
+    "principal": "Paloma",
+    "meanings": ["Música", "Carpintero", "Cocina", "Pescado grande"]
+  },
+  {
+    "number": "25",
+    "principal": "Piedra fina",
+    "meanings": ["Casa", "Sol", "Monja", "Rana"]
+  },
+  {
+    "number": "26",
+    "principal": "Nube de oro",
+    "meanings": ["Anguila", "Calle", "Medico", "Brillante"]
+  },
+  {
+    "number": "27",
+    "principal": "Avispa",
+    "meanings": ["Campana", "Cuchara grande", "Canario", "Baúl", "Mono"]
+  },
+  {
+    "number": "28",
+    "principal": "Chivo",
+    "meanings": ["Bandera", "Político", "Uvas", "Perro chico"]
+  },
+  {
+    "number": "29",
+    "principal": "Ratón",
+    "meanings": ["Nube", "Venado", "Águila"]
+  },
+  {
+    "number": "30",
+    "principal": "Pene",
+    "meanings": [
+      "  camarón",
+      "Arco iris",
+      "Almanaque",
+      "Buey",
+      "Cangrejo",
+      "Chivo"
+    ]
+  },
+  {
+    "number": "31",
+    "principal": "Venado",
+    "meanings": ["Escuela", "Zapatos", "Pato"]
+  },
+  {
+    "number": "32",
+    "principal": "Puerco",
+    "meanings": ["Enemigo", "Mulo", "Demonio", "Maja"]
+  },
+  {
+    "number": "33",
+    "principal": "Tiñosa",
+    "meanings": ["Baraja", "Santa", "Jesucristo", "Bofetón", "Camarón"]
+  },
+  {
+    "number": "34",
+    "principal": "Mono",
+    "meanings": ["Familia", "Negro", "Capataz", "Paloma"]
+  },
+  {
+    "number": "35",
+    "principal": "Araña",
+    "meanings": ["Novia", "Bombillos", "Mosquito", "Mariposa"]
+  },
+  {
+    "number": "36",
+    "principal": "Cachimba",
+    "meanings": ["Teatro", "Bodega", "Opio", "Coloso", "Pajarito"]
+  },
+  {
+    "number": "37",
+    "principal": "Gallina prieta",
+    "meanings": ["Gitana", "Hormiga", "Carretera", "Piedra fina"]
+  },
+  {
+    "number": "38",
+    "principal": "Dinero",
+    "meanings": ["Macao", "Carro", "Goleta", "Guantes", "Barril"]
+  },
+  {
+    "number": "39",
+    "principal": "Culebra",
+    "meanings": ["Conejo", "Rayo", "Baile", "Tintorero"]
+  },
+  {
+    "number": "40",
+    "principal": "Cura",
+    "meanings": ["Sangre", "Bombero", "Muchacho maldita", "Cantina", "Estatua"]
+  },
+  {
+    "number": "41",
+    "principal": "Lagartija",
+    "meanings": ["Prisión", "Pato chico", "Jubo", "Capuchino", "Clarín"]
+  },
+  {
+    "number": "42",
+    "principal": "Pato",
+    "meanings": ["País lejano", "Carnero", "España", "Abismo", "Liga"]
+  },
+  {
+    "number": "43",
+    "principal": "Alacrán",
+    "meanings": ["Amigo", "Vaca", "Puerta", "Presidiario", "Jorobado"]
+  },
+  {
+    "number": "44",
+    "principal": "Infierno",
+    "meanings": ["Año del cuero", "Año malo", "Temporal", "Tormenta", "Plancha"]
+  },
+  {
+    "number": "45",
+    "principal": "Presidente",
+    "meanings": ["Tiburón", "Traje", "Tranvía", "Escuela", "Estrella"]
+  },
+  {
+    "number": "46",
+    "principal": "Humo",
+    "meanings": ["Guagua", "Hambre", "Hurón", "Baile", "Chino"]
+  },
+  {
+    "number": "47",
+    "principal": "Pájaro",
+    "meanings": ["Mala noticia", "Mucha sangre", "Escolta", "Gallo", "Rosa"]
+  },
+  {
+    "number": "48",
+    "principal": "Cucaracha",
+    "meanings": ["Abanico", "Barbería", "Cubo"]
+  },
+  {
+    "number": "49",
+    "principal": "Borracho",
+    "meanings": ["Riqueza", "Figurín", "Percha", "Tesoro", "Fantasma"]
+  },
+  {
+    "number": "50",
+    "principal": "Policía",
+    "meanings": ["Alegría", "Florero", "Alcalde", "Pícaro", "Árbol"]
+  },
+  {
+    "number": "51",
+    "principal": "Soldado",
+    "meanings": ["Sed", "Oro", "Sereno", "Anteojos", "Presillas"]
+  },
+  {
+    "number": "52",
+    "principal": "Bicicleta",
+    "meanings": ["Coche", "Borracho", "Abogado", "Rina", "Libreta"]
+  },
+  {
+    "number": "53",
+    "principal": "Beso",
+    "meanings": ["Luz eléctrica", "Prenda", "Tragedia", "Diamante", "Alguacil"]
+  },
+  {
+    "number": "54",
+    "principal": "Flores",
+    "meanings": ["Gallina", "Blanca", "Sueño", "Timbre", "Cañón", "Rosas"]
+  },
+  {
+    "number": "55",
+    "principal": "Cangrejo",
+    "meanings": ["Baile", "Iglesia grande", "Los isleños", "Caerse", "Sellos"]
+  },
+  {
+    "number": "56",
+    "principal": "Merengue",
+    "meanings": ["Reina", "Escorpión", "Pato grande", "Piedra", "Cara"]
+  },
+  {
+    "number": "57",
+    "principal": "Cama,",
+    "meanings": ["  ángeles", "Telegrama", "Puerta"]
+  },
+  {
+    "number": "58",
+    "principal": "Ladrón",
+    "meanings": [
+      "  adulterio",
+      "Retrato",
+      "Cuchillo",
+      "Cangrejo",
+      "Ferretero",
+      "Batea"
+    ]
+  },
+  {
+    "number": "59",
+    "principal": "Loco",
+    "meanings": ["Fonógrafo", "Langosta", "Anillo", "Araña grande"]
+  },
+  {
+    "number": "60",
+    "principal": "Huevo",
+    "meanings": ["  sol oscuro", "Payaso", "Cómico", "Tempestad", "Avecillas"]
+  },
+  {
+    "number": "61",
+    "principal": "Cañonazo",
+    "meanings": ["Piedra grande", "Revolver", "Boticario", "Pintor", "Saco"]
+  },
+  {
+    "number": "62",
+    "principal": "Matrimonio",
+    "meanings": ["Nieve", "Lámpara", "Visión", "Academia", "Carretilla"]
+  },
+  {
+    "number": "63",
+    "principal": "Asesino",
+    "meanings": ["Cuernos", "Espada", "Bandidos", "Caracol", "Escalera"]
+  },
+  {
+    "number": "64",
+    "principal": "Muerto grande",
+    "meanings": ["Tiro de rifle", "Maromero", "Relajo", "Fiera"]
+  },
+  {
+    "number": "65",
+    "principal": "Comida,",
+    "meanings": ["Cárcel", " bruja", "Ventana", "Trueno"]
+  },
+  {
+    "number": "66",
+    "principal": "Pareja de yegua",
+    "meanings": [
+      "  divorcio",
+      "Tarros",
+      "Mascara",
+      "Estrella",
+      "Mudada",
+      "Carnaval"
+    ]
+  },
+  {
+    "number": "67",
+    "principal": "Puñalada",
+    "meanings": ["Reloj", "Autoridad", "Fonda", "Aborto", "Zapato"]
+  },
+  {
+    "number": "68",
+    "principal": "Cementerio grande,",
+    "meanings": ["  globo", "Cuchillo grande", "Templo", "Bolos", "Dinero"]
+  },
+  {
+    "number": "69",
+    "principal": "Polvorín",
+    "meanings": ["Pozo", "Fiera", "Loma", "Vagos"]
+  },
+  {
+    "number": "70",
+    "principal": "Coco",
+    "meanings": ["Teléfono", "Tiro", "Barril", "Arco iris", "Bala"]
+  },
+  {
+    "number": "71",
+    "principal": "Rio",
+    "meanings": ["Sombrero", "Perro mediano", "Pantera", "Fusil"]
+  },
+  {
+    "number": "72",
+    "principal": "Buey viejo",
+    "meanings": ["Ferrocarril", "Serrucho", "Collar", "Cetro", "Relámpago"]
+  },
+  {
+    "number": "73",
+    "principal": "Maleta",
+    "meanings": ["Parque", "Navaja", "Manzanas", "Ajedrez", "Cigarrillo"]
+  },
+  {
+    "number": "74",
+    "principal": "Papalote",
+    "meanings": ["Coronel", "Serpiente", "Cólera", "Tarima"]
+  },
+  {
+    "number": "75",
+    "principal": "Perro mediano",
+    "meanings": ["  cine", "Corbata", "Viento", "Guitarra", "Flores", "Quiosco"]
+  },
+  {
+    "number": "76",
+    "principal": "Bailarina",
+    "meanings": ["Humo en cantidad", "Caja de hierro", "Violín"]
+  },
+  {
+    "number": "77",
+    "principal": "Muletas de san lázaro",
+    "meanings": [
+      "  banderas",
+      "Guerra",
+      "Colegio",
+      "Billetes de banco",
+      "Ánfora"
+    ]
+  },
+  {
+    "number": "78",
+    "principal": "Sarcófago",
+    "meanings": ["Obispo", "Tigre", "Rey", "Apetito", "Lunares"]
+  },
+  {
+    "number": "79",
+    "principal": "Lagarto",
+    "meanings": ["Coche", "Abogado", "Tren de carga o de viajeros", "Dulces"]
+  },
+  {
+    "number": "80",
+    "principal": "Médico",
+    "meanings": ["Buena noticia", "Luna llena", "Paraguas", "Barba", "Trompo"]
+  },
+  {
+    "number": "81",
+    "principal": "Navaja grande",
+    "meanings": ["Teatro", "Barco", "Ingeniero", "Cuerda", "Actriz"]
+  },
+  {
+    "number": "82",
+    "principal": "Madre",
+    "meanings": ["León", "Batea", "Pleito", "Estrella", "Muelle"]
+  },
+  {
+    "number": "83",
+    "principal": "Bastón",
+    "meanings": ["Tragedia", "Procesión", "Limosnero", "Madera"]
+  },
+  {
+    "number": "84",
+    "principal": "Cofre",
+    "meanings": ["Ciego", "Sastre", "Bohío", "Banquero", "Marcha atrás"]
+  },
+  {
+    "number": "85",
+    "principal": "Reloj",
+    "meanings": ["Madrid", "Águila", "Espejo", "Guano"]
+  },
+  {
+    "number": "86",
+    "principal": "Convento",
+    "meanings": ["Marino", "Ardilla", "Tijera", "Desnudar", "Palma"]
+  },
+  {
+    "number": "87",
+    "principal": "Baúl",
+    "meanings": ["Nueva york", "Paloma", "Fuego", "Plátanos"]
+  },
+  {
+    "number": "88",
+    "principal": "Muerto vivo",
+    "meanings": ["  espejuelos", "Gusano", "Vaso", "Hojas", "Aduanero"]
+  },
+  {
+    "number": "89",
+    "principal": "Mona vieja",
+    "meanings": [
+      "Lotería",
+      "Mucha agua",
+      "Casa vieja",
+      "Cometa",
+      "Melón",
+      "Tesorero"
+    ]
+  },
+  {
+    "number": "90",
+    "principal": "Espejo grande",
+    "meanings": ["Viejo", "Caramelo", "Temporal", "Asesino"]
+  },
+  {
+    "number": "91",
+    "principal": "Tranvía",
+    "meanings": [
+      "Pájaro negro",
+      "Limosnero",
+      "Alpargatas",
+      "Bolsas",
+      "Bolchevique"
+    ]
+  },
+  {
+    "number": "92",
+    "principal": "Puerco gordo",
+    "meanings": ["Globo muy alto", "Suicido", "Cuba", "Anarquista", "Gato"]
+  },
+  {
+    "number": "93",
+    "principal": "Revolución",
+    "meanings": ["Sortija de valor", "General", "Andarín", "Joyas", "Libertad"]
+  },
+  {
+    "number": "94",
+    "principal": "Machete",
+    "meanings": ["Mariposa grande", "Leontina perfume", "Habana", "Flores"]
+  },
+  {
+    "number": "95",
+    "principal": "Perro grande",
+    "meanings": [
+      "Guerra",
+      " alacrán grande",
+      "Espada",
+      "Matanzas",
+      "Revolución"
+    ]
+  },
+  {
+    "number": "96",
+    "principal": "Mujer santa",
+    "meanings": ["Desafío", "Periódico", "Pícaro", "Zapatos nuevos", "Roca"]
+  },
+  {
+    "number": "97",
+    "principal": "Limosnero",
+    "meanings": ["Mosquito grande", "Mono grande", "Sinsonte", "Grillo grande"]
+  },
+  {
+    "number": "98",
+    "principal": "Piano",
+    "meanings": ["Entierro grande", "Traición", "Visita regia", "Fonógrafo"]
+  },
+  {
+    "number": "99",
+    "principal": "Serrucho",
+    "meanings": ["Gallo grande", "Temporal muy grande", "Carbonero", "Lluvia"]
+  }
 ]

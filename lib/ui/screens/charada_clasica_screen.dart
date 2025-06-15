@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/charada_number.dart';
 import 'package:tu_bolitero/ui/logic/charada_clasica/charada_clasica_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class CharadaClasicaScreen extends StatelessWidget {
-  const CharadaClasicaScreen({super.key});
+  CharadaClasicaScreen({super.key});
+
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,45 +17,60 @@ class CharadaClasicaScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Charada Clásica'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-              child: TextField(
-                decoration: InputDecoration(
-                  fillColor: const Color.fromARGB(255, 236, 230, 240),
-                  suffixIcon: const Icon(Icons.search),
-                  hintStyle: const TextStyle(fontSize: 12),
-                  hintText: 'Escribir el significado para ver el numero',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8),
+      bottomNavigationBar: const BottomBar(index: 2),
+      body: BlocBuilder<CharadaClasicaCubit, CharadaClasicaState>(
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _searchController,
+                  onChanged: (value) {
+                    charadaClasicaBloc.filterCharada(value);
+                  },
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: 'Buscar',
+                    filled: true,
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: _searchController.text.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              _searchController.clear();
+                            },
+                          )
+                        : null,
                   ),
                 ),
-                onChanged: (value) => charadaClasicaBloc.filterCharada(value),
-              ),
+                const SizedBox(height: 12),
+                BlocBuilder<CharadaClasicaCubit, CharadaClasicaState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                        orElse: () => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                        loaded: (_, filteredCharada) => Expanded(
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  final charadaNumber = filteredCharada[index];
+                                  return _CharadaTile(
+                                      charadaNumber: charadaNumber);
+                                },
+                                itemCount: filteredCharada.length,
+                              ),
+                            ));
+                  },
+                ),
+              ],
             ),
-            BlocBuilder<CharadaClasicaCubit, CharadaClasicaState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                    orElse: () => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                    loaded: (_, filteredCharada) => Expanded(
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              final charadaNumber = filteredCharada[index];
-                              return _CharadaTile(charadaNumber: charadaNumber);
-                            },
-                            itemCount: filteredCharada.length,
-                          ),
-                        ));
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -68,30 +86,20 @@ class _CharadaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        width: 80,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(220, 156, 190, 255),
-              Color.fromARGB(220, 238, 215, 252),
-            ],
-          ),
-        ),
+      child: SizedBox(
+        width: 90,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
           child: Row(
             children: [
               CircleAvatar(
-                backgroundColor: const Color.fromARGB(220, 156, 190, 255),
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 child: Text(
                   charadaNumber.number,
                   style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -99,22 +107,22 @@ class _CharadaTile extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         charadaNumber.principal,
                         style: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
-                        charadaNumber.meanings.join(', '),
+                        charadaNumber.meanings.join(' - '),
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w300,
                         ),
                       ),
                     ],

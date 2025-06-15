@@ -5,9 +5,14 @@ import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/lottery_tile.dart';
 
 class LotteriesListScreen extends StatelessWidget {
-  const LotteriesListScreen({super.key, required this.onLotterySelected});
+  const LotteriesListScreen({
+    super.key,
+    required this.onLotterySelected,
+    required this.selectedIndex,
+  });
 
   final Function(String) onLotterySelected;
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class LotteriesListScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Loterías'),
       ),
-      bottomNavigationBar: const BottomBar(index: 1),
+      bottomNavigationBar: BottomBar(index: selectedIndex),
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
           return Container(

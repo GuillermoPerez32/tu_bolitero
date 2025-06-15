@@ -1,5 +1,4 @@
 export 'algorithms_screen.dart';
-export 'atrasados_screen.dart';
 export 'atraso_detail_screen.dart';
 export 'charada_clasica_screen.dart';
 export 'charada_mixta_screen.dart';
