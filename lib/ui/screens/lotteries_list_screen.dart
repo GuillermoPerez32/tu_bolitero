@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
+import 'package:tu_bolitero/ui/widgets/lottery_tile.dart';
 
 class LotteriesListScreen extends StatelessWidget {
   const LotteriesListScreen({super.key, required this.onLotterySelected});
@@ -11,12 +15,18 @@ class LotteriesListScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Loterías'),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Lotería $index'),
-            onTap: () => onLotterySelected(index.toString()),
+      bottomNavigationBar: const BottomBar(index: 1),
+      body: BlocBuilder<LotteryCubit, LotteryState>(
+        builder: (context, state) {
+          return ListView.builder(
+            itemCount: state.lotteries.length,
+            itemBuilder: (context, index) {
+              return LotteryTile(
+                title: state.lotteries[index].nombre,
+                imageSrc: state.lotteries[index].logo,
+                onTap: () => onLotterySelected('${state.lotteries[index].id}'),
+              );
+            },
           );
         },
       ),

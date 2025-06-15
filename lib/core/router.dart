@@ -32,7 +32,7 @@ final GoRouter router = GoRouter(
           path: 'piramide',
           builder: (context, state) => LotteriesListScreen(
             onLotterySelected: (lotteryId) {
-              context.go('piramide/$lotteryId');
+              context.go('/piramide/$lotteryId');
             },
           ),
           routes: [
@@ -48,7 +48,7 @@ final GoRouter router = GoRouter(
           path: 'cruz_suerte',
           builder: (context, state) => LotteriesListScreen(
             onLotterySelected: (lotteryId) {
-              context.go('cruz_suerte/$lotteryId');
+              context.go('/cruz_suerte/$lotteryId');
             },
           ),
           routes: [
@@ -64,7 +64,7 @@ final GoRouter router = GoRouter(
           path: 'table',
           builder: (context, state) => LotteriesListScreen(
             onLotterySelected: (lotteryId) {
-              context.go('table/$lotteryId');
+              context.go('/table/$lotteryId');
             },
           ),
           routes: [
@@ -80,7 +80,7 @@ final GoRouter router = GoRouter(
           path: 'results',
           builder: (context, state) => LotteriesListScreen(
             onLotterySelected: (lotteryId) {
-              context.go('results/$lotteryId');
+              context.go('/results/$lotteryId');
             },
           ),
           routes: [

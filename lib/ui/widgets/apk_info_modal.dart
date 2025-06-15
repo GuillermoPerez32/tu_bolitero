@@ -25,7 +25,7 @@ class ApkInfoModal extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Container(
                   color: Colors.white,
-                  padding: EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(24),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

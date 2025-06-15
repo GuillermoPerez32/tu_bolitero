@@ -19,16 +19,28 @@ class CruzSuerteScreen extends StatelessWidget {
       ),
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
-          final lottery = state.lotteries
+          if (state.lotteries.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final matching = state.lotteries
               .where((element) => '${element.id}' == lotteryId)
-              .toList()[0];
+              .toList();
+
+          if (matching.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final lottery = matching.first;
           final atrasados = lottery.atrasados;
-          final result = lottery.anteriores.first;
+          final result = lottery.anteriores.firstOrNull;
+
+          if (result == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
           if (atrasados == null) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           final decenasMapList = atrasados['general']!.decenas.entries.toList()

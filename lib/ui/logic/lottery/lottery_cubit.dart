@@ -17,6 +17,10 @@ class LotteryCubit extends Cubit<LotteryState> {
     emit(LotteryState.loading(state.lotteries));
     final lotteries = await lotteryDatasource.getLotteries();
     emit(LotteryState.loaded(lotteries));
+    for (final lottery in lotteries) {
+      loadLotteryResults(lottery.id);
+      loadLotteryAtrasados(lottery.id);
+    }
   }
 
   void loadLotteryResults(int lotteryId) async {

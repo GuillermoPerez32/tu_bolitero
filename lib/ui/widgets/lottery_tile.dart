@@ -16,45 +16,49 @@ class LotteryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tileHeight = 100.0;
+    const tileHeight = 90.0;
+    const imageSize = 40;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Center(
-        child: ListTile(
-          visualDensity: VisualDensity.compact,
-          onTap: onTap,
-          tileColor: Colors.white,
-          leading: Hero(
-            tag: imageSrc,
-            child: Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    host + imageSrc,
-                    maxWidth: 70,
-                    maxHeight: 70,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Card(
+        elevation: 0,
+        child: SizedBox(
+          height: tileHeight,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Hero(
+                  tag: imageSrc,
+                  child: Container(
+                    width: imageSize.toDouble(),
+                    height: imageSize.toDouble(),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          host + imageSrc,
+                          maxWidth: imageSize,
+                          maxHeight: imageSize,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          trailing: const Icon(Icons.arrow_forward_outlined),
-          title: SizedBox(
-            height: tileHeight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+                const SizedBox(width: 15),
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                const Spacer(),
+                const Icon(
+                  Icons.chevron_right,
+                  color: Color.fromARGB(255, 60, 60, 67),
+                  size: 30,
+                )
               ],
             ),
           ),
