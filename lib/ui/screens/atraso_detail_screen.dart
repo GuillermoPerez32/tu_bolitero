@@ -2,12 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/constants.dart';
+import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
-class AtrasoDetailScreen extends StatelessWidget {
+class AtrasoDetailScreen extends StatefulWidget {
   const AtrasoDetailScreen({super.key, required this.lotteryId});
 
   final String? lotteryId;
+
+  @override
+  State<AtrasoDetailScreen> createState() => _AtrasoDetailScreenState();
+}
+
+class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
+  // ──────────────────────────── STATE ────────────────────────────
+  String selectedGrupo = 'general';
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +25,10 @@ class AtrasoDetailScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: state.maybeWhen(
-              orElse: () => Container(),
+              orElse: () => const SizedBox.shrink(),
               loaded: (lotteries) {
                 final lotteryName = lotteries
-                    .firstWhere((element) => '${element.id}' == lotteryId)
+                    .firstWhere((e) => '${e.id}' == widget.lotteryId)
                     .nombre;
                 return Text('Atrasados $lotteryName');
               },
@@ -27,9 +36,8 @@ class AtrasoDetailScreen extends StatelessWidget {
             actions: state.maybeWhen(
               orElse: () => [],
               loaded: (lotteries) {
-                final lottery = lotteries
-                    .where((element) => '${element.id}' == lotteryId)
-                    .toList()[0];
+                final lottery =
+                    lotteries.firstWhere((e) => '${e.id}' == widget.lotteryId);
                 return [
                   Hero(
                     tag: lottery.logo,
@@ -43,115 +51,52 @@ class AtrasoDetailScreen extends StatelessWidget {
             ),
           ),
           body: state.maybeWhen(
+            loading: (_) => const Center(child: CircularProgressIndicator()),
             error: (_, reason) => Center(
-              child: Text('Error: $reason'),
-            ),
-            loading: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+                child: Text('Error: $reason', textAlign: TextAlign.center)),
             loaded: (lotteries) {
-              final lottery = lotteries
-                  .firstWhere((element) => '${element.id}' == lotteryId);
+              final lottery =
+                  lotteries.firstWhere((e) => '${e.id}' == widget.lotteryId);
               final atrasados = lottery.atrasados;
+
               if (atrasados == null) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const Center(child: CircularProgressIndicator());
               }
 
-              return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: ListView(
-                  children: horarios.map(
-                    (horario) {
-                      if (atrasados[horario] == null) return Container();
-                      final centenas = atrasados[horario]!
-                          .centenas
-                          .entries
-                          .toList()
-                        ..sort((a, b) => b.value.compareTo(a.value));
-                      final decenas = atrasados[horario]!
-                          .decenas
-                          .entries
-                          .toList()
-                        ..sort((a, b) => b.value.compareTo(a.value));
-                      final unidades = atrasados[horario]!
-                          .unidades
-                          .entries
-                          .toList()
-                        ..sort((a, b) => b.value.compareTo(a.value));
-                      if (centenas.isEmpty &&
-                          decenas.isEmpty &&
-                          unidades.isEmpty) {
-                        return const Center(
-                          child: Text('No hay datos de atrasados'),
-                        );
-                      }
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
-                            child: Text(
-                              horario.toUpperCase(),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Column(
-                                children: [
-                                  const TitleText(title: "Centena"),
-                                  ...centenas.map(
-                                    (e) => NumberBall(
-                                      value: e.key,
-                                      centena: '${e.value} días',
-                                      color: const Color.fromARGB(
-                                          220, 255, 198, 198),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  const TitleText(title: "Decena"),
-                                  ...decenas.map(
-                                    (e) => NumberBall(
-                                      value: e.key,
-                                      decena: '${e.value} días',
-                                      color: const Color.fromARGB(
-                                          220, 255, 235, 132),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  const TitleText(title: "Terminal"),
-                                  ...unidades.map(
-                                    (e) => NumberBall(
-                                      value: e.key,
-                                      unidad: '${e.value} días',
-                                      color: const Color.fromARGB(
-                                          220, 156, 190, 255),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      );
-                    },
-                  ).toList(),
+              // ────────────────────────── UI ──────────────────────────
+              return SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Wrap(
+                        spacing: 8,
+                        children: atrasados.keys.map((horario) {
+                          return ChoiceChip(
+                            label: Text(horario.toUpperCase()),
+                            selected: selectedGrupo == horario,
+                            onSelected: (_) => setState(() {
+                              selectedGrupo = horario;
+                            }),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    if (atrasados[selectedGrupo] == null)
+                      const Center(child: Text('No hay datos de atrasados'))
+                    else
+                      _GrupoAtrasosView(
+                        datos: atrasados[selectedGrupo]!,
+                        horario: selectedGrupo,
+                      ),
+                  ],
                 ),
               );
             },
-            orElse: () => Container(),
+            orElse: () => const SizedBox.shrink(),
           ),
         );
       },
@@ -159,24 +104,109 @@ class AtrasoDetailScreen extends StatelessWidget {
   }
 }
 
-class TitleText extends StatelessWidget {
-  final String title;
+// ──────────────────────── Vista interna ────────────────────────
+class _GrupoAtrasosView extends StatelessWidget {
+  const _GrupoAtrasosView({required this.datos, required this.horario});
 
-  const TitleText({
-    super.key,
-    required this.title,
-  });
+  final Atrasados datos;
+  final String horario;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
+    final centenas = datos.centenas.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final decenas = datos.decenas.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final unidades = datos.unidades.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+
+    if (centenas.isEmpty && decenas.isEmpty && unidades.isEmpty) {
+      return const Center(child: Text('No hay datos de atrasados'));
+    }
+
+    return Card(
+      elevation: 0,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        child: Column(
+          children: [
+            Text(horario.toUpperCase(),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _ColNumeros(
+                  titulo: 'Centena',
+                  pares: centenas,
+                  color: const Color.fromARGB(255, 97, 139, 250),
+                  tipo: _TipoAtraso.centena,
+                ),
+                _ColNumeros(
+                  titulo: 'Decena',
+                  pares: decenas,
+                  color: const Color.fromARGB(255, 173, 212, 85),
+                  tipo: _TipoAtraso.decena,
+                ),
+                _ColNumeros(
+                  titulo: 'Terminal',
+                  pares: unidades,
+                  color: const Color.fromARGB(255, 248, 139, 44),
+                  tipo: _TipoAtraso.unidad,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+// ──────────────────────── Column helper ────────────────────────
+enum _TipoAtraso { centena, decena, unidad }
+
+class _ColNumeros extends StatelessWidget {
+  const _ColNumeros({
+    required this.titulo,
+    required this.pares,
+    required this.color,
+    required this.tipo,
+  });
+
+  final String titulo;
+  final List<MapEntry<String, int>> pares;
+  final Color color;
+  final _TipoAtraso tipo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TitleText(title: titulo),
+        ...pares.map((e) => NumberBall(
+              value: e.key,
+              centena: tipo == _TipoAtraso.centena ? '${e.value} días' : null,
+              decena: tipo == _TipoAtraso.decena ? '${e.value} días' : null,
+              unidad: tipo == _TipoAtraso.unidad ? '${e.value} días' : null,
+              color: color,
+            )),
+      ],
+    );
+  }
+}
+
+// ──────────────────────── Widgets auxiliares ────────────────────────
+class TitleText extends StatelessWidget {
+  const TitleText({super.key, required this.title});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) => Text(
+        title,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+      );
 }
 
 class NumberBall extends StatelessWidget {
@@ -197,23 +227,23 @@ class NumberBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ballText =
+    final textoEnBola =
         '${centena != null ? value : 'x'}${decena != null ? value : 'x'}${unidad != null ? value : 'x'}';
-    final atraso = (centena ?? (decena ?? unidad))!;
+    final atraso = (centena ?? decena ?? unidad)!;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             radius: 24,
             backgroundColor: color,
             child: Text(
-              ballText,
+              textoEnBola,
               style: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -221,9 +251,10 @@ class NumberBall extends StatelessWidget {
             atraso,
             style: const TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w300,
             ),
           ),
+          const Divider(),
         ],
       ),
     );

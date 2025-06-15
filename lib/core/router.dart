@@ -43,7 +43,7 @@ final GoRouter router = GoRouter(
               routes: [
                 GoRoute(
                   path: ':id',
-                  builder: (context, state) => ResultsScreen(
+                  builder: (context, state) => ResultDetailScreen(
                     lotteryId: state.pathParameters['id']!,
                   ),
                 ),

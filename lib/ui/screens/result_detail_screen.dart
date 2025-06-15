@@ -1,11 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/result_card.dart';
+
+class AnterioresPerDay {
+  final DateTime fecha;
+  final List<LotteryResult> results;
+
+  AnterioresPerDay({
+    required this.fecha,
+    required this.results,
+  });
+}
 
 class ResultDetailScreen extends StatelessWidget {
   const ResultDetailScreen({super.key, required this.lotteryId});
@@ -15,15 +24,6 @@ class ResultDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lotteryBloc = BlocProvider.of<LotteryCubit>(context);
-    final firstColor = [
-      const Color.fromARGB(255, 84, 181, 222),
-      Colors.white,
-    ];
-
-    final secondColor = [
-      const Color.fromARGB(255, 228, 184, 255),
-      Colors.white,
-    ];
 
     return BlocBuilder<LotteryCubit, LotteryState>(
       builder: (context, state) {
@@ -78,15 +78,25 @@ class ResultDetailScreen extends StatelessWidget {
 
               final lottery = lotteries[0];
 
+              final anterioresPerDay = lottery.anteriores
+                  .map((result) => AnterioresPerDay(
+                        fecha: result.fecha,
+                        results: lottery.anteriores
+                            .where((element) =>
+                                element.fecha.day == result.fecha.day &&
+                                element.fecha.month == result.fecha.month &&
+                                element.fecha.year == result.fecha.year)
+                            .toList(),
+                      ))
+                  .toList();
+
               return Center(
                 child: ListView.builder(
-                  itemCount: lottery.anteriores.length,
+                  itemCount: anterioresPerDay.length,
                   itemBuilder: (context, index) {
-                    final result = lottery.anteriores[index];
+                    final result = anterioresPerDay[index];
                     return ResultCard(
-                      atrasados: lottery.atrasados?['general'],
-                      result: result,
-                      gradientColors: index % 2 == 0 ? firstColor : secondColor,
+                      results: result.results,
                       lotteryId: lotteryId!,
                     );
                   },
@@ -105,208 +115,6 @@ class ResultDetailScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class ResultCard extends StatelessWidget {
-  final String lotteryId;
-
-  const ResultCard({
-    super.key,
-    required this.result,
-    required this.gradientColors,
-    required this.lotteryId,
-    required this.atrasados,
-  });
-
-  final LotteryResult result;
-  final List<Color> gradientColors;
-  final Atrasados? atrasados;
-
-  @override
-  Widget build(BuildContext context) {
-    final lotteryBloc = BlocProvider.of<LotteryCubit>(context);
-    return Container(
-      margin: const EdgeInsets.only(top: 20, bottom: 40, left: 20, right: 20),
-      padding: const EdgeInsets.all(20),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black,
-            spreadRadius: 0,
-            blurRadius: 1,
-            offset: Offset(0, 2),
-          ),
-        ],
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: const [.2, .6],
-          colors: gradientColors,
-        ),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      DateFormat.EEEE().format(result.fecha),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                    Image.asset(result.fecha.hour > 6 && result.fecha.hour < 18
-                        ? 'assets/sun.png'
-                        : 'assets/moon.png'),
-                    Text(
-                      DateFormat('dd-MM-yyyy').format(result.fecha),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 1,
-                height: 110,
-                color: Colors.black,
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    PickSection(
-                      pickNumber: '3',
-                      pickResult: result.pick3,
-                      color: const Color.fromARGB(220, 255, 214, 0),
-                    ),
-                    const SizedBox(height: 20),
-                    PickSection(
-                      pickNumber: '4',
-                      pickResult: result.pick4,
-                      color: const Color.fromARGB(240, 164, 239, 128),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AlgorithmButton(
-                  imageSrc: 'assets/piramide.png',
-                  onTap: () =>
-                      context.go('/results/$lotteryId/piramide', extra: result),
-                ),
-                const SizedBox(width: 10),
-                AlgorithmButton(
-                  imageSrc: 'assets/cruz.png',
-                  onTap: () {
-                    lotteryBloc.loadLotteryAtrasados(int.parse(lotteryId));
-                    context.go('/results/$lotteryId/cruz_suerte', extra: {
-                      'result': result,
-                      'lotteryId': lotteryId,
-                    });
-                  },
-                ),
-                const SizedBox(width: 10),
-                AlgorithmButton(
-                  imageSrc: 'assets/table.png',
-                  onTap: () =>
-                      context.go('/results/$lotteryId/table', extra: result),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class AlgorithmButton extends StatelessWidget {
-  final void Function() onTap;
-  final String imageSrc;
-
-  const AlgorithmButton({
-    super.key,
-    required this.onTap,
-    required this.imageSrc,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: CircleAvatar(
-        backgroundImage: AssetImage(imageSrc),
-      ),
-    );
-  }
-}
-
-class PickSection extends StatelessWidget {
-  const PickSection({
-    super.key,
-    required this.pickNumber,
-    required this.pickResult,
-    required this.color,
-  });
-
-  final String pickNumber;
-  final String pickResult;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Pick',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            Container(
-              margin: const EdgeInsets.only(left: 10),
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                color: color,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                  child: Text(
-                pickNumber,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              )),
-            ),
-          ],
-        ),
-        Text(
-          pickResult,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-      ],
     );
   }
 }

@@ -22,6 +22,26 @@ class ThemeFactory {
         surface: Colors.white,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      chipTheme: const ChipThemeData(
+        disabledColor: Color.fromRGBO(215, 225, 255, 1),
+        labelStyle: TextStyle(
+            color: Color.fromRGBO(97, 139, 250, 1),
+            fontWeight: FontWeight.w400,
+            fontSize: 14),
+        selectedColor: Color.fromRGBO(215, 225, 255, 1),
+        checkmarkColor: Color.fromRGBO(97, 139, 250, 1),
+        surfaceTintColor: Color.fromRGBO(215, 225, 255, 1),
+        selectedShadowColor: Color.fromRGBO(97, 139, 250, 1),
+        secondarySelectedColor: Color.fromRGBO(215, 225, 255, 1),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(100)),
+          side: BorderSide(
+            color: Colors.transparent,
+            width: 0,
+          ),
+        ),
+      ),
     );
   }
 }

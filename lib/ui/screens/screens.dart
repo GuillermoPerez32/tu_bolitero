@@ -8,7 +8,6 @@ export 'home_screen.dart';
 export 'numero_suerte_screen.dart';
 export 'piramide_screen.dart';
 export 'result_detail_screen.dart';
-export 'results_screen.dart';
 export 'tabla_dioses_screen.dart';
 export 'comments_screen.dart';
 export 'profile_screen.dart';
