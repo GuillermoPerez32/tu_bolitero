@@ -17,7 +17,6 @@ class InfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
       margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       child: ListTile(
         contentPadding:

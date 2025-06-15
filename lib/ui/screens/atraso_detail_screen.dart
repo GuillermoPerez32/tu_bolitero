@@ -125,7 +125,6 @@ class _GrupoAtrasosView extends StatelessWidget {
     }
 
     return Card(
-      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         child: Column(

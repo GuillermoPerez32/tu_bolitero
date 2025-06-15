@@ -23,7 +23,6 @@ class LotteryTile extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Card(
-          elevation: 0,
           child: SizedBox(
             height: tileHeight,
             child: Padding(

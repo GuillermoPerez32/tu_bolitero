@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/number_table.dart';
 
 // ─────────── Tabla 1 (superior) ───────────
@@ -45,6 +46,7 @@ class TablaDiosesScreen extends StatelessWidget {
           'Tabla de los Dioses',
         ),
       ),
+      bottomNavigationBar: const BottomBar(index: 1),
       body: ListView(
         children: [
           Column(

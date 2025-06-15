@@ -1,7 +1,8 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class CruzSuerteScreen extends StatelessWidget {
   const CruzSuerteScreen({
@@ -17,6 +18,7 @@ class CruzSuerteScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Cruz de la Suerte'),
       ),
+      bottomNavigationBar: const BottomBar(index: 1),
       body: BlocBuilder<LotteryCubit, LotteryState>(
         builder: (context, state) {
           if (state.lotteries.isEmpty) {
@@ -49,26 +51,78 @@ class CruzSuerteScreen extends StatelessWidget {
               decenasMapList.map((e) => e.key).toList().sublist(0, 8);
 
           return Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-              child: Column(
-                children: [
-                  Text(
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
                     result.fecha.toString().split(' ')[0],
-                    style: const TextStyle(fontSize: 24),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 50),
-                  CustomPaint(
-                    size: const Size(400, 400),
-                    painter: CircleWithDiagonalsPainter(numbers: decenas),
+                ),
+                Expanded(
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          'assets/cruz/Monedas.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Center(
+                        child: Image.asset(
+                          'assets/cruz/Treboles.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Center(
+                        child: Image.asset(
+                          'assets/cruz/Trebol.png',
+                          fit: BoxFit.cover,
+                        )
+                            .animate(
+                              onPlay: (controller) => controller.repeat(
+                                  period: const Duration(seconds: 1),
+                                  reverse: true),
+                            )
+                            .scale(
+                              begin: const Offset(1, 1),
+                              end: const Offset(1.02, 1.02),
+                              curve: Curves.easeInOut,
+                            ),
+                      ),
+                      Center(
+                        child: CustomPaint(
+                          size: const Size(400, 400),
+                          painter: CircleWithDiagonalsPainter(numbers: decenas),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
       ),
     );
+  }
+}
+
+class CruzSuerte extends StatelessWidget {
+  const CruzSuerte({super.key, required this.numbers});
+
+  final List<String> numbers;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
@@ -79,52 +133,52 @@ class CircleWithDiagonalsPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint circlePaint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3.0;
-
-    Paint linePaint = Paint()
-      ..color = Colors.red
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3.0;
-
-    double linePadding = 40;
-
     double centerX = size.width / 2;
     double centerY = size.height / 2;
-    double radius = min(size.width / 2, size.height / 2) - 10;
-
-    canvas.drawCircle(Offset(centerX, centerY), radius, circlePaint);
-
-    canvas.drawLine(
-      Offset(linePadding, linePadding),
-      Offset(size.width - linePadding, size.height - linePadding),
-      linePaint,
-    );
-    canvas.drawLine(
-      Offset(size.width - linePadding, linePadding),
-      Offset(linePadding, size.height - linePadding),
-      linePaint,
-    );
 
     final offsets = [
-      const Offset(0, 0),
-      Offset(size.width - 30, 0),
-      Offset(size.width - 30, size.height - 30),
-      Offset(0, size.height - 30),
-      Offset(centerX - (centerX / 2), centerY - 12),
-      Offset(centerX + (centerX / 2) - 15, centerY - 12),
-      Offset(centerX - 10, centerY - (centerY / 2)),
-      Offset(centerX - 10, centerY + (centerY / 2) - 30),
+      /* ------------------------CORNERS------------------------ */
+      Offset(
+        size.width / 4 - 10,
+        size.height / 4 - 20,
+      ), // top left
+      Offset(
+        size.width - size.width / 4 - 10,
+        size.height / 4 - 20,
+      ), // top right
+      Offset(
+        size.width - size.width / 4 - 10,
+        size.height - size.height / 4 - 20,
+      ), // bottom right
+      Offset(
+        size.width / 4 - 10,
+        size.height - size.height / 4 - 20,
+      ), // bottom left
+      /* ------------------------CENTER------------------------ */
+      Offset(
+        centerX - (centerX / 2.7),
+        centerY - 20,
+      ), // left
+      Offset(
+        centerX + (centerX / 2.7) - 25,
+        centerY - 20,
+      ), // right
+      Offset(
+        centerX - 10,
+        centerY - (centerY / 4) - 20,
+      ), // top
+      Offset(
+        centerX - 10,
+        centerY + (centerY / 4) - 20,
+      ), // bottom
     ];
 
     for (var i = 0; i < offsets.length; i++) {
       TextSpan textSpan = TextSpan(
         text: numbers[i],
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 32,
-          color: Colors.black,
+          color: i < 4 ? Colors.black : Colors.white,
           fontWeight: FontWeight.bold,
           fontFamily: 'Merienda',
         ),

@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/result_card.dart';
 
 class AnterioresPerDay {
@@ -16,105 +18,143 @@ class AnterioresPerDay {
   });
 }
 
-class ResultDetailScreen extends StatelessWidget {
+class ResultDetailScreen extends StatefulWidget {
   const ResultDetailScreen({super.key, required this.lotteryId});
 
   final String? lotteryId;
 
   @override
+  State<ResultDetailScreen> createState() => _ResultDetailScreenState();
+}
+
+class _ResultDetailScreenState extends State<ResultDetailScreen> {
+  final ScrollController _scroll = ScrollController();
+  bool _isFabVisible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _scroll.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    final isScrollingDown =
+        _scroll.position.userScrollDirection == ScrollDirection.reverse;
+    final isScrollingUp =
+        _scroll.position.userScrollDirection == ScrollDirection.forward;
+
+    if (isScrollingDown && _isFabVisible) {
+      setState(() => _isFabVisible = false);
+    } else if (isScrollingUp && !_isFabVisible) {
+      setState(() => _isFabVisible = true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scroll
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final lotteryBloc = BlocProvider.of<LotteryCubit>(context);
 
-    return BlocBuilder<LotteryCubit, LotteryState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: state.maybeWhen(
-              orElse: () => [],
-              loaded: (lotteries) {
-                final lottery = lotteries
-                    .where((element) => '${element.id}' == lotteryId)
-                    .toList()[0];
-                return [
-                  Hero(
-                    tag: lottery.logo,
-                    child: CircleAvatar(
-                      backgroundImage:
-                          CachedNetworkImageProvider(host + lottery.logo),
-                    ),
+    return BlocBuilder<LotteryCubit, LotteryState>(builder: (context, state) {
+      return Scaffold(
+        bottomNavigationBar: const BottomBar(index: 1),
+        appBar: AppBar(
+          actions: state.maybeWhen(
+            orElse: () => [],
+            loaded: (lotteries) {
+              final lottery = lotteries
+                  .where((element) => '${element.id}' == widget.lotteryId)
+                  .toList()[0];
+              return [
+                Hero(
+                  tag: lottery.logo,
+                  child: CircleAvatar(
+                    backgroundImage:
+                        CachedNetworkImageProvider(host + lottery.logo),
                   ),
-                ];
-              },
-            ),
-            title: state.maybeWhen(
-              orElse: () => Container(),
-              loaded: (lotteries) {
-                final lotteryName = lotteries
-                    .firstWhere((element) => '${element.id}' == lotteryId)
-                    .nombre;
-                return Text('$lotteryName Pick');
-              },
-            ),
-          ),
-          body: state.maybeWhen(
-            error: (_, reason) => Center(
-              child: Text('Error: $reason'),
-            ),
-            loading: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            orElse: () {
-              final lotteries = state.lotteries
-                  .where(
-                    (element) => '${element.id}' == lotteryId,
-                  )
-                  .toList();
-
-              if (lotteries.isEmpty) {
-                return const Center(
-                  child: Text('No hay resultados'),
-                );
-              }
-
-              final lottery = lotteries[0];
-
-              final anterioresPerDay = lottery.anteriores
-                  .map((result) => AnterioresPerDay(
-                        fecha: result.fecha,
-                        results: lottery.anteriores
-                            .where((element) =>
-                                element.fecha.day == result.fecha.day &&
-                                element.fecha.month == result.fecha.month &&
-                                element.fecha.year == result.fecha.year)
-                            .toList(),
-                      ))
-                  .toList();
-
-              return Center(
-                child: ListView.builder(
-                  itemCount: anterioresPerDay.length,
-                  itemBuilder: (context, index) {
-                    final result = anterioresPerDay[index];
-                    return ResultCard(
-                      results: result.results,
-                      lotteryId: lotteryId!,
-                    );
-                  },
                 ),
+              ];
+            },
+          ),
+          title: state.maybeWhen(
+            orElse: () => Container(),
+            loaded: (lotteries) {
+              final lotteryName = lotteries
+                  .firstWhere((element) => '${element.id}' == widget.lotteryId)
+                  .nombre;
+              return Text('$lotteryName Pick');
+            },
+          ),
+        ),
+        body: state.maybeWhen(
+          error: (_, reason) => Center(
+            child: Text('Error: $reason'),
+          ),
+          loading: (_) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          orElse: () {
+            final lotteries = state.lotteries
+                .where(
+                  (element) => '${element.id}' == widget.lotteryId,
+                )
+                .toList();
+
+            if (lotteries.isEmpty) {
+              return const Center(
+                child: Text('No hay resultados'),
               );
-            },
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              if (lotteryId != null) {
-                lotteryBloc.setLoading();
-                lotteryBloc.loadLotteryResults(int.parse(lotteryId!));
-              }
-            },
-            child: const Icon(Icons.refresh),
-          ),
-        );
-      },
-    );
+            }
+
+            final lottery = lotteries[0];
+
+            final anterioresPerDay = lottery.anteriores
+                .map((result) => AnterioresPerDay(
+                      fecha: result.fecha,
+                      results: lottery.anteriores
+                          .where((element) =>
+                              element.fecha.day == result.fecha.day &&
+                              element.fecha.month == result.fecha.month &&
+                              element.fecha.year == result.fecha.year)
+                          .toList(),
+                    ))
+                .toList();
+
+            return Center(
+              child: ListView.builder(
+                controller: _scroll,
+                itemCount: anterioresPerDay.length,
+                itemBuilder: (context, index) {
+                  final result = anterioresPerDay[index];
+                  return ResultCard(
+                    results: result.results,
+                    lotteryId: widget.lotteryId!,
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        floatingActionButton: _isFabVisible
+            ? FloatingActionButton(
+                onPressed: () {
+                  if (widget.lotteryId != null) {
+                    lotteryBloc.setLoading();
+                    lotteryBloc
+                        .loadLotteryResults(int.parse(widget.lotteryId!));
+                  }
+                },
+                child: const Icon(Icons.refresh),
+              )
+            : null,
+      );
+    });
   }
 }

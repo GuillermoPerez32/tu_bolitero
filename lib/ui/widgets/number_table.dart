@@ -23,7 +23,8 @@ class NumberTable extends StatelessWidget {
                 child: Center(
                   child: Text(
                     cell,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: const Color.fromRGBO(60, 60, 67, 0.6)),
                   ),
                 ),
               ),

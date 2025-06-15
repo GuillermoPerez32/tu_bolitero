@@ -16,7 +16,6 @@ class ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: Padding(

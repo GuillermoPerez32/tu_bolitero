@@ -42,6 +42,9 @@ class ThemeFactory {
           ),
         ),
       ),
+      cardTheme: const CardThemeData(
+        elevation: 0,
+      ),
     );
   }
 }
