@@ -22,9 +22,6 @@ class ApkInfoCubit extends Cubit<ApkInfoState> {
       final newVersionValue = int.parse(newSplittedVersion[i]);
       final currentVersionValue = int.parse(currentSplittedVersion[i]);
 
-      if (newVersionValue == currentVersionValue) {
-        continue;
-      }
       if (newVersionValue > currentVersionValue) {
         emit(ApkInfoState.newVersion(apkInfo));
         break;

@@ -34,19 +34,23 @@ class BottomBar extends StatelessWidget {
       ],
       currentIndex: index,
       onTap: (i) {
-        if (i == index) return;
+        final location = GoRouterState.of(context).uri.toString();
         switch (i) {
           case 0:
-            context.go('/');
+            if (location == '/') return;
+            context.replace('/');
             break;
           case 1:
-            context.go('/algorithms');
+            if (location == '/algorithms') return;
+            context.replace('/algorithms');
             break;
           case 2:
-            context.go('/results');
+            if (location == '/info') return;
+            context.replace('/info');
             break;
           case 3:
-            context.go('/profile');
+            if (location == '/profile') return;
+            context.replace('/profile');
             break;
         }
       },

@@ -20,17 +20,17 @@ class AlgorithmsScreen extends StatelessWidget {
           AlgoritmoTile(
             title: 'Pronóstico Piramidal',
             imageSrc: 'assets/piramide.png',
-            onTap: () => context.go('/piramide'),
+            onTap: () => context.go('/algorithms/piramide'),
           ),
           AlgoritmoTile(
             title: 'Cruz de la suerte',
             imageSrc: 'assets/cruz.png',
-            onTap: () => context.go('/cruz_suerte'),
+            onTap: () => context.go('/algorithms/cruz_suerte'),
           ),
           AlgoritmoTile(
             title: 'Tabla de los dioses',
             imageSrc: 'assets/table.png',
-            onTap: () => context.go('/table'),
+            onTap: () => context.go('/algorithms/table'),
           ),
         ],
       ),

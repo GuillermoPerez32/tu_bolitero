@@ -15,6 +15,7 @@ export 'comments_screen.dart';
 export 'profile_screen.dart';
 export 'lotteries_list_screen.dart';
 export 'algorithm_detail_screen.dart';
+export 'info_screen.dart';
 
 export 'auth/login_screen.dart';
 export 'auth/register_screen.dart';

@@ -18,48 +18,51 @@ class LotteryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     const tileHeight = 90.0;
     const imageSize = 40;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Card(
-        elevation: 0,
-        child: SizedBox(
-          height: tileHeight,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Hero(
-                  tag: imageSrc,
-                  child: Container(
-                    width: imageSize.toDouble(),
-                    height: imageSize.toDouble(),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          host + imageSrc,
-                          maxWidth: imageSize,
-                          maxHeight: imageSize,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Card(
+          elevation: 0,
+          child: SizedBox(
+            height: tileHeight,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Hero(
+                    tag: imageSrc,
+                    child: Container(
+                      width: imageSize.toDouble(),
+                      height: imageSize.toDouble(),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            host + imageSrc,
+                            maxWidth: imageSize,
+                            maxHeight: imageSize,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 15),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
+                  const SizedBox(width: 15),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                const Icon(
-                  Icons.chevron_right,
-                  color: Color.fromARGB(255, 60, 60, 67),
-                  size: 30,
-                )
-              ],
+                  const Spacer(),
+                  const Icon(
+                    Icons.chevron_right,
+                    color: Color.fromARGB(255, 60, 60, 67),
+                    size: 30,
+                  )
+                ],
+              ),
             ),
           ),
         ),
