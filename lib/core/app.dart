@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Tu Bolitero',
       routerConfig: router,
-      theme: ThemeFactory.getTheme(),
+      theme: ThemeFactory.getTheme(context),
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return BlocListener<LotteryCubit, LotteryState>(

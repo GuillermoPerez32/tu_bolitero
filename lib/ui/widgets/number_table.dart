@@ -15,7 +15,7 @@ class NumberTable extends StatelessWidget {
             return Container(
               margin: const EdgeInsets.all(2),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).cardTheme.color,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: AspectRatio(
@@ -24,7 +24,7 @@ class NumberTable extends StatelessWidget {
                   child: Text(
                     cell,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: const Color.fromRGBO(60, 60, 67, 0.6)),
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                 ),
               ),

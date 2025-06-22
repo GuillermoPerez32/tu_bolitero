@@ -55,7 +55,7 @@ class CruzSuerteScreen extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Text(
                     result.fecha.toString().split(' ')[0],
@@ -100,7 +100,8 @@ class CruzSuerteScreen extends StatelessWidget {
                       Center(
                         child: CustomPaint(
                           size: const Size(400, 400),
-                          painter: CircleWithDiagonalsPainter(numbers: decenas),
+                          painter: CircleWithDiagonalsPainter(
+                              numbers: decenas, context: context),
                         ),
                       ),
                     ],
@@ -115,21 +116,11 @@ class CruzSuerteScreen extends StatelessWidget {
   }
 }
 
-class CruzSuerte extends StatelessWidget {
-  const CruzSuerte({super.key, required this.numbers});
-
-  final List<String> numbers;
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
 class CircleWithDiagonalsPainter extends CustomPainter {
-  CircleWithDiagonalsPainter({required this.numbers});
+  CircleWithDiagonalsPainter({required this.numbers, required this.context});
 
   final List<String> numbers;
+  final BuildContext context;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -178,7 +169,9 @@ class CircleWithDiagonalsPainter extends CustomPainter {
         text: numbers[i],
         style: TextStyle(
           fontSize: 32,
-          color: i < 4 ? Colors.black : Colors.white,
+          color: i < 4
+              ? Theme.of(context).colorScheme.onSurface
+              : Theme.of(context).colorScheme.surface,
           fontWeight: FontWeight.bold,
           fontFamily: 'Merienda',
         ),

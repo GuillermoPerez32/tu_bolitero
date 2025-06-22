@@ -26,7 +26,7 @@ class AdModal extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Container(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   child: Column(
                     children: [
                       CachedNetworkImage(
@@ -42,11 +42,12 @@ class AdModal extends StatelessWidget {
                           child: SingleChildScrollView(
                             child: Text(
                               ad.mensaje,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   height: 1.1,
-                                  color: Colors.black),
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface),
                             ),
                           ),
                         ),
@@ -67,7 +68,7 @@ class AdModal extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
                       padding: const EdgeInsets.all(8),
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       child: Icon(
                         Icons.notification_important_outlined,
                         size: 40,

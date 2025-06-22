@@ -40,7 +40,7 @@ class PiramideScreen extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Text(
                     result.fecha.toString().split(' ')[0],

@@ -96,8 +96,8 @@ class _CharadaTile extends StatelessWidget {
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 child: Text(
                   charadaNumber.number,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
@@ -111,16 +111,16 @@ class _CharadaTile extends StatelessWidget {
                     children: [
                       Text(
                         charadaNumber.principal,
-                        style: const TextStyle(
-                          color: Colors.black,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
                         charadaNumber.meanings.join(' - '),
-                        style: const TextStyle(
-                          color: Colors.black,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 13,
                           fontWeight: FontWeight.w300,
                         ),
