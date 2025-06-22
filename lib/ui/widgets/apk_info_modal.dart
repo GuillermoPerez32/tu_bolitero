@@ -24,7 +24,7 @@ class ApkInfoModal extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Container(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -62,11 +62,11 @@ class ApkInfoModal extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     child: Container(
                       padding: const EdgeInsets.all(8),
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       child: Icon(
                         Icons.notification_important_outlined,
                         size: 40,
-                        color: Colors.primaries.first,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),

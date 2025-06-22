@@ -43,9 +43,11 @@ class AdModal extends StatelessWidget {
                             child: Text(
                               ad.mensaje,
                               style: TextStyle(
+                                  decorationColor:
+                                      Theme.of(context).colorScheme.onSurface,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
-                                  height: 1.1,
+                                  height: 1.2,
                                   color:
                                       Theme.of(context).colorScheme.onSurface),
                             ),
