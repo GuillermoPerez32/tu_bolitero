@@ -20,6 +20,9 @@ final ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: Color.fromRGBO(255, 98, 95, 1),
     surface: Colors.white,
+    onSurfaceVariant: Color.fromRGBO(107, 107, 113, 1),
+    secondary: Color.fromRGBO(215, 225, 255, 1),
+    onSecondary: Color.fromRGBO(61, 139, 250, 1),
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
   chipTheme: const ChipThemeData(
@@ -44,5 +47,10 @@ final ThemeData lightTheme = ThemeData(
   ),
   cardTheme: const CardThemeData(
     elevation: 0,
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    ),
   ),
 );

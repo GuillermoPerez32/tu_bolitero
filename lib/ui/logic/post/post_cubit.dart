@@ -1,0 +1,60 @@
+import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tu_bolitero/data/datasources/post_datasource.dart';
+import 'package:tu_bolitero/domain/models/post.dart';
+
+part 'post_state.dart';
+part 'post_cubit.freezed.dart';
+
+class PostCubit extends Cubit<PostState> {
+  PostCubit() : super(const PostState.initial([], []));
+
+  void setLoading() {
+    emit(PostState.loading(state.posts, state.followedPosts));
+  }
+
+  void loadPosts() async {
+    emit(PostState.loading(state.posts, state.followedPosts));
+    final posts = await postDatasource.getPosts();
+    emit(PostState.loaded(posts, state.followedPosts));
+    for (final post in posts) {
+      loadPostComments(post.id);
+    }
+  }
+
+  void loadPostComments(int postId) async {
+    try {
+      final comments = await postDatasource.getPostComments(postId);
+      final newPost = state.posts
+          .firstWhere((element) => element.id == postId)
+          .copyWith(comments: comments);
+      final editablePosts = List<Post>.from(state.posts);
+      final oldPostId =
+          editablePosts.indexWhere((element) => element.id == postId);
+      editablePosts[oldPostId] = newPost;
+      emit(
+        PostState.loaded(editablePosts, state.followedPosts),
+      );
+    } catch (e) {
+      emit(PostState.error(state.posts, state.followedPosts, e.toString()));
+    }
+  }
+
+  void likePost(int postId) async {
+    emit(PostState.loading(state.posts, state.followedPosts));
+    final posts = await postDatasource.getPosts();
+    emit(PostState.loaded(posts, state.followedPosts));
+    for (final post in posts) {
+      loadPostComments(post.id);
+    }
+  }
+
+  void loadFollowedPosts() async {
+    emit(PostState.loading(state.posts, state.followedPosts));
+    final posts = await postDatasource.getFollowedPosts();
+    emit(PostState.loaded(state.posts, posts));
+    for (final post in posts) {
+      loadPostComments(post.id);
+    }
+  }
+}
