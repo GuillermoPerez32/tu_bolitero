@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
           orElse: () {},
           loaded: (user) {
             context.go('/');
+          },
+          error: (message) {
+            setState(() {
+              _isLoading = false;
+            });
           },
         );
       },
@@ -62,12 +68,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     orElse: () => const SizedBox.shrink(),
                     error: (message) => Text(message),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(
-                        onPressed: () {},
+                      InkWell(
+                        onTap: () {},
                         child: Text(
                           '¿Olvidaste tu contraseña?',
                           style: TextStyle(
@@ -78,17 +84,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 10),
                   FilledButton(
-                    onPressed: () {
-                      final username = _usernameController.text;
-                      final password = _passwordController.text;
-                      authCubit.login(username: username, password: password);
-                    },
+                    onPressed: _isLoading
+                        ? null
+                        : () {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            final username = _usernameController.text;
+                            final password = _passwordController.text;
+                            authCubit.login(
+                                username: username, password: password);
+                          },
                     style: FilledButton.styleFrom(
                       minimumSize: const Size(double.infinity, 48),
                     ),
-                    child: const Text('Iniciar Sesión'),
+                    child: _isLoading
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text('Iniciar Sesión'),
                   ),
                   const SizedBox(height: 20),
                   Row(
