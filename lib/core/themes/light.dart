@@ -53,4 +53,27 @@ final ThemeData lightTheme = ThemeData(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     ),
   ),
+  inputDecorationTheme: const InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(200, 200, 200, 1),
+        width: 1,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(200, 200, 200, 1),
+        width: 1,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(200, 200, 200, 1),
+        width: 2,
+      ),
+    ),
+  ),
 );

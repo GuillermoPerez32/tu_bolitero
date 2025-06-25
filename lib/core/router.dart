@@ -2,7 +2,13 @@ import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
+  initialLocation: '/splash',
   routes: <RouteBase>[
+    GoRoute(
+      path: '/splash',
+      builder: (context, state) => const SplashScreen(),
+    ),
+
     // ─────────────────────── AUTH ───────────────────────
     GoRoute(
       path: '/login',
@@ -20,7 +26,7 @@ final GoRouter router = GoRouter(
     // ─────────────────────── HOME ────── ─────────────────
     GoRoute(
       path: '/',
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => const HomeScreen(),
       routes: [
         GoRoute(
           path: 'posts/:id/comments',

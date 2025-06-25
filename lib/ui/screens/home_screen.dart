@@ -10,7 +10,7 @@ import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/post_tile.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -71,6 +71,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          borderSide: BorderSide.none,
+                        ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                           borderSide: BorderSide.none,

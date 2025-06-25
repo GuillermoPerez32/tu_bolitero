@@ -31,6 +31,14 @@ class CharadaClasicaScreen extends StatelessWidget {
                     charadaClasicaBloc.filterCharada(value);
                   },
                   decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderSide: BorderSide.none,
+                    ),
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                       borderSide: BorderSide.none,
