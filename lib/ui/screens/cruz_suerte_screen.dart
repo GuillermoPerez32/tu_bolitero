@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class CruzSuerteScreen extends StatelessWidget {
@@ -15,8 +16,8 @@ class CruzSuerteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cruz de la Suerte'),
+      appBar: const BoliteroAppBar(
+        title: Text('Cruz de la Suerte'),
       ),
       bottomNavigationBar: const BottomBar(index: 1),
       body: BlocBuilder<LotteryCubit, LotteryState>(

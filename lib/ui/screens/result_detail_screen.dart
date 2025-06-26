@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/result_card.dart';
 
@@ -65,7 +66,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
     return BlocBuilder<LotteryCubit, LotteryState>(builder: (context, state) {
       return Scaffold(
         bottomNavigationBar: const BottomBar(index: 1),
-        appBar: AppBar(
+        appBar: BoliteroAppBar(
           actions: state.maybeWhen(
             orElse: () => [],
             loaded: (lotteries) {

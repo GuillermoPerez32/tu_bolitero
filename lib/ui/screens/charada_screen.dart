@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 
 class CharadaScreen extends StatelessWidget {
   const CharadaScreen({super.key});
@@ -7,8 +8,8 @@ class CharadaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Charada'),
+      appBar: const BoliteroAppBar(
+        title: Text('Charada'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

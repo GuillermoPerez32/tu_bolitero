@@ -15,18 +15,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeFactory.getTheme(context),
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
-        return BlocListener<LotteryCubit, LotteryState>(
-          listener: (context, state) {
-            state.maybeWhen(
-              orElse: () {},
-              error: (_, reason) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(reason)),
-                );
-              },
-            );
-          },
-          child: child!,
+        return Container(
+          color: Theme.of(context).scaffoldBackgroundColor.withValues(
+                alpha: 0.9,
+              ),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 600,
+              ),
+              child: BlocListener<LotteryCubit, LotteryState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                    orElse: () {},
+                    error: (_, reason) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(reason)),
+                      );
+                    },
+                  );
+                },
+                child: child!,
+              ),
+            ),
+          ),
         );
       },
     );

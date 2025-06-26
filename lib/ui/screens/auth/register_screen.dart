@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Registro'),
+    return const Scaffold(
+      appBar: BoliteroAppBar(
+        title: Text('Registro'),
       ),
-      body: const Center(
+      body: Center(
         child: Text('Pantalla de Registro'),
       ),
     );

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
 import 'package:tu_bolitero/ui/logic/apk_info/apk_info_cubit.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 import 'package:tu_bolitero/ui/widgets/ad_modal.dart';
 import 'package:tu_bolitero/ui/widgets/apk_info_modal.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/post_tile.dart';
 
@@ -58,9 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocBuilder<PostCubit, PostState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: const Text(appTitle),
-            ),
+            appBar: const BoliteroAppBar(),
             bottomNavigationBar: const BottomBar(index: 0),
             body: SingleChildScrollView(
               child: Padding(

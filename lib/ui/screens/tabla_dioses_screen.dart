@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/number_table.dart';
 
@@ -41,8 +42,8 @@ class TablaDiosesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
+      appBar: const BoliteroAppBar(
+        title: Text(
           'Tabla de los Dioses',
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class PiramideScreen extends StatelessWidget {
@@ -16,8 +17,8 @@ class PiramideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle),
+      appBar: const BoliteroAppBar(
+        title: Text(appTitle),
       ),
       bottomNavigationBar: const BottomBar(index: 1),
       body: BlocBuilder<LotteryCubit, LotteryState>(

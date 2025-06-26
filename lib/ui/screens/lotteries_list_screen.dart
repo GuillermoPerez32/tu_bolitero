@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/lottery_tile.dart';
 
@@ -17,8 +18,8 @@ class LotteriesListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Loterías'),
+      appBar: const BoliteroAppBar(
+        title: Text('Loterías'),
       ),
       bottomNavigationBar: BottomBar(index: selectedIndex),
       body: BlocBuilder<LotteryCubit, LotteryState>(

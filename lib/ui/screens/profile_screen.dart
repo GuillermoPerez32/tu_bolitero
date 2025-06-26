@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/ui/logic/auth/auth_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -20,8 +21,8 @@ class ProfileScreen extends StatelessWidget {
         );
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Perfil'),
+        appBar: const BoliteroAppBar(
+          title: Text('Perfil'),
         ),
         bottomNavigationBar: const BottomBar(index: 3),
         body: Center(

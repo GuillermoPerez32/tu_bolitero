@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/charada_number.dart';
 import 'package:tu_bolitero/ui/logic/charada_clasica/charada_clasica_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 
 class CharadaClasicaScreen extends StatelessWidget {
@@ -14,8 +15,8 @@ class CharadaClasicaScreen extends StatelessWidget {
     final charadaClasicaBloc = BlocProvider.of<CharadaClasicaCubit>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Charada Clásica'),
+      appBar: const BoliteroAppBar(
+        title: Text('Charada Clásica'),
       ),
       bottomNavigationBar: const BottomBar(index: 2),
       body: BlocBuilder<CharadaClasicaCubit, CharadaClasicaState>(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 
 class CommentsScreen extends StatelessWidget {
   final String postId;
@@ -7,7 +8,7 @@ class CommentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: BoliteroAppBar(
         title: Text('Comentarios del Post $postId'),
       ),
       body: const Center(

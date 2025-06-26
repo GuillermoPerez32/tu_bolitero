@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/ui/logic/luck/luck_cubit.dart';
 import 'package:tu_bolitero/ui/logic/luck/luck_state.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 
 class NumeroSuerteScreen extends StatelessWidget {
   const NumeroSuerteScreen({super.key});
@@ -13,8 +14,8 @@ class NumeroSuerteScreen extends StatelessWidget {
     final luckBloc = BlocProvider.of<LuckCubit>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Número de suerte'),
+        appBar: const BoliteroAppBar(
+          title: Text('Número de suerte'),
         ),
         body: Center(
           child: Padding(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/core/constants.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/info_tile.dart';
 
@@ -10,8 +11,8 @@ class InfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle),
+      appBar: const BoliteroAppBar(
+        title: Text(appTitle),
       ),
       bottomNavigationBar: const BottomBar(index: 2),
       body: Column(

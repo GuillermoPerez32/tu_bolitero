@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
+import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 
 class AtrasoDetailScreen extends StatefulWidget {
   const AtrasoDetailScreen({super.key, required this.lotteryId});
@@ -23,7 +24,7 @@ class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
     return BlocBuilder<LotteryCubit, LotteryState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
+          appBar: BoliteroAppBar(
             title: state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
               loaded: (lotteries) {
