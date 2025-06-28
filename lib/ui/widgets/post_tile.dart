@@ -82,7 +82,9 @@ class PostTile extends StatelessWidget {
                             ),
                           ),
                           TextButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              postCubit.loadPostComments(post.id);
+                            },
                             icon: Icon(Icons.chat_outlined,
                                 color: Theme.of(context)
                                     .colorScheme
@@ -108,7 +110,9 @@ class PostTile extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    postCubit.follow(post.id);
+                  },
                   child: Text(
                     'Seguir',
                     style: TextStyle(

@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocBuilder<PostCubit, PostState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: const BoliteroAppBar(),
+            appBar: const BoliteroAppBar(
+              title: Text("Predicciones"),
+            ),
             bottomNavigationBar: const BottomBar(index: 0),
             body: SingleChildScrollView(
               child: Padding(
@@ -115,6 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     state.maybeWhen(
                       orElse: () =>
                           const Center(child: CircularProgressIndicator()),
+                      error: (posts, followedPosts, error) =>
+                          Center(child: Text(error)),
                       loaded: (posts, followedPosts) => Column(
                         children: selectedChoice == 'Todos'
                             ? posts.map((post) => PostTile(post: post)).toList()

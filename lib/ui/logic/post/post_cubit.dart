@@ -41,11 +41,13 @@ class PostCubit extends Cubit<PostState> {
   }
 
   void likePost(int postId) async {
-    emit(PostState.loading(state.posts, state.followedPosts));
-    final posts = await postDatasource.getPosts();
-    emit(PostState.loaded(posts, state.followedPosts));
-    for (final post in posts) {
-      loadPostComments(post.id);
+    try {
+      emit(PostState.loading(state.posts, state.followedPosts));
+      await postDatasource.likePost(postId);
+      emit(PostState.loaded(state.posts, state.followedPosts));
+      loadPosts();
+    } catch (e) {
+      emit(PostState.error(state.posts, state.followedPosts, e.toString()));
     }
   }
 
@@ -55,6 +57,23 @@ class PostCubit extends Cubit<PostState> {
     emit(PostState.loaded(state.posts, posts));
     for (final post in posts) {
       loadPostComments(post.id);
+    }
+  }
+
+  void follow(int postId) async {
+    try {
+      await postDatasource.followPost(postId);
+      final newPost = state.posts
+          .firstWhere((element) => element.id == postId)
+          .copyWith(following: true);
+      final editablePosts = List<Post>.from(state.posts);
+      final oldPostId =
+          editablePosts.indexWhere((element) => element.id == postId);
+      editablePosts[oldPostId] = newPost;
+      emit(PostState.loaded(editablePosts, state.followedPosts));
+      loadFollowedPosts();
+    } catch (e) {
+      emit(PostState.error(state.posts, state.followedPosts, e.toString()));
     }
   }
 }

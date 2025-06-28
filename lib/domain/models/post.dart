@@ -14,6 +14,7 @@ class Post {
   final int likesCount;
   final int commentsCount;
   final List<PostComment>? comments;
+  final bool following;
 
   Post({
     required this.id,
@@ -23,6 +24,7 @@ class Post {
     required this.likesCount,
     required this.commentsCount,
     required this.comments,
+    required this.following,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
@@ -35,7 +37,11 @@ class Post {
         comments: json["comments"] == null
             ? []
             : List<PostComment>.from(
-                json["comments"].map((x) => PostComment.fromJson(x))),
+                json["comments"].map(
+                  (x) => PostComment.fromJson(x),
+                ),
+              ),
+        following: false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,6 +52,7 @@ class Post {
         "likes_count": likesCount,
         "comments_count": commentsCount,
         "comments": List<dynamic>.from(comments!.map((x) => x.toJson())),
+        "following": following,
       };
 
   Post copyWith({
@@ -56,6 +63,7 @@ class Post {
     int? likesCount,
     int? commentsCount,
     List<PostComment>? comments,
+    bool? following,
   }) =>
       Post(
         id: id ?? this.id,
@@ -65,5 +73,6 @@ class Post {
         likesCount: likesCount ?? this.likesCount,
         commentsCount: commentsCount ?? this.commentsCount,
         comments: comments ?? this.comments,
+        following: following ?? this.following,
       );
 }

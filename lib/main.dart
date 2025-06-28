@@ -31,7 +31,9 @@ void main() {
           create: (context) => LuckCubit(),
         ),
         BlocProvider(
-          create: (context) => PostCubit()..loadPosts(),
+          create: (context) => PostCubit()
+            ..loadPosts()
+            ..loadFollowedPosts(),
         ),
         BlocProvider(
           create: (context) => AuthCubit()..loadLocalUser(),

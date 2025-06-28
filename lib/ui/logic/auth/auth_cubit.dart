@@ -19,6 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthState.loading());
       final authtenticatedUser = await authDatasource.login(username, password);
       prefs.setString('user', jsonEncode(authtenticatedUser.toJson()));
+      prefs.setString('access_token', authtenticatedUser.accessToken);
       emit(AuthState.loaded(authtenticatedUser));
     } catch (e) {
       emit(AuthState.error(e.toString()));

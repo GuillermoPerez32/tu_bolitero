@@ -28,7 +28,10 @@ class BoliteroAppBar extends StatelessWidget implements PreferredSizeWidget {
                       backgroundImage: userData.user.photo != null
                           ? NetworkImage(userData.user.photo!)
                           : null,
-                      child: const Icon(Icons.person),
+                      child: const Icon(
+                        Icons.person,
+                        size: 32,
+                      ),
                     ),
                   ),
                 ),

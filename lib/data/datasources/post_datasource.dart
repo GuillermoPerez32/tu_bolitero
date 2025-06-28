@@ -1,3 +1,4 @@
+import 'package:tu_bolitero/core/api.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
@@ -5,6 +6,10 @@ import 'package:tu_bolitero/domain/models/post_comment.dart';
 
 class PostDatasource {
   final _client = Dio();
+
+  PostDatasource() {
+    _client.interceptors.add(AuthInterceptor());
+  }
 
   Future<List<Post>> getPosts() async {
     final response = await _client.get('$host/api/posts');
@@ -21,39 +26,52 @@ class PostDatasource {
   }
 
   Future<List<PostComment>> getPostComments(int id) async {
-    final response = await _client.get('$host/api/posts/$id/comments');
-    final data = response.data as List;
-    final comments =
-        data.map((comment) => PostComment.fromJson(comment)).toList();
-    return comments;
+    try {
+      final response = await _client.get('$host/api/posts/$id/comments');
+      final data = response.data as List;
+      final comments =
+          data.map((comment) => PostComment.fromJson(comment)).toList();
+      return comments;
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
   }
 
-  Future<Post> followPost(int id) async {
-    final response = await _client.post('$host/api/posts/$id/follow');
-    final data = response.data as Map<String, dynamic>;
-    final post = Post.fromJson(data);
-    return post;
+  Future<void> followPost(int id) async {
+    try {
+      await _client.post('$host/api/posts/$id/follow/');
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
   }
 
-  Future<Post> unfollowPost(int id) async {
-    final response = await _client.delete('$host/api/posts/$id/follow');
-    final data = response.data as Map<String, dynamic>;
-    final post = Post.fromJson(data);
-    return post;
+  Future<void> unfollowPost(int id) async {
+    try {
+      await _client.delete('$host/api/posts/$id/unfollow/');
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
   }
 
-  Future<Post> likePost(int id) async {
-    final response = await _client.post('$host/api/posts/$id/like');
-    final data = response.data as Map<String, dynamic>;
-    final post = Post.fromJson(data);
-    return post;
+  Future<void> likePost(int id) async {
+    try {
+      await _client.post('$host/api/posts/$id/like/');
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
   }
 
-  Future<Post> unlikePost(int id) async {
-    final response = await _client.delete('$host/api/posts/$id/like');
-    final data = response.data as Map<String, dynamic>;
-    final post = Post.fromJson(data);
-    return post;
+  Future<void> unlikePost(int id) async {
+    try {
+      await _client.delete('$host/api/posts/$id/unlike');
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
   }
 
   Future<List<Post>> getFollowedPosts() async {
