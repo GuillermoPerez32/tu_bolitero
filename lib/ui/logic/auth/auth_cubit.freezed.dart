@@ -16,34 +16,35 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
+  User? get user => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,12 +79,20 @@ mixin _$AuthState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AuthStateCopyWith<AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
+  @useResult
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -98,13 +107,29 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_value.copyWith(
+      user: null == user
+          ? _value.user!
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({User? user});
 }
 
 /// @nodoc
@@ -117,66 +142,91 @@ class __$$InitialImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$InitialImpl(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl(this.user);
+
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'AuthState.initial(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
-    return initial();
+    return initial(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
-    return initial?.call();
+    return initial?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(user);
     }
     return orElse();
   }
@@ -226,14 +276,28 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements AuthState {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial(final User? user) = _$InitialImpl;
+
+  @override
+  User? get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
+abstract class _$$LoadingImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({User? user});
 }
 
 /// @nodoc
@@ -246,66 +310,91 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$LoadingImpl(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  const _$LoadingImpl(this.user);
+
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthState.loading()';
+    return 'AuthState.loading(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
-    return loading();
+    return loading(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
-    return loading?.call();
+    return loading?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(user);
     }
     return orElse();
   }
@@ -355,14 +444,28 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements AuthState {
-  const factory _Loading() = _$LoadingImpl;
+  const factory _Loading(final User? user) = _$LoadingImpl;
+
+  @override
+  User? get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$NotLoggedInImplCopyWith<$Res> {
+abstract class _$$NotLoggedInImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
   factory _$$NotLoggedInImplCopyWith(
           _$NotLoggedInImpl value, $Res Function(_$NotLoggedInImpl) then) =
       __$$NotLoggedInImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({User? user});
 }
 
 /// @nodoc
@@ -375,66 +478,91 @@ class __$$NotLoggedInImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$NotLoggedInImpl(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$NotLoggedInImpl implements _NotLoggedIn {
-  const _$NotLoggedInImpl();
+  const _$NotLoggedInImpl(this.user);
+
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthState.notLoggedIn()';
+    return 'AuthState.notLoggedIn(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NotLoggedInImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$NotLoggedInImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NotLoggedInImplCopyWith<_$NotLoggedInImpl> get copyWith =>
+      __$$NotLoggedInImplCopyWithImpl<_$NotLoggedInImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
-    return notLoggedIn();
+    return notLoggedIn(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
-    return notLoggedIn?.call();
+    return notLoggedIn?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (notLoggedIn != null) {
-      return notLoggedIn();
+      return notLoggedIn(user);
     }
     return orElse();
   }
@@ -484,14 +612,28 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
 }
 
 abstract class _NotLoggedIn implements AuthState {
-  const factory _NotLoggedIn() = _$NotLoggedInImpl;
+  const factory _NotLoggedIn(final User? user) = _$NotLoggedInImpl;
+
+  @override
+  User? get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NotLoggedInImplCopyWith<_$NotLoggedInImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
+abstract class _$$SuccessImplCopyWith<$Res>
+    implements $AuthStateCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({User? user});
 }
 
 /// @nodoc
@@ -504,66 +646,91 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$SuccessImpl(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.user);
+
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthState.success()';
+    return 'AuthState.success(user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
-    return success();
+    return success(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
-    return success?.call();
+    return success?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(user);
     }
     return orElse();
   }
@@ -613,16 +780,27 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements AuthState {
-  const factory _Success() = _$SuccessImpl;
+  const factory _Success(final User? user) = _$SuccessImpl;
+
+  @override
+  User? get user;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
+abstract class _$$ErrorImplCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String message});
+  $Res call({String message, User? user});
 }
 
 /// @nodoc
@@ -639,12 +817,17 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? user = freezed,
   }) {
     return _then(_$ErrorImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
@@ -652,14 +835,16 @@ class __$$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.message);
+  const _$ErrorImpl(this.message, this.user);
 
   @override
   final String message;
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'AuthState.error(message: $message)';
+    return 'AuthState.error(message: $message, user: $user)';
   }
 
   @override
@@ -667,11 +852,12 @@ class _$ErrorImpl implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, user);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -684,42 +870,42 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
-    return error(message);
+    return error(message, user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
-    return error?.call(message);
+    return error?.call(message, user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(message, user);
     }
     return orElse();
   }
@@ -769,24 +955,28 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements AuthState {
-  const factory _Error(final String message) = _$ErrorImpl;
+  const factory _Error(final String message, final User? user) = _$ErrorImpl;
 
   String get message;
+  @override
+  User? get user;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
+abstract class _$$LoadedImplCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   factory _$$LoadedImplCopyWith(
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({AuhtenticatedUser user});
+  $Res call({User user});
 }
 
 /// @nodoc
@@ -808,7 +998,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AuhtenticatedUser,
+              as User,
     ));
   }
 }
@@ -819,7 +1009,7 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(this.user);
 
   @override
-  final AuhtenticatedUser user;
+  final User user;
 
   @override
   String toString() {
@@ -848,12 +1038,12 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() notLoggedIn,
-    required TResult Function() success,
-    required TResult Function(String message) error,
-    required TResult Function(AuhtenticatedUser user) loaded,
+    required TResult Function(User? user) initial,
+    required TResult Function(User? user) loading,
+    required TResult Function(User? user) notLoggedIn,
+    required TResult Function(User? user) success,
+    required TResult Function(String message, User? user) error,
+    required TResult Function(User user) loaded,
   }) {
     return loaded(user);
   }
@@ -861,12 +1051,12 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? notLoggedIn,
-    TResult? Function()? success,
-    TResult? Function(String message)? error,
-    TResult? Function(AuhtenticatedUser user)? loaded,
+    TResult? Function(User? user)? initial,
+    TResult? Function(User? user)? loading,
+    TResult? Function(User? user)? notLoggedIn,
+    TResult? Function(User? user)? success,
+    TResult? Function(String message, User? user)? error,
+    TResult? Function(User user)? loaded,
   }) {
     return loaded?.call(user);
   }
@@ -874,12 +1064,12 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notLoggedIn,
-    TResult Function()? success,
-    TResult Function(String message)? error,
-    TResult Function(AuhtenticatedUser user)? loaded,
+    TResult Function(User? user)? initial,
+    TResult Function(User? user)? loading,
+    TResult Function(User? user)? notLoggedIn,
+    TResult Function(User? user)? success,
+    TResult Function(String message, User? user)? error,
+    TResult Function(User user)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -933,12 +1123,14 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements AuthState {
-  const factory _Loaded(final AuhtenticatedUser user) = _$LoadedImpl;
+  const factory _Loaded(final User user) = _$LoadedImpl;
 
-  AuhtenticatedUser get user;
+  @override
+  User get user;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;

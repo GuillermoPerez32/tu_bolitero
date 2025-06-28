@@ -25,8 +25,8 @@ class BoliteroAppBar extends StatelessWidget implements PreferredSizeWidget {
                       context.replace('/profile');
                     },
                     child: CircleAvatar(
-                      backgroundImage: userData.user.photo != null
-                          ? NetworkImage(userData.user.photo!)
+                      backgroundImage: userData.photo != null
+                          ? NetworkImage(userData.photo!)
                           : null,
                       child: const Icon(
                         Icons.person,

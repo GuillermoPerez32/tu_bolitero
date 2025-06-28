@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:tu_bolitero/core/api.dart';
 import 'package:tu_bolitero/core/constants.dart';
@@ -5,6 +6,10 @@ import 'package:tu_bolitero/domain/models/authenticated_user.dart';
 
 class AuthDatasource {
   final _client = Dio();
+
+  AuthDatasource() {
+    _client.interceptors.add(AuthInterceptor());
+  }
 
   Future<AuhtenticatedUser> login(String username, String password) async {
     try {
@@ -40,6 +45,37 @@ class AuthDatasource {
       await _client.post('$host/api/auth/forgot-password/', data: {
         'email': email,
       });
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
+  }
+
+  Future<User> updateProfile({
+    String? username,
+    String? email,
+    File? photo,
+  }) async {
+    try {
+      final formData = FormData.fromMap({
+        if (username != null) 'username': username,
+        if (email != null) 'email': email,
+        if (photo != null)
+          'photo': await MultipartFile.fromFile(
+            photo.path,
+            filename: photo.absolute.path.split('/').last,
+          ),
+      });
+
+      final response = await _client.patch(
+        '$host/api/auth/users/2/',
+        data: formData,
+        options: Options(
+          headers: {'Content-Type': 'multipart/form-data'},
+        ),
+      );
+
+      return User.fromJson(response.data);
     } on DioException catch (e) {
       final message = parseDjangoErrorMessage(e);
       throw Exception(message);

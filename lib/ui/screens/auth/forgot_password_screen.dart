@@ -22,10 +22,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       listener: (context, state) {
         state.maybeWhen(
           orElse: () {},
-          success: () {
+          success: (user) {
             context.go('/login');
           },
-          error: (message) {
+          error: (message, user) {
             setState(() {
               _isLoading = false;
             });
@@ -59,7 +59,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   const SizedBox(height: 20),
                   state.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
-                    error: (message) => Text(message,
+                    error: (message, user) => Text(message,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.error,
                         )),

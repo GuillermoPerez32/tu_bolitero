@@ -15,11 +15,11 @@ class SplashScreen extends StatelessWidget {
           loaded: (user) {
             context.go('/');
           },
-          notLoggedIn: () {
+          notLoggedIn: (user) {
             context.go('/login');
           },
-          error: (message) {},
-          loading: () {},
+          error: (message, user) {},
+          loading: (user) {},
         );
       },
       child: Scaffold(

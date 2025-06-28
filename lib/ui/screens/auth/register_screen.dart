@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         state.maybeWhen(
           orElse: () {},
-          success: () {
+          success: (user) {
             setState(() {
               _isLoading = false;
             });
@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             );
             context.go('/login');
           },
-          error: (message) {
+          error: (message, user) {
             setState(() {
               _isLoading = false;
             });
@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 20),
                   state.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
-                    error: (message) => Text(message,
+                    error: (message, user) => Text(message,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.error,
                         )),

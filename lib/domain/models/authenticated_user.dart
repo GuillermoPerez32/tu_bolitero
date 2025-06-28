@@ -93,6 +93,18 @@ class User {
         followers: List<dynamic>.from(json["followers"].map((x) => x)),
       );
 
+  factory User.fromAuhtenticatedUser(AuhtenticatedUser auhtenticatedUser) =>
+      User(
+        id: auhtenticatedUser.user.id,
+        username: auhtenticatedUser.user.username,
+        firstName: auhtenticatedUser.user.firstName,
+        lastName: auhtenticatedUser.user.lastName,
+        email: auhtenticatedUser.user.email,
+        esPronosticador: auhtenticatedUser.user.esPronosticador,
+        photo: auhtenticatedUser.user.photo,
+        followers: auhtenticatedUser.user.followers,
+      );
+
   Map<String, dynamic> toJson() => {
         "id": id,
         "username": username,

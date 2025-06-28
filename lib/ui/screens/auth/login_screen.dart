@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
           loaded: (user) {
             context.go('/');
           },
-          error: (message) {
+          error: (message, user) {
             setState(() {
               _isLoading = false;
             });
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   state.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
-                    error: (message) => Text(message,
+                    error: (message, user) => Text(message,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.error,
                         )),
