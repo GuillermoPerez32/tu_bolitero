@@ -16,9 +16,35 @@ class AuthCubit extends Cubit<AuthState> {
     final prefs = await SharedPreferences.getInstance();
 
     try {
+      emit(const AuthState.loading());
       final authtenticatedUser = await authDatasource.login(username, password);
       prefs.setString('user', jsonEncode(authtenticatedUser.toJson()));
       emit(AuthState.loaded(authtenticatedUser));
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  void register({
+    required String username,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
+    try {
+      emit(const AuthState.loading());
+      await authDatasource.register(username, email, password, confirmPassword);
+      emit(const AuthState.success());
+    } catch (e) {
+      emit(AuthState.error(e.toString()));
+    }
+  }
+
+  void forgotPassword({required String email}) async {
+    try {
+      emit(const AuthState.loading());
+      await authDatasource.forgotPassword(email);
+      emit(const AuthState.success());
     } catch (e) {
       emit(AuthState.error(e.toString()));
     }

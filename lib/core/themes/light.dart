@@ -76,4 +76,14 @@ final ThemeData lightTheme = ThemeData(
       ),
     ),
   ),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: Color.fromRGBO(255, 98, 95, 1),
+    contentTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+    ),
+    actionTextColor: Colors.white,
+    behavior: SnackBarBehavior.floating,
+  ),
 );

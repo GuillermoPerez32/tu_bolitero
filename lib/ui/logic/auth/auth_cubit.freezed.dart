@@ -21,6 +21,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) =>
@@ -30,6 +31,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) =>
@@ -39,6 +41,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -49,6 +52,7 @@ mixin _$AuthState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) =>
@@ -58,6 +62,7 @@ mixin _$AuthState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) =>
@@ -67,6 +72,7 @@ mixin _$AuthState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -138,6 +144,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) {
@@ -150,6 +157,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) {
@@ -162,6 +170,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -178,6 +187,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -190,6 +200,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) {
@@ -202,6 +213,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -261,6 +273,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) {
@@ -273,6 +286,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) {
@@ -285,6 +299,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -301,6 +316,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -313,6 +329,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) {
@@ -325,6 +342,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -384,6 +402,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) {
@@ -396,6 +415,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) {
@@ -408,6 +428,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -424,6 +445,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -436,6 +458,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) {
@@ -448,6 +471,7 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -461,6 +485,135 @@ class _$NotLoggedInImpl implements _NotLoggedIn {
 
 abstract class _NotLoggedIn implements AuthState {
   const factory _NotLoggedIn() = _$NotLoggedInImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl();
+
+  @override
+  String toString() {
+    return 'AuthState.success()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() notLoggedIn,
+    required TResult Function() success,
+    required TResult Function(String message) error,
+    required TResult Function(AuhtenticatedUser user) loaded,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
+    TResult? Function(String message)? error,
+    TResult? Function(AuhtenticatedUser user)? loaded,
+  }) {
+    return success?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? notLoggedIn,
+    TResult Function()? success,
+    TResult Function(String message)? error,
+    TResult Function(AuhtenticatedUser user)? loaded,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Success implements AuthState {
+  const factory _Success() = _$SuccessImpl;
 }
 
 /// @nodoc
@@ -534,6 +687,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) {
@@ -546,6 +700,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) {
@@ -558,6 +713,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -574,6 +730,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -586,6 +743,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) {
@@ -598,6 +756,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -692,6 +851,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() notLoggedIn,
+    required TResult Function() success,
     required TResult Function(String message) error,
     required TResult Function(AuhtenticatedUser user) loaded,
   }) {
@@ -704,6 +864,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? notLoggedIn,
+    TResult? Function()? success,
     TResult? Function(String message)? error,
     TResult? Function(AuhtenticatedUser user)? loaded,
   }) {
@@ -716,6 +877,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? notLoggedIn,
+    TResult Function()? success,
     TResult Function(String message)? error,
     TResult Function(AuhtenticatedUser user)? loaded,
     required TResult orElse(),
@@ -732,6 +894,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_NotLoggedIn value) notLoggedIn,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -744,6 +907,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_NotLoggedIn value)? notLoggedIn,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
   }) {
@@ -756,6 +920,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_NotLoggedIn value)? notLoggedIn,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),

@@ -64,26 +64,32 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     obscureText: true,
                   ),
+                  const SizedBox(height: 20),
                   state.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
-                    error: (message) => Text(message),
+                    error: (message) => Text(message,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                        )),
                   ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Text(
-                          '¿Olvidaste tu contraseña?',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 20),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     InkWell(
+                  //       onTap: () {
+                  //         context.go('/login/forgot-password');
+                  //       },
+                  //       child: Text(
+                  //         '¿Olvidaste tu contraseña?',
+                  //         style: TextStyle(
+                  //           color: Theme.of(context).colorScheme.onSecondary,
+                  //           fontWeight: FontWeight.w400,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   const SizedBox(height: 10),
                   FilledButton(
                     onPressed: _isLoading
@@ -122,7 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.go('/login/register');
+                        },
                         child: Text(
                           'Registrate',
                           style: TextStyle(
