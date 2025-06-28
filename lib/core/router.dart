@@ -25,7 +25,7 @@ final GoRouter router = GoRouter(
       ],
     ),
 
-    // ─────────────────────── HOME ────── ─────────────────
+    // ─────────────────────── HOME ───────────────────────
     GoRoute(
       path: '/',
       builder: (context, state) => const HomeScreen(),

@@ -80,6 +80,16 @@ class PostDatasource {
     final posts = data.map((post) => Post.fromJson(post)).toList();
     return posts;
   }
+
+  Future<void> addComment(int postId, String comment) async {
+    try {
+      await _client
+          .post('$host/api/posts/$postId/comment/', data: {'comment': comment});
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
+  }
 }
 
 final postDatasource = PostDatasource();

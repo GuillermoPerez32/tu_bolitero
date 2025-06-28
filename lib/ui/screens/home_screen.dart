@@ -9,6 +9,13 @@ import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
 import 'package:tu_bolitero/ui/widgets/post_tile.dart';
 
+enum PostType { todos, seguidos }
+
+final labels = {
+  PostType.todos: 'Todos',
+  PostType.seguidos: 'Seguidos',
+};
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -19,7 +26,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-  String selectedChoice = 'Todos';
+  PostType selectedChoice = PostType.todos;
 
   @override
   Widget build(BuildContext context) {
@@ -100,9 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Center(
                       child: Wrap(
                         spacing: 8,
-                        children: ['Todos', 'Seguidos'].map((option) {
+                        children: PostType.values.map((option) {
                           return ChoiceChip(
-                            label: Text(option.toUpperCase()),
+                            label: Text(labels[option]!),
                             selected: selectedChoice == option,
                             onSelected: (_) => {
                               setState(() {
@@ -120,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       error: (posts, followedPosts, error) =>
                           Center(child: Text(error)),
                       loaded: (posts, followedPosts) => Column(
-                        children: selectedChoice == 'Todos'
+                        children: selectedChoice == PostType.todos
                             ? posts.map((post) => PostTile(post: post)).toList()
                             : followedPosts
                                 .map((post) => PostTile(post: post))
@@ -133,7 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                postBloc.loadPosts();
+                if (selectedChoice == PostType.todos) {
+                  postBloc.loadPosts();
+                } else {
+                  postBloc.loadFollowedPosts();
+                }
               },
               child: const Icon(Icons.refresh),
             ),

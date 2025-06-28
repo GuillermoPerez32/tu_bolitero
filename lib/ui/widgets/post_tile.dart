@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 
@@ -89,6 +90,7 @@ class PostTile extends StatelessWidget {
                               TextButton.icon(
                                 onPressed: () {
                                   postCubit.loadPostComments(post.id);
+                                  context.go('/posts/${post.id}/comments');
                                 },
                                 icon: Icon(Icons.chat_outlined,
                                     color: Theme.of(context)

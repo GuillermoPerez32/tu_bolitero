@@ -93,4 +93,16 @@ class PostCubit extends Cubit<PostState> {
       emit(PostState.error(state.posts, state.followedPosts, e.toString()));
     }
   }
+
+  void addComment(int postId, String comment) async {
+    try {
+      emit(PostState.loading(state.posts, state.followedPosts));
+      await postDatasource.addComment(postId, comment);
+      final newPosts = state.posts.toList();
+      loadPostComments(postId);
+      emit(PostState.loaded(newPosts, state.followedPosts));
+    } catch (e) {
+      emit(PostState.error(state.posts, state.followedPosts, e.toString()));
+    }
+  }
 }
