@@ -65,6 +65,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  void getProfile() async {
+    emit(const AuthState.loading(null));
+    final user = await authDatasource.getProfile();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('user', jsonEncode(user.toJson()));
+    emit(AuthState.loaded(user));
+  }
+
   void logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();

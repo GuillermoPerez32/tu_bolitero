@@ -81,6 +81,16 @@ class AuthDatasource {
       throw Exception(message);
     }
   }
+
+  Future<User> getProfile() async {
+    try {
+      final response = await _client.get('$host/api/auth/users/2/');
+      return User.fromJson(response.data);
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
+  }
 }
 
 final authDatasource = AuthDatasource();

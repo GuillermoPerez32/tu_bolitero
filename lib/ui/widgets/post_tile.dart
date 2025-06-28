@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 
@@ -18,7 +17,6 @@ class PostTile extends StatelessWidget {
       builder: (context, state) {
         final isFollowing =
             state.followedPosts.any((p) => p.user.id == post.user.id);
-
         return Card(
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -29,8 +27,8 @@ class PostTile extends StatelessWidget {
                   children: [
                     post.user.photo != ''
                         ? CircleAvatar(
-                            backgroundImage: CachedNetworkImageProvider(
-                                host + post.user.photo!),
+                            backgroundImage:
+                                CachedNetworkImageProvider(post.user.photo!),
                           )
                         : const CircleAvatar(
                             child: Icon(Icons.person),

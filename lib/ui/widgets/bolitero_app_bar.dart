@@ -20,17 +20,23 @@ class BoliteroAppBar extends StatelessWidget implements PreferredSizeWidget {
               [
                 state.maybeWhen(
                   orElse: () => const SizedBox.shrink(),
-                  loaded: (userData) => GestureDetector(
-                    onTap: () {
-                      context.replace('/profile');
-                    },
-                    child: CircleAvatar(
-                      backgroundImage: userData.photo != null
-                          ? NetworkImage(userData.photo!)
-                          : null,
-                      child: const Icon(
-                        Icons.person,
-                        size: 32,
+                  loaded: (userData) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        context.replace('/profile');
+                      },
+                      child: CircleAvatar(
+                        backgroundImage: userData.photo != ''
+                            ? NetworkImage(userData.photo!)
+                            : null,
+                        child: userData.photo != ''
+                            ? null
+                            : const Icon(
+                                Icons.person,
+                                size: 32,
+                              ),
                       ),
                     ),
                   ),
