@@ -76,4 +76,21 @@ class PostCubit extends Cubit<PostState> {
       emit(PostState.error(state.posts, state.followedPosts, e.toString()));
     }
   }
+
+  void unfollow(int postId) async {
+    try {
+      await postDatasource.unfollowPost(postId);
+      final newPost = state.posts
+          .firstWhere((element) => element.id == postId)
+          .copyWith(following: false);
+      final editablePosts = List<Post>.from(state.posts);
+      final oldPostId =
+          editablePosts.indexWhere((element) => element.id == postId);
+      editablePosts[oldPostId] = newPost;
+      emit(PostState.loaded(editablePosts, state.followedPosts));
+      loadFollowedPosts();
+    } catch (e) {
+      emit(PostState.error(state.posts, state.followedPosts, e.toString()));
+    }
+  }
 }

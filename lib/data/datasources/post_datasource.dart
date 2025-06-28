@@ -49,7 +49,7 @@ class PostDatasource {
 
   Future<void> unfollowPost(int id) async {
     try {
-      await _client.delete('$host/api/posts/$id/unfollow/');
+      await _client.post('$host/api/posts/$id/unfollow/');
     } on DioException catch (e) {
       final message = parseDjangoErrorMessage(e);
       throw Exception(message);
@@ -67,7 +67,7 @@ class PostDatasource {
 
   Future<void> unlikePost(int id) async {
     try {
-      await _client.delete('$host/api/posts/$id/unlike');
+      await _client.post('$host/api/posts/$id/unlike');
     } on DioException catch (e) {
       final message = parseDjangoErrorMessage(e);
       throw Exception(message);

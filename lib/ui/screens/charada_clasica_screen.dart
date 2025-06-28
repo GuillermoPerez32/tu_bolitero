@@ -106,7 +106,7 @@ class _CharadaTile extends StatelessWidget {
                 child: Text(
                   charadaNumber.number,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),

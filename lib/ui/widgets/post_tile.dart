@@ -14,119 +14,133 @@ class PostTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<PostCubit, PostState>(
+      builder: (context, state) {
+        final isFollowing =
+            state.followedPosts.any((p) => p.user.id == post.user.id);
+
+        return Card(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
               children: [
-                post.user.photo != ''
-                    ? CircleAvatar(
-                        backgroundImage:
-                            CachedNetworkImageProvider(host + post.user.photo!),
-                      )
-                    : const CircleAvatar(
-                        child: Icon(Icons.person),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    post.user.photo != ''
+                        ? CircleAvatar(
+                            backgroundImage: CachedNetworkImageProvider(
+                                host + post.user.photo!),
+                          )
+                        : const CircleAvatar(
+                            child: Icon(Icons.person),
+                          ),
+                    const SizedBox(width: 10),
+                    Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            post.user.username,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            "Predicciones:",
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 5,
+                            runSpacing: 5,
+                            children: post.numbers.split(',').map((char) {
+                              return PredictionBall(char: char);
+                            }).toList(),
+                          ),
+                          Row(
+                            children: [
+                              TextButton.icon(
+                                onPressed: () {
+                                  postCubit.likePost(post.id);
+                                },
+                                icon: Icon(Icons.favorite_outline_rounded,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant),
+                                label: Text(
+                                  '${post.likesCount}',
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              TextButton.icon(
+                                onPressed: () {
+                                  postCubit.loadPostComments(post.id);
+                                },
+                                icon: Icon(Icons.chat_outlined,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant),
+                                label: Text(
+                                  '${post.commentsCount}',
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                const SizedBox(width: 10),
-                Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.user.username,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                        ),
+                    ),
+                    const Spacer(),
+                    FilledButton(
+                      style: FilledButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
                       ),
-                      const SizedBox(height: 6),
-                      Text(
-                        "Predicciones:",
+                      onPressed: () {
+                        if (isFollowing) {
+                          postCubit.unfollow(post.id);
+                        } else {
+                          postCubit.follow(post.id);
+                        }
+                      },
+                      child: Text(
+                        isFollowing ? 'Siguiendo' : 'Seguir',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          color: Theme.of(context).colorScheme.onSecondary,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 5,
-                        runSpacing: 5,
-                        children: post.numbers.split(',').map((char) {
-                          return PredictionBall(char: char);
-                        }).toList(),
-                      ),
-                      Row(
-                        children: [
-                          TextButton.icon(
-                            onPressed: () {
-                              postCubit.likePost(post.id);
-                            },
-                            icon: Icon(Icons.favorite_outline_rounded,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant),
-                            label: Text(
-                              '${post.likesCount}',
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          TextButton.icon(
-                            onPressed: () {
-                              postCubit.loadPostComments(post.id);
-                            },
-                            icon: Icon(Icons.chat_outlined,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant),
-                            label: Text(
-                              '${post.commentsCount}',
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const Spacer(),
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                  ),
-                  onPressed: () {
-                    postCubit.follow(post.id);
-                  },
-                  child: Text(
-                    'Seguir',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSecondary,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
                     ),
-                  ),
-                ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
