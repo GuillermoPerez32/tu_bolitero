@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
 import 'package:tu_bolitero/ui/logic/apk_info/apk_info_cubit.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+  List<Post> filteredPosts = [];
 
   PostType selectedChoice = PostType.todos;
 
@@ -64,6 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       child: BlocBuilder<PostCubit, PostState>(
         builder: (context, state) {
+          final selectedPosts = selectedChoice == PostType.todos
+              ? state.posts
+              : state.followedPosts;
+
+          final posts =
+              _searchController.text.isEmpty ? selectedPosts : filteredPosts;
+
           return Scaffold(
             appBar: const BoliteroAppBar(
               title: Text("Predicciones"),
@@ -77,6 +86,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     TextField(
                       controller: _searchController,
+                      onChanged: (value) {
+                        filteredPosts = selectedPosts
+                            .where((post) =>
+                                post.numbers
+                                    .toLowerCase()
+                                    .contains(value.toLowerCase()) ||
+                                post.user.username
+                                    .toLowerCase()
+                                    .contains(value.toLowerCase()))
+                            .toList();
+                        setState(() {});
+                      },
                       decoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -126,12 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Center(child: CircularProgressIndicator()),
                       error: (posts, followedPosts, error) =>
                           Center(child: Text(error)),
-                      loaded: (posts, followedPosts) => Column(
-                        children: selectedChoice == PostType.todos
-                            ? posts.map((post) => PostTile(post: post)).toList()
-                            : followedPosts
-                                .map((post) => PostTile(post: post))
-                                .toList(),
+                      loaded: (_, followedPosts) => Column(
+                        children:
+                            posts.map((post) => PostTile(post: post)).toList(),
                       ),
                     )
                   ],
