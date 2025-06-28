@@ -32,7 +32,7 @@ class PostTile extends StatelessWidget {
                                 CachedNetworkImageProvider(post.user.photo!),
                           )
                         : const CircleAvatar(
-                            child: Icon(Icons.person),
+                            child: Icon(Icons.person_rounded),
                           ),
                     const SizedBox(width: 10),
                     Center(

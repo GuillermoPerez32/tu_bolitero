@@ -62,7 +62,7 @@ class CharadaTile extends StatelessWidget {
           ),
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_outlined),
+      trailing: const Icon(Icons.arrow_forward_rounded),
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

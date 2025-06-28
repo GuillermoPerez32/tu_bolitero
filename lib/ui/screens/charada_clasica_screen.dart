@@ -46,10 +46,10 @@ class CharadaClasicaScreen extends StatelessWidget {
                     ),
                     hintText: 'Buscar',
                     filled: true,
-                    prefixIcon: const Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search_rounded),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
-                            icon: const Icon(Icons.clear),
+                            icon: const Icon(Icons.clear_rounded),
                             onPressed: () {
                               _searchController.clear();
                             },

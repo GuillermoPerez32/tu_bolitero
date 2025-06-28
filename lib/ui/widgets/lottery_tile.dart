@@ -56,7 +56,7 @@ class LotteryTile extends StatelessWidget {
                   ),
                   const Spacer(),
                   const Icon(
-                    Icons.chevron_right,
+                    Icons.chevron_right_rounded,
                     color: Color.fromARGB(255, 60, 60, 67),
                     size: 30,
                   )

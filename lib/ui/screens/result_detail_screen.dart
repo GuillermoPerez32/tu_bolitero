@@ -152,7 +152,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
                         .loadLotteryResults(int.parse(widget.lotteryId!));
                   }
                 },
-                child: const Icon(Icons.refresh),
+                child: const Icon(Icons.refresh_rounded),
               )
             : null,
       );

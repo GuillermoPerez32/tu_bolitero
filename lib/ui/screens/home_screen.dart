@@ -92,10 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         hintText: 'Buscar',
                         filled: true,
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(Icons.search_rounded),
                         suffixIcon: _searchController.text.isNotEmpty
                             ? IconButton(
-                                icon: const Icon(Icons.clear),
+                                icon: const Icon(Icons.clear_rounded),
                                 onPressed: () {
                                   _searchController.clear();
                                 },
@@ -146,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   postBloc.loadFollowedPosts();
                 }
               },
-              child: const Icon(Icons.refresh),
+              child: const Icon(Icons.refresh_rounded),
             ),
           );
         },

@@ -105,7 +105,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                             ),
                             filled: true,
                             suffixIcon: IconButton(
-                              icon: Icon(Icons.send,
+                              icon: Icon(Icons.send_rounded,
                                   color: _commentController.text.isNotEmpty
                                       ? Theme.of(context).colorScheme.primary
                                       : null),
@@ -140,6 +140,15 @@ class _CommentsScreenState extends State<CommentsScreen> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          postBloc.loadPostComments(int.parse(widget.postId));
+          setState(() {
+            _isCommenting = false;
+          });
+        },
+        child: const Icon(Icons.refresh_rounded),
       ),
     );
   }
