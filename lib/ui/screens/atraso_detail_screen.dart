@@ -127,13 +127,15 @@ class _GrupoAtrasosView extends StatelessWidget {
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
         child: Column(
           children: [
-            Text(horario.toUpperCase(),
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 16),
+            Text(
+              horario.toUpperCase(),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -236,13 +238,13 @@ class NumberBall extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 24,
+            radius: 16,
             backgroundColor: color,
             child: Text(
               textoEnBola,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -250,11 +252,10 @@ class NumberBall extends StatelessWidget {
           Text(
             atraso,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 12,
               fontWeight: FontWeight.w300,
             ),
           ),
-          const Divider(),
         ],
       ),
     );
