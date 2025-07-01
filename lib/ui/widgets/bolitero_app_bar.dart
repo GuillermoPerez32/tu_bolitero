@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,26 +21,28 @@ class BoliteroAppBar extends StatelessWidget implements PreferredSizeWidget {
               [
                 state.maybeWhen(
                   orElse: () => const SizedBox.shrink(),
-                  loaded: (userData) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        context.replace('/profile');
-                      },
-                      child: CircleAvatar(
-                        backgroundImage: userData.photo != ''
-                            ? NetworkImage(userData.photo!)
-                            : null,
-                        child: userData.photo != ''
-                            ? null
-                            : const Icon(
-                                Icons.person,
-                                size: 32,
-                              ),
+                  loaded: (userData) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.replace('/profile');
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: userData.photo != ''
+                              ? CachedNetworkImageProvider(userData.photo!)
+                              : null,
+                          child: userData.photo != ''
+                              ? null
+                              : const Icon(
+                                  Icons.person,
+                                  size: 32,
+                                ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
         );

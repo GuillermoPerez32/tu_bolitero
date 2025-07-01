@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/ad/ad_cubit.dart';
 import 'package:tu_bolitero/ui/logic/apk_info/apk_info_cubit.dart';
+import 'package:tu_bolitero/ui/logic/auth/auth_cubit.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 import 'package:tu_bolitero/ui/widgets/ad_modal.dart';
 import 'package:tu_bolitero/ui/widgets/apk_info_modal.dart';
@@ -156,18 +157,132 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                if (selectedChoice == PostType.todos) {
-                  postBloc.loadPosts();
-                } else {
-                  postBloc.loadFollowedPosts();
-                }
+            floatingActionButton: BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, state) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    state.maybeWhen(
+                      orElse: () => const SizedBox.shrink(),
+                      loaded: (userData) {
+                        return userData.esPronosticador || userData.isSuperuser
+                            ? FloatingActionButton(
+                                heroTag: 'add',
+                                onPressed: () => _openNumberInputSheet(context),
+                                child: const Icon(Icons.add_rounded),
+                              )
+                            : const SizedBox.shrink();
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    FloatingActionButton(
+                      heroTag: 'refresh',
+                      onPressed: () {
+                        if (selectedChoice == PostType.todos) {
+                          postBloc.loadPosts();
+                        } else {
+                          postBloc.loadFollowedPosts();
+                        }
+                      },
+                      child: const Icon(Icons.refresh_rounded),
+                    ),
+                  ],
+                );
               },
-              child: const Icon(Icons.refresh_rounded),
             ),
           );
         },
+      ),
+    );
+  }
+
+  void _openNumberInputSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: NumberChipInput(
+            onChanged: (numbers) {
+              print("Números seleccionados: $numbers");
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+class NumberChipInput extends StatefulWidget {
+  final void Function(List<String>) onChanged;
+
+  const NumberChipInput({super.key, required this.onChanged});
+
+  @override
+  State<NumberChipInput> createState() => _NumberChipInputState();
+}
+
+class _NumberChipInputState extends State<NumberChipInput> {
+  final TextEditingController _controller = TextEditingController();
+  final List<String> _numbers = [];
+
+  void _add(String input) {
+    final clean = input.trim();
+    if (clean.isNotEmpty &&
+        int.tryParse(clean) != null &&
+        !_numbers.contains(clean)) {
+      setState(() {
+        _numbers.add(clean);
+        widget.onChanged(_numbers);
+      });
+    }
+    _controller.clear();
+  }
+
+  void _remove(String num) {
+    setState(() {
+      _numbers.remove(num);
+      widget.onChanged(_numbers);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min, // <— clave para sheet
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Agrega números:",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _controller,
+            keyboardType: TextInputType.number,
+            onSubmitted: _add,
+            decoration: InputDecoration(
+              labelText: "Número",
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => _add(_controller.text),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            children: _numbers
+                .map((num) =>
+                    Chip(label: Text(num), onDeleted: () => _remove(num)))
+                .toList(),
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }

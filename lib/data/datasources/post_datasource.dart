@@ -90,6 +90,15 @@ class PostDatasource {
       throw Exception(message);
     }
   }
+
+  Future<void> createPost(String content) async {
+    try {
+      await _client.post('$host/api/posts/', data: {'content': content});
+    } on DioException catch (e) {
+      final message = parseDjangoErrorMessage(e);
+      throw Exception(message);
+    }
+  }
 }
 
 final postDatasource = PostDatasource();
