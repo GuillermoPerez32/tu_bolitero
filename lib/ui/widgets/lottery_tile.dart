@@ -39,9 +39,8 @@ class LotteryTile extends StatelessWidget {
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
                             host + imageSrc,
-                            maxWidth: imageSize,
-                            maxHeight: imageSize,
                           ),
+                          filterQuality: FilterQuality.high,
                         ),
                       ),
                     ),
