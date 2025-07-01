@@ -9,6 +9,7 @@ import 'package:tu_bolitero/ui/widgets/ad_modal.dart';
 import 'package:tu_bolitero/ui/widgets/apk_info_modal.dart';
 import 'package:tu_bolitero/ui/widgets/bolitero_app_bar.dart';
 import 'package:tu_bolitero/ui/widgets/bottom_bar.dart';
+import 'package:tu_bolitero/ui/widgets/number_chips_input.dart';
 import 'package:tu_bolitero/ui/widgets/post_tile.dart';
 
 enum PostType { todos, seguidos }
@@ -168,7 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return userData.esPronosticador || userData.isSuperuser
                             ? FloatingActionButton(
                                 heroTag: 'add',
-                                onPressed: () => _openNumberInputSheet(context),
+                                onPressed: () =>
+                                    _openNumberInputSheet(context, postBloc),
                                 child: const Icon(Icons.add_rounded),
                               )
                             : const SizedBox.shrink();
@@ -196,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _openNumberInputSheet(BuildContext context) {
+  void _openNumberInputSheet(BuildContext context, PostCubit postBloc) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -207,83 +209,12 @@ class _HomeScreenState extends State<HomeScreen> {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
           child: NumberChipInput(
-            onChanged: (numbers) {
-              print("Números seleccionados: $numbers");
+            onSubmitted: (numbers) {
+              postBloc.createPost(numbers.join(','));
             },
           ),
         );
       },
-    );
-  }
-}
-
-class NumberChipInput extends StatefulWidget {
-  final void Function(List<String>) onChanged;
-
-  const NumberChipInput({super.key, required this.onChanged});
-
-  @override
-  State<NumberChipInput> createState() => _NumberChipInputState();
-}
-
-class _NumberChipInputState extends State<NumberChipInput> {
-  final TextEditingController _controller = TextEditingController();
-  final List<String> _numbers = [];
-
-  void _add(String input) {
-    final clean = input.trim();
-    if (clean.isNotEmpty &&
-        int.tryParse(clean) != null &&
-        !_numbers.contains(clean)) {
-      setState(() {
-        _numbers.add(clean);
-        widget.onChanged(_numbers);
-      });
-    }
-    _controller.clear();
-  }
-
-  void _remove(String num) {
-    setState(() {
-      _numbers.remove(num);
-      widget.onChanged(_numbers);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // <— clave para sheet
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Agrega números:",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 8),
-          TextField(
-            controller: _controller,
-            keyboardType: TextInputType.number,
-            onSubmitted: _add,
-            decoration: InputDecoration(
-              labelText: "Número",
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () => _add(_controller.text),
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            children: _numbers
-                .map((num) =>
-                    Chip(label: Text(num), onDeleted: () => _remove(num)))
-                .toList(),
-          ),
-          const SizedBox(height: 16),
-        ],
-      ),
     );
   }
 }

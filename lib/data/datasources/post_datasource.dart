@@ -91,9 +91,9 @@ class PostDatasource {
     }
   }
 
-  Future<void> createPost(String content) async {
+  Future<void> createPost(String numbers) async {
     try {
-      await _client.post('$host/api/posts/', data: {'content': content});
+      await _client.post('$host/api/posts/', data: {'numbers': numbers});
     } on DioException catch (e) {
       final message = parseDjangoErrorMessage(e);
       throw Exception(message);
