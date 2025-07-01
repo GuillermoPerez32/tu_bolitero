@@ -116,17 +116,29 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
 
             final lottery = lotteries[0];
 
-            final anterioresPerDay = lottery.anteriores
-                .map((result) => AnterioresPerDay(
-                      fecha: result.fecha,
-                      results: lottery.anteriores
-                          .where((element) =>
-                              element.fecha.day == result.fecha.day &&
-                              element.fecha.month == result.fecha.month &&
-                              element.fecha.year == result.fecha.year)
-                          .toList(),
+            // Agrupar resultados por fecha (sin hora)
+            final Map<DateTime, List<LotteryResult>> groupedResults = {};
+            for (final result in lottery.anteriores) {
+              final date = DateTime(
+                result.fecha.year,
+                result.fecha.month,
+                result.fecha.day,
+              );
+
+              if (!groupedResults.containsKey(date)) {
+                groupedResults[date] = [];
+              }
+              groupedResults[date]!.add(result);
+            }
+
+            // Convertir a lista de AnterioresPerDay y ordenar por fecha descendente
+            final anterioresPerDay = groupedResults.entries
+                .map((entry) => AnterioresPerDay(
+                      fecha: entry.key,
+                      results: entry.value,
                     ))
-                .toList();
+                .toList()
+              ..sort((a, b) => b.fecha.compareTo(a.fecha));
 
             return Center(
               child: ListView.builder(

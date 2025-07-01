@@ -114,6 +114,8 @@ class _GrupoAtrasosView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dobles = datos.dobles.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
     final centenas = datos.centenas.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final decenas = datos.decenas.entries.toList()
@@ -139,6 +141,12 @@ class _GrupoAtrasosView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                _ColNumeros(
+                  titulo: 'Doble',
+                  pares: dobles,
+                  color: const Color.fromARGB(255, 232, 168, 235),
+                  tipo: _TipoAtraso.doble,
+                ),
                 _ColNumeros(
                   titulo: 'Centena',
                   pares: centenas,
@@ -167,7 +175,7 @@ class _GrupoAtrasosView extends StatelessWidget {
 }
 
 // ──────────────────────── Column helper ────────────────────────
-enum _TipoAtraso { centena, decena, unidad }
+enum _TipoAtraso { doble, centena, decena, unidad }
 
 class _ColNumeros extends StatelessWidget {
   const _ColNumeros({
@@ -189,6 +197,7 @@ class _ColNumeros extends StatelessWidget {
         TitleText(title: titulo),
         ...pares.map((e) => NumberBall(
               value: e.key,
+              doble: tipo == _TipoAtraso.doble ? '${e.value} días' : null,
               centena: tipo == _TipoAtraso.centena ? '${e.value} días' : null,
               decena: tipo == _TipoAtraso.decena ? '${e.value} días' : null,
               unidad: tipo == _TipoAtraso.unidad ? '${e.value} días' : null,
@@ -214,13 +223,18 @@ class TitleText extends StatelessWidget {
 class NumberBall extends StatelessWidget {
   const NumberBall({
     super.key,
+    this.doble,
     this.centena,
     this.decena,
     this.unidad,
     required this.color,
     required this.value,
-  }) : assert(centena != null || decena != null || unidad != null);
+  }) : assert(doble != null ||
+            centena != null ||
+            decena != null ||
+            unidad != null);
 
+  final String? doble;
   final String? centena;
   final String? decena;
   final String? unidad;
@@ -229,9 +243,20 @@ class NumberBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textoEnBola =
-        '${centena != null ? value : 'x'}${decena != null ? value : 'x'}${unidad != null ? value : 'x'}';
-    final atraso = (centena ?? decena ?? unidad)!;
+    String textoEnBola = '';
+    if (doble != null) {
+      textoEnBola += 'x${value * 2}';
+    }
+    if (centena != null) {
+      textoEnBola += '${value}xx';
+    }
+    if (decena != null) {
+      textoEnBola += 'x${value}x';
+    }
+    if (unidad != null) {
+      textoEnBola += 'xx$value';
+    }
+    final atraso = (doble ?? centena ?? decena ?? unidad)!;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),

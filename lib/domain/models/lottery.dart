@@ -12,6 +12,7 @@ class Lottery {
   final List<LotteryResult> anteriores;
   final List<LotteryResult> ultimoDia;
   final Map<String, Atrasados>? atrasados;
+  final bool? mostrarEnApk;
 
   Lottery({
     required this.id,
@@ -23,6 +24,7 @@ class Lottery {
     required this.anteriores,
     required this.ultimoDia,
     required this.atrasados,
+    required this.mostrarEnApk,
   });
 
   Lottery copyWith({
@@ -35,6 +37,7 @@ class Lottery {
     List<LotteryResult>? anteriores,
     List<LotteryResult>? ultimoDia,
     Map<String, Atrasados>? atrasados,
+    bool? mostrarEnApk,
   }) =>
       Lottery(
         id: id ?? this.id,
@@ -46,6 +49,7 @@ class Lottery {
         anteriores: anteriores ?? this.anteriores,
         ultimoDia: ultimoDia ?? this.ultimoDia,
         atrasados: atrasados ?? this.atrasados,
+        mostrarEnApk: mostrarEnApk ?? this.mostrarEnApk,
       );
 
   factory Lottery.fromJson(Map<String, dynamic> json) => Lottery(
@@ -71,6 +75,7 @@ class Lottery {
                 for (var horario in (json["atrasados"] as Map).entries)
                   horario.key: Atrasados.fromJson(horario.value)
               },
+        mostrarEnApk: json["mostrar_en_apk"],
       );
 }
 
@@ -109,17 +114,22 @@ class LotteryResult {
 }
 
 class Atrasados {
+  final Map<String, int> dobles;
   final Map<String, int> decenas;
   final Map<String, int> centenas;
   final Map<String, int> unidades;
 
   Atrasados({
+    required this.dobles,
     required this.decenas,
     required this.centenas,
     required this.unidades,
   });
 
   factory Atrasados.fromJson(Map<String, dynamic> json) => Atrasados(
+        dobles: json["dobles"] != null
+            ? Map.from(json["dobles"])
+            : {}.map((k, v) => MapEntry<String, int>(k, v)),
         decenas: json["decenas"] != null
             ? Map.from(json["decenas"])
             : {}.map((k, v) => MapEntry<String, int>(k, v)),
@@ -132,6 +142,8 @@ class Atrasados {
       );
 
   Map<String, dynamic> toJson() => {
+        "dobles":
+            Map.from(dobles).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "decenas":
             Map.from(decenas).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "centenas":

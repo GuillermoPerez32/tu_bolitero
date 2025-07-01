@@ -8,13 +8,16 @@ class LotteryDatasource {
   Future<List<Lottery>> getLotteries() async {
     final response = await _client.get('$host/api/loterias');
     final data = response.data as List;
-    final lotteries = data.map((lottery) => Lottery.fromJson(lottery)).toList();
+    final lotteries = data
+        .map((lottery) => Lottery.fromJson(lottery))
+        .where((lottery) => lottery.mostrarEnApk == true)
+        .toList();
     return lotteries;
   }
 
   Future<List<LotteryResult>> getLotteryResult(int id) async {
-    final response = await _client.get('$host/api/loterias/$id/anteriores');
-    final data = response.data as List;
+    final response = await _client.get('$host/api/loterias/$id');
+    final data = response.data['anteriores'] as List;
     final results =
         data.map((result) => LotteryResult.fromJson(result)).toList();
     return results;
