@@ -11,29 +11,17 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
-          orElse: () {
-            print('error $state');
-          },
+          orElse: () {},
           loaded: (user) {
-            print('loaded $user');
             context.go('/');
           },
           notLoggedIn: (user) {
-            print('notLoggedIn $user');
             context.go('/login');
           },
-          error: (message, user) {
-            print('error $message');
-          },
-          loading: (user) {
-            print('loading $user');
-          },
-          success: (user) {
-            print('success $user');
-          },
-          initial: (user) {
-            print('initial $user');
-          },
+          error: (message, user) {},
+          loading: (user) {},
+          success: (user) {},
+          initial: (user) {},
         );
       },
       child: Scaffold(

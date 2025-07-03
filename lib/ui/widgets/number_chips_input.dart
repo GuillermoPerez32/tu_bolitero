@@ -69,9 +69,9 @@ class _NumberChipInputState extends State<NumberChipInput> {
                 spacing: 8,
                 children: _numbers
                     .map(
-                      (num) => Chip(
+                      (number) => Chip(
                         label: Text(
-                          num.padLeft(2, '0'),
+                          number.padLeft(2, '0'),
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -88,7 +88,7 @@ class _NumberChipInputState extends State<NumberChipInput> {
                             color: Colors.transparent,
                           ),
                         ),
-                        onDeleted: () => _remove(num),
+                        onDeleted: () => _remove(number),
                       ),
                     )
                     .toList(),
