@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             final username = _usernameController.text;
                             final password = _passwordController.text;
                             authCubit.login(
-                                username: username, password: password);
+                                username: username.trim(), password: password);
                           },
                     style: FilledButton.styleFrom(
                       minimumSize: const Size(double.infinity, 48),
