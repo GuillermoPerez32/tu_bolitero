@@ -24,7 +24,7 @@ class AlgorithmsScreen extends StatelessWidget {
             onTap: () => context.go('/algorithms/piramide'),
           ),
           AlgoritmoTile(
-            title: 'Cruz de la suerte',
+            title: 'Trébol de la suerte',
             imageSrc: 'assets/cruz.png',
             onTap: () => context.go('/algorithms/cruz_suerte'),
           ),

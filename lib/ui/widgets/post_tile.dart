@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 
@@ -21,121 +22,131 @@ class PostTile extends StatelessWidget {
         return Card(
           child: Padding(
             padding: const EdgeInsets.all(15),
-            child: Column(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    post.user.photo != ''
-                        ? CircleAvatar(
-                            backgroundImage:
-                                CachedNetworkImageProvider(post.user.photo!),
-                          )
-                        : const CircleAvatar(
-                            child: Icon(Icons.person_rounded),
-                          ),
-                    const SizedBox(width: 10),
-                    Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                post.user.photo != ''
+                    ? CircleAvatar(
+                        backgroundImage:
+                            CachedNetworkImageProvider(post.user.photo!),
+                      )
+                    : const CircleAvatar(
+                        child: Icon(Icons.person_rounded),
+                      ),
+                const SizedBox(width: 10),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             post.user.username,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(width: 12),
                           Text(
-                            "Predicciones:",
+                            DateFormat('dd/MM/yyyy').format(post.fecha),
                             style: TextStyle(
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
-                              fontSize: 13,
+                              fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          Wrap(
-                            spacing: 5,
-                            runSpacing: 5,
-                            children: post.numbers.split(',').map((char) {
-                              return PredictionBall(char: char);
-                            }).toList(),
-                          ),
-                          Row(
-                            children: [
-                              TextButton.icon(
-                                onPressed: () {
-                                  postCubit.likePost(post.id);
-                                },
-                                icon: Icon(Icons.favorite_outline_rounded,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant),
-                                label: Text(
-                                  '${post.likesCount}',
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              TextButton.icon(
-                                onPressed: () {
-                                  postCubit.loadPostComments(post.id);
-                                  context.go('/posts/${post.id}/comments');
-                                },
-                                icon: Icon(Icons.chat_outlined,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant),
-                                label: Text(
-                                  '${post.commentsCount}',
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                         ],
                       ),
-                    ),
-                    const Spacer(),
-                    FilledButton(
-                      style: FilledButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                      ),
-                      onPressed: () {
-                        if (isFollowing) {
-                          postCubit.unfollow(post.id);
-                        } else {
-                          postCubit.follow(post.id);
-                        }
-                      },
-                      child: Text(
-                        isFollowing ? 'Siguiendo' : 'Seguir',
+                      const SizedBox(height: 6),
+                      Text(
+                        "Predicciones:",
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSecondary,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: post.numbers.split(',').map((char) {
+                          return PredictionBall(char: char);
+                        }).toList(),
+                      ),
+                      Row(
+                        children: [
+                          TextButton.icon(
+                            onPressed: () {
+                              postCubit.likePost(post.id);
+                            },
+                            icon: Icon(Icons.favorite_outline_rounded,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant),
+                            label: Text(
+                              '${post.likesCount}',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              postCubit.loadPostComments(post.id);
+                              context.go('/posts/${post.id}/comments');
+                            },
+                            icon: Icon(Icons.chat_outlined,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant),
+                            label: Text(
+                              '${post.commentsCount}',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(post.lottery),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                  ),
+                  onPressed: () {
+                    if (isFollowing) {
+                      postCubit.unfollow(post.id);
+                    } else {
+                      postCubit.follow(post.id);
+                    }
+                  },
+                  child: Text(
+                    isFollowing ? 'Siguiendo' : 'Seguir',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSecondary,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
                     ),
-                  ],
-                )
+                  ),
+                ),
               ],
             ),
           ),

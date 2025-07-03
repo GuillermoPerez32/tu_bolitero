@@ -209,8 +209,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
           child: NumberChipInput(
-            onSubmitted: (numbers) {
-              postBloc.createPost(numbers.join(','));
+            onSubmitted: (numbers, lottery) {
+              postBloc.createPost(numbers.join(','), lottery);
             },
           ),
         );

@@ -10,6 +10,7 @@ class Post {
   final int id;
   final User user;
   final String numbers;
+  final String lottery;
   final DateTime fecha;
   final int likesCount;
   final int commentsCount;
@@ -20,6 +21,7 @@ class Post {
     required this.id,
     required this.user,
     required this.numbers,
+    required this.lottery,
     required this.fecha,
     required this.likesCount,
     required this.commentsCount,
@@ -31,6 +33,7 @@ class Post {
         id: json["id"],
         user: User.fromJson(json["user"]),
         numbers: json["numbers"],
+        lottery: json["lottery"],
         fecha: DateTime.parse(json["fecha"]),
         likesCount: json["likes_count"],
         commentsCount: json["comments_count"],
@@ -64,11 +67,13 @@ class Post {
     int? commentsCount,
     List<PostComment>? comments,
     bool? following,
+    String? lottery,
   }) =>
       Post(
         id: id ?? this.id,
         user: user ?? this.user,
         numbers: numbers ?? this.numbers,
+        lottery: lottery ?? this.lottery,
         fecha: fecha ?? this.fecha,
         likesCount: likesCount ?? this.likesCount,
         commentsCount: commentsCount ?? this.commentsCount,
