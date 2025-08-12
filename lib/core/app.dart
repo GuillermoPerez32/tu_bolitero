@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tu_bolitero/core/router.dart';
 import 'package:tu_bolitero/core/theme.dart';
@@ -14,6 +15,16 @@ class MyApp extends StatelessWidget {
       routerConfig: router,
       theme: ThemeFactory.getTheme(context),
       debugShowCheckedModeBanner: false,
+      // Localization setup (provides MaterialLocalizations required by dialogs)
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('es'),
+        Locale('en'),
+      ],
       builder: (context, child) {
         return Container(
           color: Theme.of(context).scaffoldBackgroundColor.withValues(

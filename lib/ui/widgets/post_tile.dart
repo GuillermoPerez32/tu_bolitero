@@ -76,7 +76,10 @@ class PostTile extends StatelessWidget {
                         spacing: 5,
                         runSpacing: 5,
                         children: post.numbers.split(',').map((char) {
-                          return PredictionBall(char: char);
+                          return PredictionBall(
+                            char: char,
+                            guessed: post.guessedNumber == char,
+                          );
                         }).toList(),
                       ),
                       Row(
@@ -122,7 +125,7 @@ class PostTile extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(post.lottery),
+                      Text(post.lottery.nombre),
                     ],
                   ),
                 ),
@@ -160,9 +163,11 @@ class PredictionBall extends StatelessWidget {
   const PredictionBall({
     super.key,
     required this.char,
+    required this.guessed,
   });
 
   final String char;
+  final bool guessed;
 
   @override
   Widget build(BuildContext context) {
@@ -170,14 +175,18 @@ class PredictionBall extends StatelessWidget {
       width: 26,
       height: 26,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: guessed
+            ? Theme.of(context).colorScheme.tertiary
+            : Theme.of(context).colorScheme.primary,
         borderRadius: const BorderRadius.all(Radius.circular(100)),
       ),
       child: Center(
         child: Text(
           char.padLeft(2, '0'),
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: guessed
+                ? Theme.of(context).colorScheme.onTertiary
+                : Theme.of(context).colorScheme.onPrimary,
             fontSize: 13,
             fontWeight: FontWeight.w500,
           ),

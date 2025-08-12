@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class NumberChipInput extends StatefulWidget {
-  final void Function(List<String>, String) onSubmitted;
+  final void Function(List<String>, int, DateTime?) onSubmitted;
 
   const NumberChipInput({super.key, required this.onSubmitted});
 
@@ -16,8 +17,39 @@ class NumberChipInput extends StatefulWidget {
 
 class _NumberChipInputState extends State<NumberChipInput> {
   final TextEditingController _numbersController = TextEditingController();
-  late String _lottery;
+  late int _lottery;
   final List<String> _numbers = [];
+
+  DateTime? _selectedDate;
+
+  Future<void> _pickDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2100),
+      locale: const Locale("es", "ES"),
+    );
+
+    final TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+    if (pickedTime != null) {
+      setState(() {
+        _selectedDate = _selectedDate?.add(Duration(
+          hours: pickedTime.hour,
+          minutes: pickedTime.minute,
+        ));
+      });
+    }
+  }
 
   void _add(String input) {
     final clean = input.trim();
@@ -41,7 +73,7 @@ class _NumberChipInputState extends State<NumberChipInput> {
   @override
   void initState() {
     super.initState();
-    _lottery = '';
+    _lottery = 0;
   }
 
   @override
@@ -49,12 +81,15 @@ class _NumberChipInputState extends State<NumberChipInput> {
     return BlocBuilder<LotteryCubit, LotteryState>(
       builder: (context, state) {
         // Set default lottery to first one if available and not already set
-        if (_lottery.isEmpty && state.lotteries.isNotEmpty) {
+        if (_lottery == 0 && state.lotteries.isNotEmpty) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             setState(() {
-              _lottery = state.lotteries.first.nombre;
+              _lottery = state.lotteries.first.id;
             });
           });
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -96,13 +131,11 @@ class _NumberChipInputState extends State<NumberChipInput> {
               const SizedBox(height: 12),
               // dropdown of lotteries
               state.lotteries.isNotEmpty
-                  ? DropdownButtonFormField<String>(
-                      value: state.lotteries.isNotEmpty
-                          ? state.lotteries.first.nombre
-                          : _lottery,
+                  ? DropdownButtonFormField<int>(
+                      value: _lottery,
                       items: state.lotteries.map((lottery) {
                         return DropdownMenuItem(
-                          value: lottery.nombre,
+                          value: lottery.id,
                           child: Row(
                             children: [
                               Container(
@@ -165,6 +198,24 @@ class _NumberChipInputState extends State<NumberChipInput> {
                 ),
               ),
               const SizedBox(height: 16),
+              // Date picker (clickable text input)
+              Builder(builder: (context) {
+                final String dateText = _selectedDate == null
+                    ? ''
+                    : DateFormat('dd/MM/yyyy HH:mm', 'es')
+                        .format(_selectedDate!);
+                return TextField(
+                  readOnly: true,
+                  onTap: () => _pickDate(context),
+                  decoration: InputDecoration(
+                    labelText: 'Fecha',
+                    hintText: 'Seleccionar fecha',
+                    suffixIcon: const Icon(Icons.calendar_today_rounded),
+                  ),
+                  controller: TextEditingController(text: dateText),
+                );
+              }),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -172,7 +223,8 @@ class _NumberChipInputState extends State<NumberChipInput> {
                     onPressed: _numbers.isEmpty
                         ? null
                         : () {
-                            widget.onSubmitted(_numbers, _lottery);
+                            widget.onSubmitted(
+                                _numbers, _lottery, _selectedDate);
                             context.pop();
                           },
                     child: const Text("Publicar"),

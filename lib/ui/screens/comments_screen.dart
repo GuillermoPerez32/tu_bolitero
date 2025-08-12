@@ -85,6 +85,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: TextField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 8,
+                          minLines: 1,
                           controller: _commentController,
                           onChanged: (_) => setState(() {}),
                           decoration: InputDecoration(

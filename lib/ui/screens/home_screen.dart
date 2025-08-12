@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           return Scaffold(
             appBar: const BoliteroAppBar(
-              title: Text("Predicciones"),
+              title: Text("Tu Bolitero"),
             ),
             bottomNavigationBar: const BottomBar(index: 0),
             body: SingleChildScrollView(
@@ -149,9 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Center(child: CircularProgressIndicator()),
                       error: (posts, followedPosts, error) =>
                           Center(child: Text(error)),
-                      loaded: (_, followedPosts) => Column(
-                        children:
-                            posts.map((post) => PostTile(post: post)).toList(),
+                      loaded: (_, followedPosts) => SingleChildScrollView(
+                        child: Column(
+                          children: posts
+                              .map((post) => PostTile(post: post))
+                              .toList(),
+                        ),
                       ),
                     )
                   ],
@@ -209,8 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
           child: NumberChipInput(
-            onSubmitted: (numbers, lottery) {
-              postBloc.createPost(numbers.join(','), lottery);
+            onSubmitted: (numbers, lottery, date) {
+              postBloc.createPost(numbers.join(','), lottery, date);
             },
           ),
         );

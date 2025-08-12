@@ -106,10 +106,10 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
-  void createPost(String numbers, String lottery) async {
+  void createPost(String numbers, int lottery, DateTime? date) async {
     try {
       emit(PostState.loading(state.posts, state.followedPosts));
-      await postDatasource.createPost(numbers, lottery);
+      await postDatasource.createPost(numbers, lottery, date);
       emit(PostState.loaded(state.posts, state.followedPosts));
     } catch (e) {
       emit(PostState.error(state.posts, state.followedPosts, e.toString()));

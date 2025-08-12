@@ -1,14 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 
 class ResultCard extends StatelessWidget {
-  final String lotteryId;
+  final Lottery lottery;
+  final bool showHeader;
 
   const ResultCard({
     super.key,
     required this.results,
-    required this.lotteryId,
+    required this.lottery,
+    this.showHeader = false,
   });
 
   final List<LotteryResult> results;
@@ -21,7 +25,32 @@ class ResultCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (showHeader)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    if (lottery.logo.isNotEmpty)
+                      CachedNetworkImage(
+                        imageUrl: host + lottery.logo,
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                      ),
+                    const SizedBox(width: 10),
+                    Text(
+                      lottery.nombre,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             Row(
               children: [
                 Column(

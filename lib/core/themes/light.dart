@@ -23,6 +23,8 @@ final ThemeData lightTheme = ThemeData(
     onSurfaceVariant: Color.fromRGBO(107, 107, 113, 1),
     secondary: Color.fromRGBO(215, 225, 255, 1),
     onSecondary: Color.fromRGBO(61, 139, 250, 1),
+    tertiary: Color.fromRGBO(255, 215, 0, 1),
+    onTertiary: Colors.black,
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
   chipTheme: const ChipThemeData(

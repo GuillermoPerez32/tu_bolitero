@@ -148,7 +148,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
                   final result = anterioresPerDay[index];
                   return ResultCard(
                     results: result.results,
-                    lotteryId: widget.lotteryId!,
+                    lottery: lottery,
                   );
                 },
               ),

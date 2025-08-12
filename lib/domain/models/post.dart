@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/domain/models/post_comment.dart';
 
 Post postFromJson(String str) => Post.fromJson(json.decode(str));
@@ -10,12 +11,14 @@ class Post {
   final int id;
   final User user;
   final String numbers;
-  final String lottery;
+  final Lottery lottery;
   final DateTime fecha;
   final int likesCount;
   final int commentsCount;
   final List<PostComment>? comments;
   final bool following;
+  final String? horario;
+  final String? guessedNumber;
 
   Post({
     required this.id,
@@ -27,13 +30,15 @@ class Post {
     required this.commentsCount,
     required this.comments,
     required this.following,
+    required this.horario,
+    required this.guessedNumber,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
         id: json["id"],
         user: User.fromJson(json["user"]),
         numbers: json["numbers"],
-        lottery: json["lottery"],
+        lottery: Lottery.fromJson(json["lottery"]),
         fecha: DateTime.parse(json["fecha"]),
         likesCount: json["likes_count"],
         commentsCount: json["comments_count"],
@@ -45,6 +50,8 @@ class Post {
                 ),
               ),
         following: false,
+        horario: json["horario"],
+        guessedNumber: json["guessed_number"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -67,7 +74,7 @@ class Post {
     int? commentsCount,
     List<PostComment>? comments,
     bool? following,
-    String? lottery,
+    Lottery? lottery,
   }) =>
       Post(
         id: id ?? this.id,
@@ -79,5 +86,7 @@ class Post {
         commentsCount: commentsCount ?? this.commentsCount,
         comments: comments ?? this.comments,
         following: following ?? this.following,
+        horario: horario ?? this.horario,
+        guessedNumber: guessedNumber ?? this.guessedNumber,
       );
 }
