@@ -19,6 +19,7 @@ class PostTile extends StatelessWidget {
       builder: (context, state) {
         final isFollowing =
             state.followedPosts.any((p) => p.user.id == post.user.id);
+        final isDay = post.fecha.hour > 6 && post.fecha.hour < 18;
         return Card(
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -60,6 +61,11 @@ class PostTile extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+                          Image.asset(
+                            isDay ? 'assets/sun.png' : 'assets/moon.png',
+                            height: 40,
+                            width: 40,
+                          )
                         ],
                       ),
                       const SizedBox(height: 6),
