@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 
@@ -29,7 +28,7 @@ class PostTile extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                post.user.photo != ''
+                (post.user.photo != null && post.user.photo!.isNotEmpty)
                     ? CircleAvatar(
                         backgroundImage:
                             CachedNetworkImageProvider(post.user.photo!),

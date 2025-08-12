@@ -28,28 +28,26 @@ class ResultCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (showHeader)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    if (lottery.logo.isNotEmpty)
-                      CachedNetworkImage(
-                        imageUrl: host + lottery.logo,
-                        height: 40,
-                        width: 40,
-                        fit: BoxFit.cover,
-                      ),
-                    const SizedBox(width: 10),
-                    Text(
-                      lottery.nombre,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  if (lottery.logo.isNotEmpty)
+                    CachedNetworkImage(
+                      imageUrl:
+                          !showHeader ? host + lottery.logo : lottery.logo,
+                      height: 20,
+                      width: 20,
+                      fit: BoxFit.cover,
                     ),
-                  ],
-                ),
+                  const SizedBox(width: 10),
+                  Text(
+                    lottery.nombre,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
             Row(
               children: [
