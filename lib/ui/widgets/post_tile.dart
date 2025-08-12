@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 
@@ -14,6 +15,8 @@ class PostTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
+
+    print(post.lottery.logo);
 
     return BlocBuilder<PostCubit, PostState>(
       builder: (context, state) {
@@ -131,7 +134,18 @@ class PostTile extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(post.lottery.nombre),
+                      Row(
+                        children: [
+                          Hero(
+                            tag: post.lottery.logo,
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  CachedNetworkImageProvider(post.lottery.logo),
+                            ),
+                          ),
+                          Text(post.lottery.nombre),
+                        ],
+                      ),
                     ],
                   ),
                 ),
