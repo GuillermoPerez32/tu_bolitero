@@ -102,6 +102,10 @@ final GoRouter router = GoRouter(
               ],
             ),
             GoRoute(
+              path: 'numero_suerte',
+              builder: (context, state) => const NumeroSuerteScreen(),
+            ),
+            GoRoute(
               path: 'cruz_suerte',
               builder: (context, state) => LotteriesListScreen(
                 onLotterySelected: (lotteryId) {

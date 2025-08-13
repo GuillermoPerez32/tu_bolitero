@@ -28,6 +28,11 @@ class AlgorithmsScreen extends StatelessWidget {
             imageSrc: 'assets/cruz.png',
             onTap: () => context.go('/algorithms/cruz_suerte'),
           ),
+          AlgoritmoTile(
+            title: 'Número de la suerte',
+            imageSrc: 'assets/charada.png',
+            onTap: () => context.go('/algorithms/numero_suerte'),
+          ),
           // AlgoritmoTile(
           //   title: 'Tabla de los dioses',
           //   imageSrc: 'assets/table.png',

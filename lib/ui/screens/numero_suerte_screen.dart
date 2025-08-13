@@ -10,7 +10,6 @@ class NumeroSuerteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     final luckBloc = BlocProvider.of<LuckCubit>(context);
 
     return Scaffold(
@@ -26,7 +25,9 @@ class NumeroSuerteScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: primaryColor, width: 2.0),
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2.0),
                   ),
                   height: 200,
                   width: 200,
@@ -49,8 +50,8 @@ class NumeroSuerteScreen extends StatelessWidget {
                 const SizedBox(height: 50),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    foregroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 50,
                       vertical: 10,
@@ -90,10 +91,10 @@ class _LuckNumber extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       number,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 40,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
     ).animate().scale(
           begin: Offset.zero,
@@ -116,9 +117,10 @@ class BottomText extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.center,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
     );
   }

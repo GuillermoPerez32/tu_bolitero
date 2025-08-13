@@ -75,7 +75,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
                   .toList()[0];
               return [
                 Hero(
-                  tag: lottery.logo,
+                  tag: lottery.nombre,
                   child: CircleAvatar(
                     backgroundImage:
                         CachedNetworkImageProvider(host + lottery.logo),

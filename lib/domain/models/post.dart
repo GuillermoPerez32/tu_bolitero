@@ -86,7 +86,7 @@ class Post {
         commentsCount: commentsCount ?? this.commentsCount,
         comments: comments ?? this.comments,
         following: following ?? this.following,
-        horario: horario ?? this.horario,
-        guessedNumber: guessedNumber ?? this.guessedNumber,
+        horario: horario ?? horario,
+        guessedNumber: guessedNumber ?? guessedNumber,
       );
 }

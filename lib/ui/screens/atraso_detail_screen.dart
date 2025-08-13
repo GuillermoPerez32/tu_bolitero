@@ -41,7 +41,7 @@ class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
                     lotteries.firstWhere((e) => '${e.id}' == widget.lotteryId);
                 return [
                   Hero(
-                    tag: lottery.logo,
+                    tag: lottery.nombre,
                     child: CircleAvatar(
                       backgroundImage:
                           CachedNetworkImageProvider(host + lottery.logo),

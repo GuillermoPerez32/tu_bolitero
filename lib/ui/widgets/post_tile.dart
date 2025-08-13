@@ -15,8 +15,6 @@ class PostTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
 
-    print(post.lottery.logo);
-
     return BlocBuilder<PostCubit, PostState>(
       builder: (context, state) {
         final isFollowing =
@@ -136,7 +134,7 @@ class PostTile extends StatelessWidget {
                       Row(
                         children: [
                           Hero(
-                            tag: post.lottery.logo,
+                            tag: post.lottery.nombre,
                             child: CircleAvatar(
                               backgroundImage:
                                   CachedNetworkImageProvider(post.lottery.logo),

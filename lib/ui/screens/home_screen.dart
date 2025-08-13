@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 bottomNavigationBar: const BottomBar(index: 0),
                 body: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Column(
                     children: [
                       TextField(

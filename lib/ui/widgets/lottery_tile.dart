@@ -30,7 +30,7 @@ class LotteryTile extends StatelessWidget {
               child: Row(
                 children: [
                   Hero(
-                    tag: imageSrc,
+                    tag: title,
                     child: Container(
                       width: imageSize.toDouble(),
                       height: imageSize.toDouble(),
