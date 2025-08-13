@@ -170,16 +170,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               return Column(
                                 children: [
                                   postTile,
-                                  ResultCard(
-                                    results: [
-                                      lotteryState.lotteries
-                                          .firstWhere((element) =>
-                                              element.id ==
-                                              posts[index].lottery.id)
-                                          .ultima!
-                                    ],
-                                    lottery: posts[index].lottery,
-                                    showHeader: true,
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 40),
+                                    child: ResultCard(
+                                      results: [
+                                        lotteryState.lotteries
+                                            .firstWhere((element) =>
+                                                element.id ==
+                                                posts[index].lottery.id)
+                                            .ultima!
+                                      ],
+                                      lottery: posts[index].lottery,
+                                      showHeader: true,
+                                    ),
                                   )
                                 ],
                               );

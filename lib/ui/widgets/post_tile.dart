@@ -133,13 +133,11 @@ class PostTile extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Hero(
-                            tag: post.lottery.nombre,
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  CachedNetworkImageProvider(post.lottery.logo),
-                            ),
+                          CircleAvatar(
+                            backgroundImage:
+                                CachedNetworkImageProvider(post.lottery.logo),
                           ),
+                          const SizedBox(width: 10),
                           Text(post.lottery.nombre),
                         ],
                       ),

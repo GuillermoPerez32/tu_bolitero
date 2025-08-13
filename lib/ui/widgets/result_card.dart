@@ -32,12 +32,10 @@ class ResultCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   if (lottery.logo.isNotEmpty)
-                    CachedNetworkImage(
-                      imageUrl:
-                          !showHeader ? host + lottery.logo : lottery.logo,
-                      height: 20,
-                      width: 20,
-                      fit: BoxFit.cover,
+                    CircleAvatar(
+                      backgroundImage: CachedNetworkImageProvider(
+                        !showHeader ? host + lottery.logo : lottery.logo,
+                      ),
                     ),
                   const SizedBox(width: 10),
                   Text(
@@ -93,10 +91,11 @@ class ResultCard extends StatelessWidget {
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image(
-                              image: AssetImage(isDay
-                                  ? 'assets/sun.png'
-                                  : 'assets/moon.png')),
+                          Image.asset(
+                            isDay ? 'assets/sun.png' : 'assets/moon.png',
+                            height: 40,
+                            width: 40,
+                          ),
                           const SizedBox(width: 10),
                           PickSection(title: "Pick 3", value: result.pick3),
                           const SizedBox(width: 20),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
@@ -26,75 +27,104 @@ class PiramideScreen extends StatelessWidget {
           final lottery = state.lotteries
               .where((element) => '${element.id}' == lotteryId)
               .toList()[0];
-          final result = lottery.anteriores.first;
+          final results = lottery.anteriores;
 
-          final piramide = getPiramide(result);
-          final result1 = piramide[1][0] + piramide[2][0];
-          final result2 = piramide[1][0] + piramide[1][1];
-          final result3 = piramide[1][4] + piramide[1][5];
-          final result4 = piramide[5][0] + piramide[6][0];
-          final result5 = piramide[5][0] + piramide[5][1];
-          final result6 = piramide[6][0] + piramide[5][1];
+          final piramides =
+              results.map((result) => getPiramide(result)).toList();
 
           return Center(
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  color: Theme.of(context).colorScheme.surface,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Text(
-                    result.fecha.toString().split(' ')[0],
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
+            child: ListView.builder(
+              itemCount: piramides.length,
+              itemBuilder: (context, index) {
+                final result = results[index];
+                final piramide = piramides[index];
+                final result1 = piramide[1][0] + piramide[2][0];
+                final result2 = piramide[1][0] + piramide[1][1];
+                final result3 = piramide[1][4] + piramide[1][5];
+                final result4 = piramide[5][0] + piramide[6][0];
+                final result5 = piramide[5][0] + piramide[5][1];
+                final result6 = piramide[6][0] + piramide[5][1];
+
+                final isDay = result.fecha.hour > 6 && result.fecha.hour < 18;
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 60.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        color: Theme.of(context).colorScheme.surface,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat('dd-MM-yyyy').format(result.fecha),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Image.asset(
+                              isDay ? 'assets/sun.png' : 'assets/moon.png',
+                              height: 40,
+                              width: 40,
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _Piramide(piramide: piramide),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CombinationBall(
+                                number: result1,
+                                borderColor:
+                                    const Color.fromARGB(255, 103, 80, 164),
+                              ),
+                              const SizedBox(width: 10),
+                              CombinationBall(
+                                number: result2,
+                                borderColor:
+                                    const Color.fromARGB(230, 255, 198, 198),
+                              ),
+                              const SizedBox(width: 10),
+                              CombinationBall(
+                                number: result3,
+                                borderColor:
+                                    const Color.fromARGB(220, 255, 214, 0),
+                              ),
+                              const SizedBox(width: 10),
+                              CombinationBall(
+                                number: result4,
+                                borderColor:
+                                    const Color.fromARGB(255, 164, 239, 128),
+                              ),
+                              const SizedBox(width: 10),
+                              CombinationBall(
+                                number: result5,
+                                borderColor:
+                                    const Color.fromARGB(255, 84, 181, 222),
+                              ),
+                              const SizedBox(width: 10),
+                              CombinationBall(
+                                number: result6,
+                                borderColor:
+                                    const Color.fromARGB(255, 255, 0, 0),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 70),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _Piramide(piramide: piramide),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CombinationBall(
-                          number: result1,
-                          borderColor: const Color.fromARGB(255, 103, 80, 164),
-                        ),
-                        const SizedBox(width: 10),
-                        CombinationBall(
-                          number: result2,
-                          borderColor: const Color.fromARGB(230, 255, 198, 198),
-                        ),
-                        const SizedBox(width: 10),
-                        CombinationBall(
-                          number: result3,
-                          borderColor: const Color.fromARGB(220, 255, 214, 0),
-                        ),
-                        const SizedBox(width: 10),
-                        CombinationBall(
-                          number: result4,
-                          borderColor: const Color.fromARGB(255, 164, 239, 128),
-                        ),
-                        const SizedBox(width: 10),
-                        CombinationBall(
-                          number: result5,
-                          borderColor: const Color.fromARGB(255, 84, 181, 222),
-                        ),
-                        const SizedBox(width: 10),
-                        CombinationBall(
-                          number: result6,
-                          borderColor: const Color.fromARGB(255, 255, 0, 0),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
+                );
+              },
             ),
           );
         },
