@@ -21,6 +21,18 @@ class _NumeroSuerteScreenState extends State<NumeroSuerteScreen> {
       List.generate(100, (i) => (i % 10).toString());
 
   @override
+  void initState() {
+    super.initState();
+    // Position reels to current luck on first build (when returning to screen)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final state = context.read<LuckCubit>().state;
+      final luck =
+          (state.luck != null && state.luck!.length >= 3) ? state.luck! : '000';
+      _jumpTo(luck);
+    });
+  }
+
+  @override
   void dispose() {
     _controller1.dispose();
     _controller2.dispose();
@@ -55,6 +67,15 @@ class _NumeroSuerteScreenState extends State<NumeroSuerteScreen> {
     );
   }
 
+  void _jumpTo(String luck) {
+    final d1 = int.tryParse(luck[0]) ?? 0;
+    final d2 = int.tryParse(luck[1]) ?? 0;
+    final d3 = int.tryParse(luck[2]) ?? 0;
+    _controller1.jumpToItem(50 + d1);
+    _controller2.jumpToItem(50 + d2);
+    _controller3.jumpToItem(50 + d3);
+  }
+
   @override
   Widget build(BuildContext context) {
     final luckBloc = BlocProvider.of<LuckCubit>(context);
@@ -69,58 +90,140 @@ class _NumeroSuerteScreenState extends State<NumeroSuerteScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Machine frame
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 12,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.primary.withOpacity(0.25),
-                    width: 1.5,
-                  ),
-                ),
-                child: BlocConsumer<LuckCubit, LuckState>(
-                  listenWhen: (prev, curr) => prev.luck != curr.luck && curr.luck != null,
-                  listener: (context, state) {
-                    if (state.luck != null && state.luck!.length >= 3) {
-                      _spinTo(state.luck!);
-                    }
-                  },
-                  builder: (context, state) {
-                    final textColor = Theme.of(context).colorScheme.onSurface;
-
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _SlotReel(
-                          controller: _controller1,
-                          digits: _reelDigits,
-                          textColor: textColor,
-                        ),
-                        const SizedBox(width: 12),
-                        _SlotReel(
-                          controller: _controller2,
-                          digits: _reelDigits,
-                          textColor: textColor,
-                        ),
-                        const SizedBox(width: 12),
-                        _SlotReel(
-                          controller: _controller3,
-                          digits: _reelDigits,
-                          textColor: textColor,
+              // Machine frame with marquee lights and lever
+              Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 12),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Theme.of(context).colorScheme.surface,
+                          Theme.of(context)
+                              .colorScheme
+                              .surface
+                              .withValues(alpha: 0.85),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.25),
+                          blurRadius: 16,
+                          offset: const Offset(0, 8),
                         ),
                       ],
-                    );
-                  },
-                ),
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withValues(alpha: 0.3),
+                        width: 2,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const _MarqueeLights(),
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withValues(alpha: 0.04),
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withValues(alpha: 0.08),
+                              width: 1,
+                            ),
+                          ),
+                          child: BlocConsumer<LuckCubit, LuckState>(
+                            listener: (context, state) {
+                              if (state.luck != null &&
+                                  state.luck!.length >= 3) {
+                                _spinTo(state.luck!);
+                              }
+                            },
+                            builder: (context, state) {
+                              final textColor =
+                                  Theme.of(context).colorScheme.onSurface;
+
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _SlotReel(
+                                    controller: _controller1,
+                                    digits: _reelDigits,
+                                    textColor: textColor,
+                                  ),
+                                  const SizedBox(width: 12),
+                                  _SlotReel(
+                                    controller: _controller2,
+                                    digits: _reelDigits,
+                                    textColor: textColor,
+                                  ),
+                                  const SizedBox(width: 12),
+                                  _SlotReel(
+                                    controller: _controller3,
+                                    digits: _reelDigits,
+                                    textColor: textColor,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const _MarqueeLights(),
+                      ],
+                    ),
+                  ),
+                  // Decorative lever on the right
+                  Positioned(
+                    right: 0,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Container(
+                          width: 26,
+                          height: 26,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            shape: BoxShape.circle,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 6,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 50),
               ElevatedButton(
@@ -134,11 +237,19 @@ class _NumeroSuerteScreenState extends State<NumeroSuerteScreen> {
                   textStyle: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Merienda',
                   ),
                 ),
                 onPressed: () {
+                  // Always trigger a spin, even if the luck repeats
+                  final previous =
+                      context.read<LuckCubit>().state.luck ?? '000';
                   luckBloc.buildLuck();
+                  // In case state doesn't change (same number), spin anyway
+                  Future.delayed(const Duration(milliseconds: 50), () {
+                    final target =
+                        context.read<LuckCubit>().state.luck ?? previous;
+                    _spinTo(target);
+                  });
                 },
                 child: const Text('Obtener'),
               ),
@@ -157,6 +268,41 @@ class _NumeroSuerteScreenState extends State<NumeroSuerteScreen> {
   }
 }
 
+class _MarqueeLights extends StatelessWidget {
+  const _MarqueeLights();
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(12, (i) {
+        final isPrimary = i % 2 == 0;
+        return Container(
+          width: 10,
+          height: 10,
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color:
+                isPrimary ? cs.tertiary : cs.onTertiary.withValues(alpha: 0.6),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSecondary
+                    .withValues(alpha: 0.6),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+        );
+      }),
+    );
+  }
+}
+
 class _SlotReel extends StatelessWidget {
   const _SlotReel({
     required this.controller,
@@ -170,20 +316,28 @@ class _SlotReel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const itemExtent = 48.0;
+    const itemExtent = 54.0;
     return Container(
-      width: 64,
+      width: 70,
       height: itemExtent * 3, // shows 3 items tall
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).colorScheme.surface,
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+            Theme.of(context).colorScheme.surface,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         border: Border.all(
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+          color:
+              Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -204,9 +358,15 @@ class _SlotReel extends StatelessWidget {
                   child: Text(
                     value,
                     style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 34,
+                      fontWeight: FontWeight.w800,
                       color: textColor,
+                      shadows: const [
+                        Shadow(
+                            color: Colors.black26,
+                            blurRadius: 2,
+                            offset: Offset(0, 1)),
+                      ],
                     ),
                   ),
                 );
@@ -225,14 +385,14 @@ class _SlotReel extends StatelessWidget {
                     color: Theme.of(context)
                         .colorScheme
                         .primary
-                        .withOpacity(0.35),
+                        .withValues(alpha: 0.35),
                     width: 1.2,
                   ),
                   bottom: BorderSide(
                     color: Theme.of(context)
                         .colorScheme
                         .primary
-                        .withOpacity(0.35),
+                        .withValues(alpha: 0.35),
                     width: 1.2,
                   ),
                 ),
@@ -259,8 +419,8 @@ class BottomText extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
         color: Theme.of(context).colorScheme.onSurface,
       ),
     );
