@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:tu_bolitero/core/constants.dart';
 import 'package:tu_bolitero/domain/models/lottery.dart';
+import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 
 class ResultCard extends StatelessWidget {
   final Lottery lottery;
@@ -19,6 +22,7 @@ class ResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lotteryCubit = context.read<LotteryCubit>();
     return Card(
       margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -88,19 +92,103 @@ class ResultCard extends StatelessWidget {
                       final isDay =
                           result.fecha.hour > 6 && result.fecha.hour < 18;
 
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            isDay ? 'assets/sun.png' : 'assets/moon.png',
-                            height: 40,
-                            width: 40,
-                          ),
-                          const SizedBox(width: 10),
-                          PickSection(title: "Pick 3", value: result.pick3),
-                          const SizedBox(width: 20),
-                          PickSection(title: "Pick 4", value: result.pick4),
-                        ],
+                      return BlocBuilder<LotteryCubit, LotteryState>(
+                        builder: (context, lState) {
+                          final updatedLottery = lState.maybeWhen(
+                            loaded: (lotteries, comments) {
+                              final matches =
+                                  lotteries.where((e) => e.id == lottery.id);
+                              return matches.isNotEmpty ? matches.first : null;
+                            },
+                            orElse: () => null,
+                          );
+                          LotteryResult displayResult = result;
+                          if (updatedLottery != null) {
+                            final fromState = updatedLottery.anteriores
+                                .where((r) => r.id == result.id)
+                                .toList();
+                            if (fromState.isNotEmpty) {
+                              displayResult = fromState.first;
+                            }
+                          }
+
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                isDay ? 'assets/sun.png' : 'assets/moon.png',
+                                height: 40,
+                                width: 40,
+                              ),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      PickSection(
+                                          title: "Pick 3",
+                                          value: displayResult.pick3),
+                                      const SizedBox(width: 20),
+                                      PickSection(
+                                          title: "Pick 4",
+                                          value: displayResult.pick4),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      TextButton.icon(
+                                        onPressed: () {
+                                          lotteryCubit.likeResult(
+                                              displayResult.id, lottery.id);
+                                        },
+                                        icon: Icon(
+                                          Icons.favorite_outline_rounded,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurfaceVariant,
+                                        ),
+                                        label: Text(
+                                          '${displayResult.likesCount}',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurfaceVariant,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                      TextButton.icon(
+                                        onPressed: () {
+                                          lotteryCubit.loadResultComments(
+                                              displayResult.id);
+                                          context.go(
+                                              '/results/${displayResult.id}/comments/${lottery.id}');
+                                        },
+                                        icon: Icon(
+                                          Icons.chat_outlined,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurfaceVariant,
+                                        ),
+                                        label: Text(
+                                          '${displayResult.commentsCount}',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurfaceVariant,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
                       );
                     }).toList(),
                   ),

@@ -17,28 +17,54 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LotteryState {
   List<Lottery> get lotteries => throw _privateConstructorUsedError;
+  Map<String, List<ResultComment>> get comments =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Lottery> lotteries) initial,
-    required TResult Function(List<Lottery> lotteries) loading,
-    required TResult Function(List<Lottery> lotteries) loaded,
-    required TResult Function(List<Lottery> lotteries, String reason) error,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        initial,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loading,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loaded,
+    required TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Lottery> lotteries)? initial,
-    TResult? Function(List<Lottery> lotteries)? loading,
-    TResult? Function(List<Lottery> lotteries)? loaded,
-    TResult? Function(List<Lottery> lotteries, String reason)? error,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult? Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Lottery> lotteries)? initial,
-    TResult Function(List<Lottery> lotteries)? loading,
-    TResult Function(List<Lottery> lotteries)? loaded,
-    TResult Function(List<Lottery> lotteries, String reason)? error,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,7 +107,8 @@ abstract class $LotteryStateCopyWith<$Res> {
           LotteryState value, $Res Function(LotteryState) then) =
       _$LotteryStateCopyWithImpl<$Res, LotteryState>;
   @useResult
-  $Res call({List<Lottery> lotteries});
+  $Res call(
+      {List<Lottery> lotteries, Map<String, List<ResultComment>> comments});
 }
 
 /// @nodoc
@@ -100,12 +127,17 @@ class _$LotteryStateCopyWithImpl<$Res, $Val extends LotteryState>
   @override
   $Res call({
     Object? lotteries = null,
+    Object? comments = null,
   }) {
     return _then(_value.copyWith(
       lotteries: null == lotteries
           ? _value.lotteries
           : lotteries // ignore: cast_nullable_to_non_nullable
               as List<Lottery>,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<ResultComment>>,
     ) as $Val);
   }
 }
@@ -118,7 +150,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Lottery> lotteries});
+  $Res call(
+      {List<Lottery> lotteries, Map<String, List<ResultComment>> comments});
 }
 
 /// @nodoc
@@ -135,12 +168,17 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lotteries = null,
+    Object? comments = null,
   }) {
     return _then(_$InitialImpl(
       null == lotteries
           ? _value._lotteries
           : lotteries // ignore: cast_nullable_to_non_nullable
               as List<Lottery>,
+      null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<ResultComment>>,
     ));
   }
 }
@@ -148,7 +186,10 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl(final List<Lottery> lotteries) : _lotteries = lotteries;
+  const _$InitialImpl(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments)
+      : _lotteries = lotteries,
+        _comments = comments;
 
   final List<Lottery> _lotteries;
   @override
@@ -158,9 +199,17 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_lotteries);
   }
 
+  final Map<String, List<ResultComment>> _comments;
+  @override
+  Map<String, List<ResultComment>> get comments {
+    if (_comments is EqualUnmodifiableMapView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_comments);
+  }
+
   @override
   String toString() {
-    return 'LotteryState.initial(lotteries: $lotteries)';
+    return 'LotteryState.initial(lotteries: $lotteries, comments: $comments)';
   }
 
   @override
@@ -169,12 +218,15 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             const DeepCollectionEquality()
-                .equals(other._lotteries, _lotteries));
+                .equals(other._lotteries, _lotteries) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_lotteries),
+      const DeepCollectionEquality().hash(_comments));
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -187,36 +239,60 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Lottery> lotteries) initial,
-    required TResult Function(List<Lottery> lotteries) loading,
-    required TResult Function(List<Lottery> lotteries) loaded,
-    required TResult Function(List<Lottery> lotteries, String reason) error,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        initial,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loading,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loaded,
+    required TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)
+        error,
   }) {
-    return initial(lotteries);
+    return initial(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Lottery> lotteries)? initial,
-    TResult? Function(List<Lottery> lotteries)? loading,
-    TResult? Function(List<Lottery> lotteries)? loaded,
-    TResult? Function(List<Lottery> lotteries, String reason)? error,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult? Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
   }) {
-    return initial?.call(lotteries);
+    return initial?.call(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Lottery> lotteries)? initial,
-    TResult Function(List<Lottery> lotteries)? loading,
-    TResult Function(List<Lottery> lotteries)? loaded,
-    TResult Function(List<Lottery> lotteries, String reason)? error,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(lotteries);
+      return initial(lotteries, comments);
     }
     return orElse();
   }
@@ -260,10 +336,13 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements LotteryState {
-  const factory _Initial(final List<Lottery> lotteries) = _$InitialImpl;
+  const factory _Initial(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments) = _$InitialImpl;
 
   @override
   List<Lottery> get lotteries;
+  @override
+  Map<String, List<ResultComment>> get comments;
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -281,7 +360,8 @@ abstract class _$$LoadingImplCopyWith<$Res>
       __$$LoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Lottery> lotteries});
+  $Res call(
+      {List<Lottery> lotteries, Map<String, List<ResultComment>> comments});
 }
 
 /// @nodoc
@@ -298,12 +378,17 @@ class __$$LoadingImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lotteries = null,
+    Object? comments = null,
   }) {
     return _then(_$LoadingImpl(
       null == lotteries
           ? _value._lotteries
           : lotteries // ignore: cast_nullable_to_non_nullable
               as List<Lottery>,
+      null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<ResultComment>>,
     ));
   }
 }
@@ -311,7 +396,10 @@ class __$$LoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl(final List<Lottery> lotteries) : _lotteries = lotteries;
+  const _$LoadingImpl(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments)
+      : _lotteries = lotteries,
+        _comments = comments;
 
   final List<Lottery> _lotteries;
   @override
@@ -321,9 +409,17 @@ class _$LoadingImpl implements _Loading {
     return EqualUnmodifiableListView(_lotteries);
   }
 
+  final Map<String, List<ResultComment>> _comments;
+  @override
+  Map<String, List<ResultComment>> get comments {
+    if (_comments is EqualUnmodifiableMapView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_comments);
+  }
+
   @override
   String toString() {
-    return 'LotteryState.loading(lotteries: $lotteries)';
+    return 'LotteryState.loading(lotteries: $lotteries, comments: $comments)';
   }
 
   @override
@@ -332,12 +428,15 @@ class _$LoadingImpl implements _Loading {
         (other.runtimeType == runtimeType &&
             other is _$LoadingImpl &&
             const DeepCollectionEquality()
-                .equals(other._lotteries, _lotteries));
+                .equals(other._lotteries, _lotteries) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_lotteries),
+      const DeepCollectionEquality().hash(_comments));
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -350,36 +449,60 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Lottery> lotteries) initial,
-    required TResult Function(List<Lottery> lotteries) loading,
-    required TResult Function(List<Lottery> lotteries) loaded,
-    required TResult Function(List<Lottery> lotteries, String reason) error,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        initial,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loading,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loaded,
+    required TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)
+        error,
   }) {
-    return loading(lotteries);
+    return loading(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Lottery> lotteries)? initial,
-    TResult? Function(List<Lottery> lotteries)? loading,
-    TResult? Function(List<Lottery> lotteries)? loaded,
-    TResult? Function(List<Lottery> lotteries, String reason)? error,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult? Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
   }) {
-    return loading?.call(lotteries);
+    return loading?.call(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Lottery> lotteries)? initial,
-    TResult Function(List<Lottery> lotteries)? loading,
-    TResult Function(List<Lottery> lotteries)? loaded,
-    TResult Function(List<Lottery> lotteries, String reason)? error,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(lotteries);
+      return loading(lotteries, comments);
     }
     return orElse();
   }
@@ -423,10 +546,13 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements LotteryState {
-  const factory _Loading(final List<Lottery> lotteries) = _$LoadingImpl;
+  const factory _Loading(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments) = _$LoadingImpl;
 
   @override
   List<Lottery> get lotteries;
+  @override
+  Map<String, List<ResultComment>> get comments;
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -444,7 +570,8 @@ abstract class _$$LoadedImplCopyWith<$Res>
       __$$LoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Lottery> lotteries});
+  $Res call(
+      {List<Lottery> lotteries, Map<String, List<ResultComment>> comments});
 }
 
 /// @nodoc
@@ -461,12 +588,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lotteries = null,
+    Object? comments = null,
   }) {
     return _then(_$LoadedImpl(
       null == lotteries
           ? _value._lotteries
           : lotteries // ignore: cast_nullable_to_non_nullable
               as List<Lottery>,
+      null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<ResultComment>>,
     ));
   }
 }
@@ -474,7 +606,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<Lottery> lotteries) : _lotteries = lotteries;
+  const _$LoadedImpl(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments)
+      : _lotteries = lotteries,
+        _comments = comments;
 
   final List<Lottery> _lotteries;
   @override
@@ -484,9 +619,17 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_lotteries);
   }
 
+  final Map<String, List<ResultComment>> _comments;
+  @override
+  Map<String, List<ResultComment>> get comments {
+    if (_comments is EqualUnmodifiableMapView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_comments);
+  }
+
   @override
   String toString() {
-    return 'LotteryState.loaded(lotteries: $lotteries)';
+    return 'LotteryState.loaded(lotteries: $lotteries, comments: $comments)';
   }
 
   @override
@@ -495,12 +638,15 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._lotteries, _lotteries));
+                .equals(other._lotteries, _lotteries) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_lotteries));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_lotteries),
+      const DeepCollectionEquality().hash(_comments));
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -513,36 +659,60 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Lottery> lotteries) initial,
-    required TResult Function(List<Lottery> lotteries) loading,
-    required TResult Function(List<Lottery> lotteries) loaded,
-    required TResult Function(List<Lottery> lotteries, String reason) error,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        initial,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loading,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loaded,
+    required TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)
+        error,
   }) {
-    return loaded(lotteries);
+    return loaded(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Lottery> lotteries)? initial,
-    TResult? Function(List<Lottery> lotteries)? loading,
-    TResult? Function(List<Lottery> lotteries)? loaded,
-    TResult? Function(List<Lottery> lotteries, String reason)? error,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult? Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
   }) {
-    return loaded?.call(lotteries);
+    return loaded?.call(lotteries, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Lottery> lotteries)? initial,
-    TResult Function(List<Lottery> lotteries)? loading,
-    TResult Function(List<Lottery> lotteries)? loaded,
-    TResult Function(List<Lottery> lotteries, String reason)? error,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(lotteries);
+      return loaded(lotteries, comments);
     }
     return orElse();
   }
@@ -586,10 +756,13 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements LotteryState {
-  const factory _Loaded(final List<Lottery> lotteries) = _$LoadedImpl;
+  const factory _Loaded(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments) = _$LoadedImpl;
 
   @override
   List<Lottery> get lotteries;
+  @override
+  Map<String, List<ResultComment>> get comments;
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -607,7 +780,10 @@ abstract class _$$ErrorImplCopyWith<$Res>
       __$$ErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Lottery> lotteries, String reason});
+  $Res call(
+      {List<Lottery> lotteries,
+      Map<String, List<ResultComment>> comments,
+      String reason});
 }
 
 /// @nodoc
@@ -624,6 +800,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lotteries = null,
+    Object? comments = null,
     Object? reason = null,
   }) {
     return _then(_$ErrorImpl(
@@ -631,6 +808,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
           ? _value._lotteries
           : lotteries // ignore: cast_nullable_to_non_nullable
               as List<Lottery>,
+      null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<ResultComment>>,
       null == reason
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
@@ -642,8 +823,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(final List<Lottery> lotteries, this.reason)
-      : _lotteries = lotteries;
+  const _$ErrorImpl(final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments, this.reason)
+      : _lotteries = lotteries,
+        _comments = comments;
 
   final List<Lottery> _lotteries;
   @override
@@ -653,12 +836,20 @@ class _$ErrorImpl implements _Error {
     return EqualUnmodifiableListView(_lotteries);
   }
 
+  final Map<String, List<ResultComment>> _comments;
+  @override
+  Map<String, List<ResultComment>> get comments {
+    if (_comments is EqualUnmodifiableMapView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_comments);
+  }
+
   @override
   final String reason;
 
   @override
   String toString() {
-    return 'LotteryState.error(lotteries: $lotteries, reason: $reason)';
+    return 'LotteryState.error(lotteries: $lotteries, comments: $comments, reason: $reason)';
   }
 
   @override
@@ -668,12 +859,16 @@ class _$ErrorImpl implements _Error {
             other is _$ErrorImpl &&
             const DeepCollectionEquality()
                 .equals(other._lotteries, _lotteries) &&
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
             (identical(other.reason, reason) || other.reason == reason));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_lotteries), reason);
+      runtimeType,
+      const DeepCollectionEquality().hash(_lotteries),
+      const DeepCollectionEquality().hash(_comments),
+      reason);
 
   /// Create a copy of LotteryState
   /// with the given fields replaced by the non-null parameter values.
@@ -686,36 +881,60 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Lottery> lotteries) initial,
-    required TResult Function(List<Lottery> lotteries) loading,
-    required TResult Function(List<Lottery> lotteries) loaded,
-    required TResult Function(List<Lottery> lotteries, String reason) error,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        initial,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loading,
+    required TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)
+        loaded,
+    required TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)
+        error,
   }) {
-    return error(lotteries, reason);
+    return error(lotteries, comments, reason);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Lottery> lotteries)? initial,
-    TResult? Function(List<Lottery> lotteries)? loading,
-    TResult? Function(List<Lottery> lotteries)? loaded,
-    TResult? Function(List<Lottery> lotteries, String reason)? error,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult? Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult? Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
   }) {
-    return error?.call(lotteries, reason);
+    return error?.call(lotteries, comments, reason);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Lottery> lotteries)? initial,
-    TResult Function(List<Lottery> lotteries)? loading,
-    TResult Function(List<Lottery> lotteries)? loaded,
-    TResult Function(List<Lottery> lotteries, String reason)? error,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        initial,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loading,
+    TResult Function(
+            List<Lottery> lotteries, Map<String, List<ResultComment>> comments)?
+        loaded,
+    TResult Function(List<Lottery> lotteries,
+            Map<String, List<ResultComment>> comments, String reason)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(lotteries, reason);
+      return error(lotteries, comments, reason);
     }
     return orElse();
   }
@@ -759,11 +978,15 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements LotteryState {
-  const factory _Error(final List<Lottery> lotteries, final String reason) =
-      _$ErrorImpl;
+  const factory _Error(
+      final List<Lottery> lotteries,
+      final Map<String, List<ResultComment>> comments,
+      final String reason) = _$ErrorImpl;
 
   @override
   List<Lottery> get lotteries;
+  @override
+  Map<String, List<ResultComment>> get comments;
   String get reason;
 
   /// Create a copy of LotteryState

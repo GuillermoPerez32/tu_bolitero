@@ -207,10 +207,10 @@ class _NumberChipInputState extends State<NumberChipInput> {
                 return TextField(
                   readOnly: true,
                   onTap: () => _pickDate(context),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Fecha',
                     hintText: 'Seleccionar fecha',
-                    suffixIcon: const Icon(Icons.calendar_today_rounded),
+                    suffixIcon: Icon(Icons.calendar_today_rounded),
                   ),
                   controller: TextEditingController(text: dateText),
                 );

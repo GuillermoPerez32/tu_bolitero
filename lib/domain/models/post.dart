@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:tu_bolitero/domain/models/lottery.dart';
 import 'package:tu_bolitero/domain/models/post_comment.dart';
+import 'package:tu_bolitero/domain/models/user.dart';
 
 Post postFromJson(String str) => Post.fromJson(json.decode(str));
 

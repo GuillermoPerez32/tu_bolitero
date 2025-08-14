@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 listener: (context, state) {
                   state.maybeWhen(
                     orElse: () {},
-                    error: (_, reason) {
+                    error: (_, comments, reason) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(reason)),
                       );

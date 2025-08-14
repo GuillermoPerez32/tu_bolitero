@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/ui/screens/result_comments_screen.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
 final GoRouter router = GoRouter(
@@ -34,6 +35,13 @@ final GoRouter router = GoRouter(
           path: 'posts/:id/comments',
           builder: (context, state) => CommentsScreen(
             postId: state.pathParameters['id']!,
+          ),
+        ),
+        GoRoute(
+          path: 'results/:resultId/comments/:lotteryId',
+          builder: (context, state) => ResultCommentsScreen(
+            resultId: state.pathParameters['resultId']!,
+            lotteryId: state.pathParameters['lotteryId']!,
           ),
         ),
         GoRoute(

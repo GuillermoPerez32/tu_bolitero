@@ -69,7 +69,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
         appBar: BoliteroAppBar(
           actions: state.maybeWhen(
             orElse: () => [],
-            loaded: (lotteries) {
+            loaded: (lotteries, comments) {
               final lottery = lotteries
                   .where((element) => '${element.id}' == widget.lotteryId)
                   .toList()[0];
@@ -86,7 +86,7 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
           ),
           title: state.maybeWhen(
             orElse: () => Container(),
-            loaded: (lotteries) {
+            loaded: (lotteries, comments) {
               final lotteryName = lotteries
                   .firstWhere((element) => '${element.id}' == widget.lotteryId)
                   .nombre;
@@ -95,10 +95,10 @@ class _ResultDetailScreenState extends State<ResultDetailScreen> {
           ),
         ),
         body: state.maybeWhen(
-          error: (_, reason) => Center(
+          error: (_, comments, reason) => Center(
             child: Text('Error: $reason'),
           ),
-          loading: (_) => const Center(
+          loading: (_, comments) => const Center(
             child: CircularProgressIndicator(),
           ),
           orElse: () {

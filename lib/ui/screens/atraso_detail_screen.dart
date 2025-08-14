@@ -27,7 +27,7 @@ class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
           appBar: BoliteroAppBar(
             title: state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loaded: (lotteries) {
+              loaded: (lotteries, comments) {
                 final lotteryName = lotteries
                     .firstWhere((e) => '${e.id}' == widget.lotteryId)
                     .nombre;
@@ -36,7 +36,7 @@ class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
             ),
             actions: state.maybeWhen(
               orElse: () => [],
-              loaded: (lotteries) {
+              loaded: (lotteries, comments) {
                 final lottery =
                     lotteries.firstWhere((e) => '${e.id}' == widget.lotteryId);
                 return [
@@ -52,10 +52,11 @@ class _AtrasoDetailScreenState extends State<AtrasoDetailScreen> {
             ),
           ),
           body: state.maybeWhen(
-            loading: (_) => const Center(child: CircularProgressIndicator()),
-            error: (_, reason) => Center(
+            loading: (_, comments) =>
+                const Center(child: CircularProgressIndicator()),
+            error: (_, comments, reason) => Center(
                 child: Text('Error: $reason', textAlign: TextAlign.center)),
-            loaded: (lotteries) {
+            loaded: (lotteries, comments) {
               final lottery =
                   lotteries.firstWhere((e) => '${e.id}' == widget.lotteryId);
               final atrasados = lottery.atrasados;
