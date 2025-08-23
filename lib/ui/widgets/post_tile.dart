@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:tu_bolitero/domain/models/post.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
+import 'package:tu_bolitero/ui/logic/public_profiles/public_profiles_cubit.dart';
 
 class PostTile extends StatelessWidget {
   const PostTile({super.key, required this.post});
@@ -14,6 +15,7 @@ class PostTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postCubit = BlocProvider.of<PostCubit>(context);
+    final publicProfilesCubit = BlocProvider.of<PublicProfilesCubit>(context);
 
     return BlocBuilder<PostCubit, PostState>(
       builder: (context, state) {
@@ -27,12 +29,24 @@ class PostTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 (post.user.photo != null && post.user.photo!.isNotEmpty)
-                    ? CircleAvatar(
-                        backgroundImage:
-                            CachedNetworkImageProvider(post.user.photo!),
+                    ? InkWell(
+                        onTap: () {
+                          publicProfilesCubit.getPublicProfile(post.user.id);
+                          context.go('/public_profile/${post.user.id}');
+                        },
+                        child: CircleAvatar(
+                          backgroundImage:
+                              CachedNetworkImageProvider(post.user.photo!),
+                        ),
                       )
-                    : const CircleAvatar(
-                        child: Icon(Icons.person_rounded),
+                    : InkWell(
+                        onTap: () {
+                          publicProfilesCubit.getPublicProfile(post.user.id);
+                          context.go('/public_profile/${post.user.id}');
+                        },
+                        child: const CircleAvatar(
+                          child: Icon(Icons.person_rounded),
+                        ),
                       ),
                 const SizedBox(width: 10),
                 Center(

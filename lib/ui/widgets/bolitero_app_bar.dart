@@ -27,7 +27,12 @@ class BoliteroAppBar extends StatelessWidget implements PreferredSizeWidget {
                           horizontal: 10, vertical: 10),
                       child: GestureDetector(
                         onTap: () {
-                          context.replace('/profile');
+                          if (userData.esPronosticador ||
+                              userData.isSuperuser) {
+                            context.go('/public_profile/${userData.id}');
+                          } else {
+                            context.replace('/profile');
+                          }
                         },
                         child: CircleAvatar(
                           backgroundImage: userData.photo != ''

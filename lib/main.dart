@@ -8,6 +8,7 @@ import 'package:tu_bolitero/ui/logic/charada_clasica/charada_clasica_cubit.dart'
 import 'package:tu_bolitero/ui/logic/lottery/lottery_cubit.dart';
 import 'package:tu_bolitero/ui/logic/luck/luck_cubit.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
+import 'package:tu_bolitero/ui/logic/public_profiles/public_profiles_cubit.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,9 @@ void main() {
         ),
         BlocProvider(
           create: (context) => AuthCubit()..loadLocalUser(),
+        ),
+        BlocProvider(
+          create: (context) => PublicProfilesCubit(),
         ),
       ],
       child: const MyApp(),

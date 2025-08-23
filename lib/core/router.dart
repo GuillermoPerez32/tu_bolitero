@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/ui/screens/public_profile_screen.dart';
 import 'package:tu_bolitero/ui/screens/result_comments_screen.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
 
@@ -152,6 +153,10 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'profile',
           builder: (context, state) => const ProfileScreen(),
+        ),
+        GoRoute(
+          path: 'public_profile/:userId',
+          builder: (context, state) => const PublicProfileScreen(),
         ),
       ],
     ),
