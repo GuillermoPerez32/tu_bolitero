@@ -1,98 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tu_bolitero/core/humanize.dart';
+import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
+import 'package:tu_bolitero/ui/logic/public_profiles/public_profiles_cubit.dart';
 
 class PublicProfileScreen extends StatelessWidget {
   const PublicProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'username',
-          style: TextStyle(fontSize: 20),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add_box_outlined),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return <Widget>[
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      children: <Widget>[
-                        const CircleAvatar(
-                          radius: 40,
-                          backgroundImage:
-                              NetworkImage('https://via.placeholder.com/150'),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              _buildStatColumn('Posts', '20'),
-                              _buildStatColumn('Followers', '1.2M'),
-                              _buildStatColumn('Following', '289'),
-                            ],
-                          ),
-                        ),
-                      ],
+    return BlocBuilder<PostCubit, PostState>(
+      builder: (context, postState) {
+        return BlocBuilder<PublicProfilesCubit, PublicProfilesState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+                loaded: (profile) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: Text(
+                        profile.username!,
+                        style: const TextStyle(fontSize: 20),
+                      ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Full Name',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 4.0),
-                          child: Text(
-                            'This is the bio section where the user can write something about themselves.',
+                    body: NestedScrollView(
+                      headerSliverBuilder: (context, innerBoxIsScrolled) {
+                        return <Widget>[
+                          SliverToBoxAdapter(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            NetworkImage(profile.photo!),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            _buildStatColumn(
+                                              'Publicaciones',
+                                              formatter.format(profile
+                                                      .posts!.length +
+                                                  profile.profilePosts!.length),
+                                            ),
+                                            _buildStatColumn(
+                                              'Seguidores',
+                                              formatter.format(
+                                                  profile.followersCount!),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      if (profile.firstName != null ||
+                                          profile.lastName != null)
+                                        Text(
+                                          profile.firstName!,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      if (profile.info != null)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 4.0),
+                                          child: Text(
+                                            profile.info!,
+                                            maxLines: 5,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ];
+                      },
+                      body: const Center(child: Text('Publicaciones')),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () => {},
-                            child: const Text('Follow'),
-                          ),
-                        )
-                      ],
+                    floatingActionButton: FloatingActionButton(
+                      onPressed: () {},
+                      child: const Icon(Icons.add),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ];
-        },
-        body: Container(
-          color: Colors.white,
-          child: const Center(child: Text('Posts')),
-        ),
-      ),
+                  );
+                },
+                orElse: () => const Center(child: CircularProgressIndicator()));
+          },
+        );
+      },
     );
   }
 

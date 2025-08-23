@@ -14,10 +14,14 @@ class PublicProfile {
   final String? username;
   final String? email;
   final String? photo;
+  final String? firstName;
+  final String? lastName;
   final String? info;
   final int? followersCount;
   final List<Post>? posts;
   final List<ProfilePost>? profilePosts;
+
+  String get fullName => '${firstName ?? ''} ${lastName ?? ''}'.trim();
 
   PublicProfile({
     this.id,
@@ -28,6 +32,8 @@ class PublicProfile {
     this.followersCount,
     this.posts,
     this.profilePosts,
+    this.firstName,
+    this.lastName,
   });
 
   PublicProfile copyWith({
@@ -39,6 +45,8 @@ class PublicProfile {
     int? followersCount,
     List<Post>? posts,
     List<ProfilePost>? profilePosts,
+    String? firstName,
+    String? lastName,
   }) =>
       PublicProfile(
         id: id ?? this.id,
@@ -49,6 +57,8 @@ class PublicProfile {
         followersCount: followersCount ?? this.followersCount,
         posts: posts ?? this.posts,
         profilePosts: profilePosts ?? this.profilePosts,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
       );
 
   factory PublicProfile.fromJson(Map<String, dynamic> json) => PublicProfile(
@@ -65,6 +75,8 @@ class PublicProfile {
             ? []
             : List<ProfilePost>.from(
                 json["profile_posts"]!.map((x) => ProfilePost.fromJson(x))),
+        firstName: json["first_name"],
+        lastName: json["last_name"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -80,6 +92,8 @@ class PublicProfile {
         "profile_posts": profilePosts == null
             ? []
             : List<dynamic>.from(profilePosts!.map((x) => x.toJson())),
+        "first_name": firstName,
+        "last_name": lastName,
       };
 }
 
