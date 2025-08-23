@@ -86,6 +86,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> updateProfile({
     String? username,
     String? email,
+    String? info,
+    String? firstName,
+    String? lastName,
     File? photo,
   }) async {
     final currentState = state;
@@ -97,6 +100,9 @@ class AuthCubit extends Cubit<AuthState> {
         username: username,
         email: email,
         photo: photo,
+        info: info,
+        firstName: firstName,
+        lastName: lastName,
       );
 
       final prefs = await SharedPreferences.getInstance();

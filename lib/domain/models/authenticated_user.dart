@@ -50,6 +50,7 @@ class User {
   final bool isSuperuser;
   final String? photo;
   final List<dynamic> followers;
+  final String? info;
 
   User({
     required this.id,
@@ -61,6 +62,7 @@ class User {
     required this.isSuperuser,
     required this.photo,
     required this.followers,
+    required this.info,
   });
 
   User copyWith({
@@ -73,6 +75,7 @@ class User {
     bool? isSuperuser,
     String? photo,
     List<dynamic>? followers,
+    String? info,
   }) =>
       User(
         id: id ?? this.id,
@@ -84,6 +87,7 @@ class User {
         isSuperuser: isSuperuser ?? this.isSuperuser,
         photo: photo ?? this.photo,
         followers: followers ?? this.followers,
+        info: info ?? this.info,
       );
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -96,6 +100,7 @@ class User {
         isSuperuser: json["is_superuser"],
         photo: json["photo"] ?? '',
         followers: List<dynamic>.from(json["followers"].map((x) => x)),
+        info: json["info"] ?? '',
       );
 
   factory User.fromAuhtenticatedUser(AuhtenticatedUser auhtenticatedUser) =>
@@ -109,6 +114,7 @@ class User {
         isSuperuser: auhtenticatedUser.user.isSuperuser,
         photo: auhtenticatedUser.user.photo,
         followers: auhtenticatedUser.user.followers,
+        info: auhtenticatedUser.user.info,
       );
 
   Map<String, dynamic> toJson() => {
@@ -121,5 +127,6 @@ class User {
         "is_superuser": isSuperuser,
         "photo": photo,
         "followers": List<dynamic>.from(followers.map((x) => x)),
+        "info": info,
       };
 }

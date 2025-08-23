@@ -55,6 +55,9 @@ class AuthDatasource {
     String? username,
     String? email,
     File? photo,
+    String? info,
+    String? firstName,
+    String? lastName,
   }) async {
     try {
       final formData = FormData.fromMap({
@@ -65,6 +68,9 @@ class AuthDatasource {
             photo.path,
             filename: photo.absolute.path.split('/').last,
           ),
+        if (info != null) 'info': info,
+        if (firstName != null) 'first_name': firstName,
+        if (lastName != null) 'last_name': lastName,
       });
 
       final response = await _client.patch(

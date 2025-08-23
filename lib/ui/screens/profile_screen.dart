@@ -18,6 +18,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _username = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  final TextEditingController _firstName = TextEditingController();
+  final TextEditingController _lastName = TextEditingController();
+  final TextEditingController _info = TextEditingController();
   File? _pickedImage;
   bool _isLoading = false;
 
@@ -25,6 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void dispose() {
     _username.dispose();
     _email.dispose();
+    _firstName.dispose();
+    _lastName.dispose();
+    _info.dispose();
     super.dispose();
   }
 
@@ -54,6 +60,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         username: _username.text.isNotEmpty ? _username.text : null,
         email: _email.text.isNotEmpty ? _email.text : null,
         photo: _pickedImage,
+        info: _info.text.isNotEmpty ? _info.text : null,
+        firstName: _firstName.text.isNotEmpty ? _firstName.text : null,
+        lastName: _lastName.text.isNotEmpty ? _lastName.text : null,
       );
 
       if (mounted) {
@@ -180,6 +189,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             labelText: 'Email',
                           ),
                           controller: _email..text = userData.email,
+                        ),
+                        const SizedBox(height: 20),
+                        TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Nombre',
+                          ),
+                          controller: _firstName..text = userData.firstName,
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Apellido',
+                          ),
+                          controller: _lastName..text = userData.lastName,
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Información',
+                          ),
+                          controller: _info..text = userData.info!,
                         ),
                         const Spacer(),
                         TextButton(
