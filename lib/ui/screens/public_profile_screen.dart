@@ -71,15 +71,14 @@ class PublicProfileScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      if (profile.firstName != null ||
-                                          profile.lastName != null)
+                                      if (profile.fullName.isNotEmpty)
                                         Text(
-                                          profile.firstName!,
+                                          profile.fullName,
                                           style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                      if (profile.info != null)
+                                      if (profile.info!.isNotEmpty)
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 4.0),
@@ -115,19 +114,18 @@ class PublicProfileScreen extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
           number,
-          style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 4.0),
-          child: Text(
-            label,
-            style: const TextStyle(
-                fontSize: 15.0,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.w400,
+            color: Colors.grey,
           ),
         ),
       ],
