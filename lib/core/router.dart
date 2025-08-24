@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:tu_bolitero/domain/models/public_profile.dart';
+import 'package:tu_bolitero/ui/screens/profile_post_detail_screen.dart';
 import 'package:tu_bolitero/ui/screens/public_profile_screen.dart';
 import 'package:tu_bolitero/ui/screens/result_comments_screen.dart';
 import 'package:tu_bolitero/ui/screens/screens.dart';
@@ -155,9 +157,16 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const ProfileScreen(),
         ),
         GoRoute(
-          path: 'public_profile/:userId',
-          builder: (context, state) => const PublicProfileScreen(),
-        ),
+            path: 'public_profile/:userId',
+            builder: (context, state) => const PublicProfileScreen(),
+            routes: [
+              GoRoute(
+                  path: 'post',
+                  builder: (context, state) {
+                    final post = state.extra as ProfilePost;
+                    return ProfilePostDetailScreen(post: post);
+                  }),
+            ]),
       ],
     ),
   ],

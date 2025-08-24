@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tu_bolitero/core/humanize.dart';
 import 'package:tu_bolitero/ui/logic/post/post_cubit.dart';
 import 'package:tu_bolitero/ui/logic/public_profiles/public_profiles_cubit.dart';
@@ -95,7 +97,39 @@ class PublicProfileScreen extends StatelessWidget {
                           ),
                         ];
                       },
-                      body: const Center(child: Text('Publicaciones')),
+                      body: GridView.builder(
+                        padding: EdgeInsets.zero,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                        ),
+                        itemCount: profile.profilePosts!.length,
+                        itemBuilder: (context, index) {
+                          final post = profile.profilePosts![index];
+                          if (post.photo == null || post.photo!.isEmpty) {
+                            return Container(color: Colors.grey[300]);
+                          }
+                          return GestureDetector(
+                            onTap: () {
+                              context.go('/public_profile/${profile.id}/post',
+                                  extra: post);
+                            },
+                            child: Hero(
+                              tag: 'postImage-${post.id}',
+                              child: CachedNetworkImage(
+                                imageUrl: post.photo!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    Container(color: Colors.grey[300]),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     floatingActionButton: FloatingActionButton(
                       onPressed: () {},
