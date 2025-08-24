@@ -97,38 +97,41 @@ class PublicProfileScreen extends StatelessWidget {
                           ),
                         ];
                       },
-                      body: GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 2,
-                          mainAxisSpacing: 2,
-                        ),
-                        itemCount: profile.profilePosts!.length,
-                        itemBuilder: (context, index) {
-                          final post = profile.profilePosts![index];
-                          if (post.photo == null || post.photo!.isEmpty) {
-                            return Container(color: Colors.grey[300]);
-                          }
-                          return GestureDetector(
-                            onTap: () {
-                              context.go('/public_profile/${profile.id}/post',
-                                  extra: post);
-                            },
-                            child: Hero(
-                              tag: 'postImage-${post.id}',
-                              child: CachedNetworkImage(
-                                imageUrl: post.photo!,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    Container(color: Colors.grey[300]),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                      body: Padding(
+                        padding: const EdgeInsets.only(top: 24.0),
+                        child: GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 2,
+                          ),
+                          itemCount: profile.profilePosts!.length,
+                          itemBuilder: (context, index) {
+                            final post = profile.profilePosts![index];
+                            if (post.photo == null || post.photo!.isEmpty) {
+                              return Container(color: Colors.grey[300]);
+                            }
+                            return GestureDetector(
+                              onTap: () {
+                                context.go('/public_profile/${profile.id}/post',
+                                    extra: post);
+                              },
+                              child: Hero(
+                                tag: 'postImage-${post.id}',
+                                child: CachedNetworkImage(
+                                  imageUrl: post.photo!,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      Container(color: Colors.grey[300]),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     floatingActionButton: FloatingActionButton(
